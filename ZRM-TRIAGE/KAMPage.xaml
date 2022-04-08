@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ZRM_TRIAGE.KAMPage"
+             BackgroundColor="#F8FDF8"
+             NavigationPage.HasNavigationBar="False"
+             >
+    <ContentPage.Content>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2"/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="2"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="8" Grid.RowSpan="1" HorizontalOptions="Center" VerticalOptions="Center">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Image Grid.Row="0" Grid.Column="0" Source="red_info_panel.png" Aspect="Fill"/>
+                    <Label Grid.Row="0" Grid.Column="0" Text="0" Style="{StaticResource TriageInfo}"/>
+
+                    <Image Grid.Row="0" Grid.Column="1" Source="yellow_info_panel.png" Aspect="Fill"/>
+                    <Label Grid.Row="0" Grid.Column="1" Text="0" Style="{StaticResource TriageInfo}"/>
+
+                    <Image Grid.Row="1" Grid.Column="0" Source="green_info_panel.png" Aspect="Fill"/>
+                    <Label Grid.Row="1" Grid.Column="0" Text="0" Style="{StaticResource TriageInfo}"/>
+
+                    <Image Grid.Row="1" Grid.Column="1" Source="black_info_panel.png" Aspect="Fill"/>
+                    <Label Grid.Row="1" Grid.Column="1" Text="0" Style="{StaticResource TriageInfo}"/>
+                </Grid>
+            </Grid>
+
+            <Image Source="form_panel.png" Grid.Row="1" Grid.Column="1" Grid.RowSpan="5" Grid.ColumnSpan="6" Aspect="Fill"></Image>
+
+            <Grid Grid.Row="1"  Grid.Column="1" Grid.RowSpan="5" Grid.ColumnSpan="6" Background="form_panel.png">
+               
+                <Label HorizontalOptions="Center" Text="KAM PANEL" FontSize="21"/>
+
+                <StackLayout HorizontalOptions="Center" VerticalOptions="Center" Padding="10">
+                    
+                    <Button Text="PROCEDURY" Style="{StaticResource StandardButton}" Clicked="ProceduresClicked"/>
+                    <Button Text="ZESPOŁY" Style="{StaticResource StandardButton}"/>
+                    <Button Text="TRIAGE" Style="{StaticResource ImportantButton}"/>
+                    <Button Text="POSZKODOWANI" Style="{StaticResource ImportantButton}"/>
+                    <Button Text="SZPITALE" Style="{StaticResource StandardButton}"/>
+                    <Button Text="RAPORT" Style="{StaticResource StandardButton}"/>
+
+                </StackLayout>
+               
+            </Grid>
+        </Grid>
+
+    </ContentPage.Content>
+    </ContentPage>

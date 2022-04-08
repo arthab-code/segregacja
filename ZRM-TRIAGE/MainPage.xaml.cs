@@ -15,5 +15,10 @@ namespace ZRM_TRIAGE
             InitializeComponent();
             
         }
+
+        private async void CreateEventClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new KAMPage());
+        }
     }
 }
