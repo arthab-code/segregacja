@@ -13,6 +13,7 @@ namespace ZRM_TRIAGE
         public MainPage()
         {
             InitializeComponent();
+            
         }
     }
 }

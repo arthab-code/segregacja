@@ -3,6 +3,26 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ZRM_TRIAGE.App">
     <Application.Resources>
-
+        <ResourceDictionary>
+            <Style TargetType="Button" x:Key="StandardButton">
+                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="Scale" Value="0.8"/>
+                <Setter Property="BorderWidth" Value="1"/>
+                <Setter Property="BorderColor" Value="Black"/>
+                <Setter Property="BackgroundColor" Value="#F0F7F0"/>
+                <Setter Property="CornerRadius" Value="50"/>
+            </Style>
+            <Style TargetType="Button" x:Key="ImportantButton">
+                <Setter Property="TextColor" Value="#006B77"/>
+                <Setter Property="BorderWidth" Value="1"/>
+                <Setter Property="BorderColor" Value="#006B77"/>
+                <Setter Property="BackgroundColor" Value="#F0F7F0"/>
+                <Setter Property="CornerRadius" Value="50"/>
+            </Style>
+            <Style TargetType="Label" x:Key="Title">
+                <Setter Property="TextColor" Value="#006B77"/>
+                <Setter Property="FontSize" Value="32"/>
+            </Style>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>
