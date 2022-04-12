@@ -21,5 +21,10 @@ public partial class KAMPage : ContentPage
         {
             await Navigation.PushAsync(new Procedures());
         }
+
+        private async void AmbulanceClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new AmbulanceListPage());
+        }
     }
 }

@@ -60,7 +60,7 @@
                 <StackLayout HorizontalOptions="Center" VerticalOptions="Center" Padding="10">
                     
                     <Button Text="PROCEDURY" Style="{StaticResource StandardButton}" Clicked="ProceduresClicked"/>
-                    <Button Text="ZESPOŁY" Style="{StaticResource StandardButton}"/>
+                    <Button Text="ZESPOŁY" Style="{StaticResource StandardButton} " Clicked="AmbulanceClicked"/>
                     <Button Text="TRIAGE" Style="{StaticResource ImportantButton}"/>
                     <Button Text="POSZKODOWANI" Style="{StaticResource ImportantButton}"/>
                     <Button Text="SZPITALE" Style="{StaticResource StandardButton}"/>
