@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Firebase.Database.Query;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,8 +11,8 @@ using Xamarin.Forms.Xaml;
 namespace ZRM_TRIAGE
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-public partial class AddAmbulancePage : ContentPage
-{
+     public partial class AddAmbulancePage : ContentPage
+     {
         private AmbulanceViewModel _ambulanceVM;
         public AddAmbulancePage(AmbulanceViewModel ambulanceVM)
         {
@@ -20,7 +21,7 @@ public partial class AddAmbulancePage : ContentPage
             _ambulanceVM = ambulanceVM;
         }
 
-        private void PassAddAmbulanceButtonClicked(object sender, EventArgs e)
+        private async void PassAddAmbulanceButtonClicked(object sender, EventArgs e)
         {
             AmbulanceBuilderModel ambulanceBuilder = new AmbulanceBuilderModel();
 
@@ -33,11 +34,16 @@ public partial class AddAmbulancePage : ContentPage
                                        .AmbulanceVictimSet()
                                        .Build();
 
-            _ambulanceVM.AmbulanceList.Add(ambulance);
+            //_ambulanceVM.AmbulanceList.Add(ambulance);
 
-            DisplayAlert("Dodano zespół " + ambulance.Number, "Przekaż kod logowania: " + ambulance.LoginCode, "OK");
+                Database db = new Database();
 
-            App.Current.MainPage.Navigation.PopAsync();
+                await db.GetClient().Child("Crews").PostAsync(ambulance);
+ 
+
+            await DisplayAlert("Dodano zespół " + ambulance.Number, "Przekaż kod logowania: " + ambulance.LoginCode, "OK");
+
+            await App.Current.MainPage.Navigation.PopAsync();
 
         }
     }

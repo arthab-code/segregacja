@@ -19,31 +19,20 @@ public partial class AmbulanceListPage : ContentPage
 
             ambulanceVM = new AmbulanceViewModel();
             
-            ambulanceVM.AmbulanceList.Add(new AmbulanceModel
-            {
-                Number = "S02450",
-                LoginCode = "12345",
-                AmbulanceStatus = AmbulanceModel.Status.AtLocation
-            });
+          //  BindingContext = ambulanceVM.AmbulanceList;
+            
 
-            ambulanceVM.AmbulanceList.Add(new AmbulanceModel
-            {
-                Number = "S02476",
-                LoginCode = "12345",
-                AmbulanceStatus = AmbulanceModel.Status.AtLocation
-            });
-
-            ambulanceVM.AmbulanceList.Add(new AmbulanceModel
-            {
-                Number = "S02476",
-                LoginCode = "12345",
-                AmbulanceStatus = AmbulanceModel.Status.AtLocation
-            });
-
-            BindingContext = ambulanceVM.AmbulanceList;
-            AmbulanceListXAML.ItemsSource = ambulanceVM.AmbulanceList;
-
+          //  AmbulanceListXAML.ItemsSource = ambulanceVM.AmbulanceList;
      }
+
+        protected override async void OnAppearing()
+        {
+            AmbulanceListViewModel aLvM = new AmbulanceListViewModel();
+
+            var list = await aLvM.GetAllAmbulances();
+            BindingContext = list;
+            AmbulanceListXAML.ItemsSource = list;
+        }
 
         private async void AddAmbulanceButtonClicked(object sender, EventArgs e)
         {

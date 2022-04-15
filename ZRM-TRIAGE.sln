@@ -4,10 +4,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.31613.86
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZRM-TRIAGE.Android", "ZRM-TRIAGE.Android\ZRM-TRIAGE.Android.csproj", "{F5E7897A-EFBE-454F-9775-9B55ECEF30D8}"
+	ProjectSection(ProjectDependencies) = postProject
+		{4EF87404-7AA5-42D0-B639-FA1AF1AFF024} = {4EF87404-7AA5-42D0-B639-FA1AF1AFF024}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZRM-TRIAGE.iOS", "ZRM-TRIAGE.iOS\ZRM-TRIAGE.iOS.csproj", "{4EF87404-7AA5-42D0-B639-FA1AF1AFF024}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZRM-TRIAGE", "ZRM-TRIAGE\ZRM-TRIAGE.csproj", "{11E26020-A872-4020-AAD9-977CAB9F2DD3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZRM-TRIAGE", "ZRM-TRIAGE\ZRM-TRIAGE.csproj", "{11E26020-A872-4020-AAD9-977CAB9F2DD3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

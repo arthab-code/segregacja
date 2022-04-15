@@ -24,6 +24,13 @@ namespace ZRM_TRIAGE
             return this;
         }
 
+        public AmbulanceBuilderModel AmbulanceSetEventId(string eventId)
+        {
+            _ambulanceModel.EventId = eventId;
+
+            return this;
+        }
+
         public AmbulanceBuilderModel LoginCodeGenerate()
         {
             //GENERATE CODE LOGICAL
@@ -53,22 +60,26 @@ namespace ZRM_TRIAGE
 
             switch(function)
             {
-                case "Strefa Czerwona":
+                case "Major":
+                    _ambulanceModel.AmbulanceFunction = AmbulanceModel.Function.Major;
+                    break;
+
+                case "Red":
                     _ambulanceModel.AmbulanceFunction = AmbulanceModel.Function.Red;
                     //check whether exists this function
                     break;
 
-                case "Strefa Żółta":
+                case "Yellow":
                     _ambulanceModel.AmbulanceFunction = AmbulanceModel.Function.Yellow;
                     //check whether exists this function
                     break;
 
-                case "Strefa Zielona":
+                case "Green":
                     _ambulanceModel.AmbulanceFunction = AmbulanceModel.Function.Green;
                     //check whether exists this function
                     break;
 
-                case "ZRM":
+                case "Transport":
                     _ambulanceModel.AmbulanceFunction = AmbulanceModel.Function.Transport;
                     break;
             }

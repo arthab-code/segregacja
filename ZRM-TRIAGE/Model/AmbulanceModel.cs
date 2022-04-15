@@ -15,6 +15,7 @@ namespace ZRM_TRIAGE
 
         public enum Function
         {
+            Major,
             Red,
             Yellow,
             Green,
@@ -23,6 +24,7 @@ namespace ZRM_TRIAGE
 
         public string Number { get; set; }
         public string LoginCode { get;  set; }
+        public string EventId { get; set; }
         public VictimModel Victim { get; set; }
         public HospitalModel Hospital { get; set; }
         public Status AmbulanceStatus { get; set; }
