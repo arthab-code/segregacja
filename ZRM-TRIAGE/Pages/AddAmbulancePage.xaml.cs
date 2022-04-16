@@ -33,9 +33,17 @@ namespace ZRM_TRIAGE
                 return;
             }
 
+            AmbulanceModel.Function ambulanceFunction = addAmbulanceViewModel.AmbulanceFunctionAdd(AmbulanceFunction.SelectedIndex);
+
+            if(addAmbulanceViewModel.CheckAmbulanceFunctionExists(ambulanceFunction))
+            {
+                await DisplayAlert("Bład", "Ta funkcja zostałą już przydzielona innemu zespołowi", "OK");
+                return;
+            }
+
             AmbulanceModel ambulance = ambulanceBuilder
                                        .AmbulanceSetNumber(AmbulanceNumber.Text)
-                                       .AmbulanceFunctionSet(AmbulanceFunction.Text)
+                                       .AmbulanceFunctionSet(ambulanceFunction)
                                        .AmbulanceSetEventId(UserInfo.EventId)
                                        .LoginCodeGenerate()
                                        .AmbulanceStatusSet()

@@ -13,11 +13,11 @@ namespace ZRM_TRIAGE
     internal class EventCreateViewModel
     {
 
-        private Database db;
+        private Database _db;
        
         public EventCreateViewModel()
         {
-            db = new Database();
+            _db = new Database();
         }
 
 
@@ -38,7 +38,7 @@ namespace ZRM_TRIAGE
             bool isExists = false;
 
             /* niebezpieczne miejsce w programie */
-            var thisSame = db.GetClient()
+            var thisSame = _db.GetClient()
                 .Child("Crews")
                 .OnceAsync<EventModel>().Result;
 
@@ -56,7 +56,7 @@ namespace ZRM_TRIAGE
 
         public async void AddEventToDatabase(string eventId)
         {
-            await db.GetClient().Child("Events").PostAsync(new EventModel()
+            await _db.GetClient().Child("Events").PostAsync(new EventModel()
             {
                 EventId = eventId
             });
@@ -70,7 +70,7 @@ namespace ZRM_TRIAGE
                 .AmbulanceSetNumber(ambulanceNumber)
                 .AmbulanceSetEventId(eventId)
                 .LoginCodeGenerate()
-                .AmbulanceFunctionSet("Major")
+                .AmbulanceFunctionSet(AmbulanceModel.Function.Major)
                 .AmbulanceStatusSet()
                 .AmbulanceHospitalSet()
                 .AmbulanceVictimSet()
@@ -85,7 +85,7 @@ namespace ZRM_TRIAGE
 
             UserInfo.EventId = eventId;
 
-            await db.GetClient().Child("Crews").PostAsync(ambulance);
+            await _db.GetClient().Child("Crews").PostAsync(ambulance);
         }
 
     }

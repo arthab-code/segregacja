@@ -36,14 +36,16 @@
                         <Label Text="NUMER ZESPOŁU"/>
                         <Entry x:Name="AmbulanceNumber" BackgroundColor="#F8FDF8" Placeholder="numer zespołu"/>
                         <Label></Label>
-                        <Label x:Name="AmbulanceFunction" Text="FUNKCJA"/>
-                        <Picker>
-                            <Picker.Items>
+                        <Label  Text="FUNKCJA"/>
+                        <Picker x:Name="AmbulanceFunction">
+                            <Picker.ItemsSource>
+                                <x:Array Type="{x:Type x:String}">
                                 <x:String>Strefa Czerwona</x:String>
                                 <x:String>Strefa Żółta</x:String>
                                 <x:String>Strefa Zielona</x:String>
                                 <x:String>ZRM</x:String>
-                            </Picker.Items>
+                                </x:Array>
+                            </Picker.ItemsSource>
                         </Picker>
                         <Button Text="DODAJ" Style="{StaticResource StandardButton}" Clicked="PassAddAmbulanceButtonClicked"/>
                     </StackLayout>

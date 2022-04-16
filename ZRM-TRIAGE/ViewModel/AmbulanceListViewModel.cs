@@ -11,19 +11,19 @@ namespace ZRM_TRIAGE
 {
     public class AmbulanceListViewModel
     {
-        private Database db;
-        private ObservableCollection<AmbulanceModel> ambulances;
+        private Database _db;
+        private ObservableCollection<AmbulanceModel> _ambulances;
 
         public AmbulanceListViewModel()
         {
-            db = new Database();
-            ambulances = new ObservableCollection<AmbulanceModel>();
+            _db = new Database();
+            _ambulances = new ObservableCollection<AmbulanceModel>();
         }
         public async Task<List<AmbulanceModel>> GetAllAmbulances()
         {
-            ambulances.Clear();
+            _ambulances.Clear();
 
-            return (await db.GetClient().
+            return (await _db.GetClient().
                 Child("Crews")
                 .OnceAsync<AmbulanceModel>())
                 .Select(item => new AmbulanceModel

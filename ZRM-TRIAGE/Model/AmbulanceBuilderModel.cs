@@ -92,9 +92,10 @@ namespace ZRM_TRIAGE
             return this;
         }
 
-        public AmbulanceBuilderModel AmbulanceFunctionSet(string function)
-        {
-            switch(function)
+        public AmbulanceBuilderModel AmbulanceFunctionSet(AmbulanceModel.Function function)
+        { 
+            _ambulanceModel.AmbulanceFunction = function;
+            /*switch(function)
             {
                 case "Major":
                     _ambulanceModel.AmbulanceFunction = AmbulanceModel.Function.Major;
@@ -118,7 +119,7 @@ namespace ZRM_TRIAGE
                 case "Transport":
                     _ambulanceModel.AmbulanceFunction = AmbulanceModel.Function.Transport;
                     break;
-            }
+            } */
 
             return this;
         }
