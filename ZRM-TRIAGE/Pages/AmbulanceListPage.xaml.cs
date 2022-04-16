@@ -43,6 +43,8 @@ public partial class AmbulanceListPage : ContentPage
 
             ambulance = AmbulanceListXAML.SelectedItem as AmbulanceModel;
 
+            AmbulanceModel.Function f = ambulance.AmbulanceFunction;
+
             await Navigation.PushAsync(new ShowAmbulancePage(ambulance));
         }
 

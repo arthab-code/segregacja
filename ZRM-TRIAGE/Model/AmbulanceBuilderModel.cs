@@ -95,43 +95,10 @@ namespace ZRM_TRIAGE
         public AmbulanceBuilderModel AmbulanceFunctionSet(AmbulanceModel.Function function)
         { 
             _ambulanceModel.AmbulanceFunction = function;
-            /*switch(function)
-            {
-                case "Major":
-                    _ambulanceModel.AmbulanceFunction = AmbulanceModel.Function.Major;
-                    break;
-
-                case "Red":
-                    _ambulanceModel.AmbulanceFunction = AmbulanceModel.Function.Red;
-                    //check whether exists this function
-                    break;
-
-                case "Yellow":
-                    _ambulanceModel.AmbulanceFunction = AmbulanceModel.Function.Yellow;
-                    //check whether exists this function
-                    break;
-
-                case "Green":
-                    _ambulanceModel.AmbulanceFunction = AmbulanceModel.Function.Green;
-                    //check whether exists this function
-                    break;
-
-                case "Transport":
-                    _ambulanceModel.AmbulanceFunction = AmbulanceModel.Function.Transport;
-                    break;
-            } */
 
             return this;
         }
 
-        private bool AmbulanceFunctionCheck()
-        {
-            bool score = true;
-
-            //Checking whether function exists
-
-            return score;
-        }
 
         public AmbulanceBuilderModel AmbulanceHospitalSet()
         {

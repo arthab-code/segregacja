@@ -21,8 +21,6 @@ namespace ZRM_TRIAGE
         }
         public async Task<List<AmbulanceModel>> GetAllAmbulances()
         {
-            _ambulances.Clear();
-
             return (await _db.GetClient().
                 Child("Crews")
                 .OnceAsync<AmbulanceModel>())
@@ -30,7 +28,8 @@ namespace ZRM_TRIAGE
                 {
 
                     Number = item.Object.Number,
-                    EventId = item.Object.EventId
+                    EventId = item.Object.EventId,
+                    AmbulanceFunction = item.Object.AmbulanceFunction
 
                 })
                 .Where(item => item.EventId == UserInfo.EventId)

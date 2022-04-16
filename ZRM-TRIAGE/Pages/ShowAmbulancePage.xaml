@@ -36,9 +36,10 @@
                         <Label Text="NUMER ZESPOŁU"/>
                         <Entry x:Name="AmbulanceNumber" BackgroundColor="#F8FDF8"/>
                         <Label></Label>
-                        <Label x:Name="AmbulanceFunction" Text="FUNKCJA"/>
-                        <Picker>
+                        <Label Text="FUNKCJA"/>
+                        <Picker x:Name="AmbulanceFunction">
                             <Picker.Items>
+                                <x:String>KAM</x:String>
                                 <x:String>Strefa Czerwona</x:String>
                                 <x:String>Strefa Żółta</x:String>
                                 <x:String>Strefa Zielona</x:String>
