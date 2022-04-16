@@ -1,16 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using System.ComponentModel;
 using System.Linq;
-
-using Firebase.Database.Query;
-using System.Collections.ObjectModel;
+using System.Text;
 using System.Threading.Tasks;
-using Firebase.Database;
+using Xamarin.Forms;
+using System.Collections.ObjectModel;
 
 namespace ZRM_TRIAGE
 {
-    internal class AmbulanceListViewModel
+    public class AmbulanceListViewModel
     {
         private Database db;
         private ObservableCollection<AmbulanceModel> ambulances;
@@ -20,22 +19,22 @@ namespace ZRM_TRIAGE
             db = new Database();
             ambulances = new ObservableCollection<AmbulanceModel>();
         }
-
         public async Task<List<AmbulanceModel>> GetAllAmbulances()
         {
+            ambulances.Clear();
+
             return (await db.GetClient().
                 Child("Crews")
                 .OnceAsync<AmbulanceModel>())
                 .Select(item => new AmbulanceModel
                 {
 
-                    Number = item.Object.Number
+                    Number = item.Object.Number,
+                    EventId = item.Object.EventId
 
                 })
-                .Where(item => item.Number == "12")
+                .Where(item => item.EventId == UserInfo.EventId)
                 .ToList();
         }
-
-
     }
 }

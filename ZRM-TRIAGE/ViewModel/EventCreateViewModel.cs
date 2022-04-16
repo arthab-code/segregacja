@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 using Firebase.Database.Query;
 using System.Collections.ObjectModel;
@@ -32,38 +33,42 @@ namespace ZRM_TRIAGE
             return isCorrect;
         }
 
-        public bool CheckEventExists(string eventName)
+        public bool CheckEventExists(string eventId)
         {
             bool isExists = false;
 
-            var thisSame = db.GetClient().Child("Events").OnceAsync<EventModel>().Result;
+            /* niebezpieczne miejsce w programie */
+            var thisSame = db.GetClient()
+                .Child("Crews")
+                .OnceAsync<EventModel>().Result;
 
-            foreach (var item in thisSame)
-            {
-                if (item.Object.Name == eventName && isExists == false)
-                {
-                    isExists = true;
-                    break;
-                }
-            }
+             foreach (var item in thisSame)
+             {
+                 if (item.Object.EventId == eventId && isExists == false)
+                 {
+                     isExists = true;                    
+                     break;
+                 }
+             }
+
             return isExists;
         }
 
-        public async void AddEventToDatabase(string eventName)
+        public async void AddEventToDatabase(string eventId)
         {
             await db.GetClient().Child("Events").PostAsync(new EventModel()
             {
-                Name = eventName
+                EventId = eventId
             });
         }
 
-        private AmbulanceModel ConfigureMajorAmbulance(string ambulanceNumber, string eventName)
+        private AmbulanceModel ConfigureMajorAmbulance(string ambulanceNumber, string eventId)
         {
             AmbulanceBuilderModel ambulanceBuilder = new AmbulanceBuilderModel();
 
             AmbulanceModel ambulance = ambulanceBuilder
                 .AmbulanceSetNumber(ambulanceNumber)
-                .AmbulanceSetEventId(eventName)
+                .AmbulanceSetEventId(eventId)
                 .LoginCodeGenerate()
                 .AmbulanceFunctionSet("Major")
                 .AmbulanceStatusSet()
@@ -74,9 +79,11 @@ namespace ZRM_TRIAGE
             return ambulance;
         }
 
-        public async void AddMajorAmbulanceToDatabase(string ambulanceNumber, string eventName)
+        public async void AddMajorAmbulanceToDatabase(string ambulanceNumber, string eventId)
         {
-            AmbulanceModel ambulance = ConfigureMajorAmbulance(ambulanceNumber, eventName);
+            AmbulanceModel ambulance = ConfigureMajorAmbulance(ambulanceNumber, eventId);
+
+            UserInfo.EventId = eventId;
 
             await db.GetClient().Child("Crews").PostAsync(ambulance);
         }

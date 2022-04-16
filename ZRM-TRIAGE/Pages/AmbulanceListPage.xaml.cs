@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,18 +13,13 @@ namespace ZRM_TRIAGE
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 public partial class AmbulanceListPage : ContentPage
 {
-    private AmbulanceViewModel ambulanceVM;
+    private AmbulanceListViewModel ambulanceVM;
     public AmbulanceListPage()
     {
         InitializeComponent();
 
-            ambulanceVM = new AmbulanceViewModel();
-            
-          //  BindingContext = ambulanceVM.AmbulanceList;
-            
-
-          //  AmbulanceListXAML.ItemsSource = ambulanceVM.AmbulanceList;
-     }
+            ambulanceVM = new AmbulanceListViewModel();
+    }
 
         protected override async void OnAppearing()
         {
@@ -38,5 +34,18 @@ public partial class AmbulanceListPage : ContentPage
         {
             await Navigation.PushAsync(new AddAmbulancePage(ambulanceVM));
         }
+        private async void ShowAmbulanceButtonClicked(object sender, EventArgs e)
+        {
+            if (AmbulanceListXAML.SelectedItem == null)
+                return;
+
+            AmbulanceModel ambulance;
+
+            ambulance = AmbulanceListXAML.SelectedItem as AmbulanceModel;
+
+            await Navigation.PushAsync(new ShowAmbulancePage(ambulance));
+        }
+
+        
     }
 }

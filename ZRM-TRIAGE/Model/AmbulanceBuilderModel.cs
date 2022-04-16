@@ -11,10 +11,12 @@ namespace ZRM_TRIAGE
     public class AmbulanceBuilderModel
     {
         private AmbulanceModel _ambulanceModel;
+        private Database _db;
 
         public AmbulanceBuilderModel()
         {
             _ambulanceModel = new AmbulanceModel();
+            _db = new Database();
         }
 
         public AmbulanceBuilderModel AmbulanceSetNumber(string number)
@@ -34,18 +36,53 @@ namespace ZRM_TRIAGE
         public AmbulanceBuilderModel LoginCodeGenerate()
         {
             //GENERATE CODE LOGICAL
+            const int loginCodeLength = 6;
+            char[] loginCode = new char[loginCodeLength];
 
-            _ambulanceModel.LoginCode = "12345";
+            Random random = new Random();
+
+            string addCodeValue;
+
+            while (true)
+            {
+                addCodeValue = "";
+
+                for (int i=0; i<loginCodeLength; i++)
+                {
+                    loginCode[i] = (char)random.Next(97, 122);
+                    addCodeValue += loginCode[i];
+                }
+
+                if (LoginCodeChecking(addCodeValue))
+                    continue;
+                else
+                    break;
+            }
+
+            _ambulanceModel.LoginCode = addCodeValue;
 
             return this;
         }
 
-        private bool LoginCodeChecking()
+        private bool LoginCodeChecking(string loginCode)
         {
-            bool score = true;
-            //CHECKING CONFIRM LOGIN CODE
+            bool isExists = false;
 
-            return score;
+            /* niebezpieczne miejsce w programie */
+            var thisSame = _db.GetClient()
+                .Child("Crews")
+                .OnceAsync<AmbulanceModel>().Result;
+
+            foreach (var item in thisSame)
+            {
+                if (item.Object.LoginCode == loginCode && isExists == false)
+                {
+                    isExists = true;
+                    break;
+                }
+            }
+
+            return isExists;
         }
 
         public AmbulanceBuilderModel AmbulanceStatusSet()
@@ -57,7 +94,6 @@ namespace ZRM_TRIAGE
 
         public AmbulanceBuilderModel AmbulanceFunctionSet(string function)
         {
-
             switch(function)
             {
                 case "Major":

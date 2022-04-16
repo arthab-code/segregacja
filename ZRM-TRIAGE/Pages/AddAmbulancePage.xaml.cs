@@ -13,8 +13,8 @@ namespace ZRM_TRIAGE
 	[XamlCompilation(XamlCompilationOptions.Compile)]
      public partial class AddAmbulancePage : ContentPage
      {
-        private AmbulanceViewModel _ambulanceVM;
-        public AddAmbulancePage(AmbulanceViewModel ambulanceVM)
+        private AmbulanceListViewModel _ambulanceVM;
+        public AddAmbulancePage(AmbulanceListViewModel ambulanceVM)
         {
             InitializeComponent();
 
@@ -23,23 +23,27 @@ namespace ZRM_TRIAGE
 
         private async void PassAddAmbulanceButtonClicked(object sender, EventArgs e)
         {
+
             AmbulanceBuilderModel ambulanceBuilder = new AmbulanceBuilderModel();
+            AddAmbulanceViewModel addAmbulanceViewModel = new AddAmbulanceViewModel();
+
+            if (addAmbulanceViewModel.CheckAmbulanceExists(AmbulanceNumber.Text))
+            {
+                await DisplayAlert("Błąd", "Zespół " + AmbulanceNumber.Text + " już bierze udział w zdarzeniu ","OK");
+                return;
+            }
 
             AmbulanceModel ambulance = ambulanceBuilder
                                        .AmbulanceSetNumber(AmbulanceNumber.Text)
                                        .AmbulanceFunctionSet(AmbulanceFunction.Text)
+                                       .AmbulanceSetEventId(UserInfo.EventId)
                                        .LoginCodeGenerate()
                                        .AmbulanceStatusSet()
                                        .AmbulanceHospitalSet()
                                        .AmbulanceVictimSet()
                                        .Build();
 
-            //_ambulanceVM.AmbulanceList.Add(ambulance);
-
-                Database db = new Database();
-
-                await db.GetClient().Child("Crews").PostAsync(ambulance);
- 
+            addAmbulanceViewModel.AddAmbulanceToDatabase(ambulance);
 
             await DisplayAlert("Dodano zespół " + ambulance.Number, "Przekaż kod logowania: " + ambulance.LoginCode, "OK");
 

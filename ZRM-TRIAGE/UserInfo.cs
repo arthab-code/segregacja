@@ -4,9 +4,10 @@ using System.Text;
 
 namespace ZRM_TRIAGE
 {
-    public class EventModel
+    public static class UserInfo
     {
-        public string Id { get; set; }
-        public string EventId { get; set; }
+
+        public static string EventId { get; set; }      
+
     }
 }

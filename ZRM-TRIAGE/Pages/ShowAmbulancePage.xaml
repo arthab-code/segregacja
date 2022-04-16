@@ -1,12 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ZRM_TRIAGE.AmbulanceListPage"
+             x:Class="ZRM_TRIAGE.ShowAmbulancePage"
              BackgroundColor="#F8FDF8"
              >
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Dodaj" Clicked="AddAmbulanceButtonClicked" />
-    </ContentPage.ToolbarItems>
+
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
@@ -29,24 +27,28 @@
 
             <Image Source="form_panel.png" Grid.Row="0" Grid.Column="1" Grid.RowSpan="6" Grid.ColumnSpan="6" Aspect="Fill"></Image>
             <StackLayout  Grid.Row="0"  Grid.Column="1" Grid.RowSpan="4" Grid.ColumnSpan="6">
-                <Label HorizontalOptions="Center" Padding="10" Text="ZESPOŁY" FontSize="21"/>
-                <Button x:Name="AmbulanceInfoButton"  Grid.Column="1" Style="{StaticResource StandardButton}" Text="Info" Clicked="ShowAmbulanceButtonClicked"/>
+                <Label  x:Name="AmbulanceNumerShow" HorizontalOptions="Center" Padding="10" FontSize="21"/>
             </StackLayout>
 
             <Grid Grid.Row="1"  Grid.Column="1" Grid.RowSpan="4" Grid.ColumnSpan="6" Background="form_panel.png">
                 <ScrollView Padding="10">
-                    <ListView x:Name="AmbulanceListXAML" BackgroundColor="#F8FDF8">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <ViewCell>
-                                    <Label HorizontalOptions="Center" VerticalOptions="Center" Text="{Binding Number}" />
-                                </ViewCell>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
+                    <StackLayout HorizontalOptions="Center" Padding="10">
+                        <Label Text="NUMER ZESPOŁU"/>
+                        <Entry x:Name="AmbulanceNumber" BackgroundColor="#F8FDF8"/>
+                        <Label></Label>
+                        <Label x:Name="AmbulanceFunction" Text="FUNKCJA"/>
+                        <Picker>
+                            <Picker.Items>
+                                <x:String>Strefa Czerwona</x:String>
+                                <x:String>Strefa Żółta</x:String>
+                                <x:String>Strefa Zielona</x:String>
+                                <x:String>ZRM</x:String>
+                            </Picker.Items>
+                        </Picker>
+                        <Button Text="DODAJ" Style="{StaticResource StandardButton}"/>
+                    </StackLayout>
                 </ScrollView>
             </Grid>
         </Grid>
-
     </ContentPage.Content>
 </ContentPage>
