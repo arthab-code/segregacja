@@ -46,11 +46,16 @@ namespace ZRM_TRIAGE
         {
             bool isExists = false;
 
+
+
             /* niebezpieczne miejsce w programie */
             var thisSame = _db.GetClient().Child("Crews").OnceAsync<AmbulanceModel>().Result;
 
             foreach (var item in thisSame)
             {
+                if (function == AmbulanceModel.Function.Transport && item.Object.EventId == UserInfo.EventId)
+                    break;
+
                 if (item.Object.AmbulanceFunction == function && item.Object.EventId == UserInfo.EventId && isExists == false)
                 {
                     isExists = true;
