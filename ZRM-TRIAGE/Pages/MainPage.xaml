@@ -35,8 +35,8 @@
              
                 <StackLayout HorizontalOptions="Center" Padding="10">
                     <Label Text="WPROWADŹ KOD ZDARZENIA"/>
-                    <Entry BackgroundColor="#F8FDF8" Placeholder=">> tutaj wpisz kod"/>
-                    <Button Text="ZALOGUJ" Style="{StaticResource StandardButton}"/>
+                    <Entry  x:Name="LoginCode" BackgroundColor="#F8FDF8" Placeholder=">> tutaj wpisz kod"/>
+                    <Button Text="ZALOGUJ" Style="{StaticResource StandardButton}" Clicked="SubmitLogin"/>
                     <Button Text="POMOC" Style="{StaticResource StandardButton}"/>
                     <Button Text="NOWE ZDARZENIE" Style="{StaticResource ImportantButton}" Clicked="CreateEventClicked"/>
                     <Button Text="ZGŁOŚ BŁĄD" Style="{StaticResource StandardButton}"/>

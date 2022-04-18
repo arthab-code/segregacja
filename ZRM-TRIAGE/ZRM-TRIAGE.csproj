@@ -19,25 +19,37 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Pages\EventCreatePage.xaml">
+    <EmbeddedResource Update="Pages\MajorGreenPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Pages\AddAmbulancePage.xaml">
+    <EmbeddedResource Update="Pages\MajorYellowPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Pages\AmbulanceListPage.xaml">
+    <EmbeddedResource Update="Pages\MajorRedPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Pages\KAMPage.xaml">
+    <EmbeddedResource Update="Pages\KAM\EventCreatePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Pages\Procedures.xaml">
+    <EmbeddedResource Update="Pages\KAM\AddAmbulancePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Pages\TriageProcedures.xaml">
+    <EmbeddedResource Update="Pages\KAM\AmbulanceListPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Pages\ShowAmbulancePage.xaml">
+    <EmbeddedResource Update="Pages\KAM\KAMPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\KAM\Procedures.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\KAM\TriageProcedures.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\KAM\ShowAmbulancePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\TransportAmbulancePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

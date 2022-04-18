@@ -14,12 +14,12 @@ namespace ZRM_TRIAGE
 {
     internal class AddAmbulanceViewModel
     {
-        private Database _db;
+        private AmbulanceRepository _ambulanceRepos;
         private ObservableCollection<AmbulanceModel> _ambulances;
 
         public AddAmbulanceViewModel()
         {
-            _db = new Database();
+            _ambulanceRepos = new AmbulanceRepository();
             _ambulances = new ObservableCollection<AmbulanceModel>();
         }
 
@@ -28,16 +28,22 @@ namespace ZRM_TRIAGE
             bool isExists = false;
 
             /* niebezpieczne miejsce w programie */
-            var thisSame =  _db.GetClient().Child("Crews").OnceAsync<AmbulanceModel>().Result;
+            /* var thisSame =  _db.GetClient().Child("Crews").OnceAsync<AmbulanceModel>().Result;
 
-            foreach (var item in thisSame)
-            {
-                if (item.Object.Number == ambulanceNumber && item.Object.EventId == UserInfo.EventId && isExists == false)
-                {
-                    isExists = true;
-                    break;
-                }
-            }
+             foreach (var item in thisSame)
+             {
+                 if (item.Object.Number == ambulanceNumber && item.Object.EventId == UserInfo.EventId && isExists == false)
+                 {
+                     isExists = true;
+                     break;
+                 }
+             }*/
+
+            AmbulanceModel check = _ambulanceRepos.Search(ambulanceNumber);
+
+            if (check != null)
+                isExists = true;
+
             return isExists;
 
         }
@@ -46,28 +52,17 @@ namespace ZRM_TRIAGE
         {
             bool isExists = false;
 
+            bool search = _ambulanceRepos.SearchFunction(function);
 
+            if (search == true)
+                isExists = true;
 
-            /* niebezpieczne miejsce w programie */
-            var thisSame = _db.GetClient().Child("Crews").OnceAsync<AmbulanceModel>().Result;
-
-            foreach (var item in thisSame)
-            {
-                if (function == AmbulanceModel.Function.Transport && item.Object.EventId == UserInfo.EventId)
-                    break;
-
-                if (item.Object.AmbulanceFunction == function && item.Object.EventId == UserInfo.EventId && isExists == false)
-                {
-                    isExists = true;
-                    break;
-                }
-            }
             return isExists;
         }
 
-        public async void AddAmbulanceToDatabase(AmbulanceModel ambulance)
+        public void AddAmbulanceToDatabase(AmbulanceModel ambulance)
         {
-            await _db.GetClient().Child("Crews").PostAsync(ambulance);
+            _ambulanceRepos.Add(ambulance);
         }
 
         public AmbulanceModel.Function AmbulanceFunctionAdd(int selectedIndex)

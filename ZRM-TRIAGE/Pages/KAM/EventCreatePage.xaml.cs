@@ -40,7 +40,9 @@ namespace ZRM_TRIAGE
 
             evM.AddEventToDatabase(EventName.Text);
 
-            evM.AddMajorAmbulanceToDatabase(AmbulanceNumber.Text, EventName.Text);
+            AmbulanceModel ambulance = evM.AddMajorAmbulanceToDatabase(AmbulanceNumber.Text, EventName.Text);
+
+            await DisplayAlert("TWÓJ KOD, ZAPISZ GO: ", ambulance.LoginCode, "OK");
 
             await Navigation.PushAsync(new KAMPage());
 

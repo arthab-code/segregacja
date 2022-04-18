@@ -8,6 +8,7 @@ namespace ZRM_TRIAGE
     {
 
         public static string EventId { get; set; }      
+        public static string AmbulanceNumber { get; set; } 
 
     }
 }

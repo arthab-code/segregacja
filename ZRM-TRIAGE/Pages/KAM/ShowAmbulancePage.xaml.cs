@@ -21,10 +21,10 @@ namespace ZRM_TRIAGE
             AddAmbulanceViewModel aAvM = new AddAmbulanceViewModel();
 
             _ambulance = ambulance;
-            int i = (int)_ambulance.AmbulanceFunction;
             AmbulanceModel.Function function = aAvM.AmbulanceFunctionAdd((int)_ambulance.AmbulanceFunction);
 
             AmbulanceFunction.SelectedIndex = (int)_ambulance.AmbulanceFunction;
+            AmbulanceStatus.SelectedIndex = (int)_ambulance.AmbulanceStatus;
             AmbulanceNumber.Text = _ambulance.Number;
         }
     }

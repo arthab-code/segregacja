@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ZRM_TRIAGE
 {
-    internal class ShowAmbulanceViewModel
+    public class ShowAmbulanceViewModel
     {
         public int IndexPicker(int index)
         {
@@ -33,6 +33,8 @@ namespace ZRM_TRIAGE
                     return 4;
                     break;
             }
+
+            return 0;
         }
     }
 }

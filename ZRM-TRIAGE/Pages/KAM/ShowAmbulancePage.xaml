@@ -46,7 +46,18 @@
                                 <x:String>ZRM</x:String>
                             </Picker.Items>
                         </Picker>
-                        <Button Text="DODAJ" Style="{StaticResource StandardButton}"/>
+                        <Label Text="STATUS"/>
+                        <Picker x:Name="AmbulanceStatus" IsEnabled="False">
+                            <Picker.Items>
+                                <x:String>Na miejscu</x:String>
+                                <x:String>Transport</x:String>
+                                <x:String>W szpitalu</x:String>
+                            </Picker.Items>
+                        </Picker>
+                        <StackLayout Orientation="Horizontal">
+                            <Button Text="EDYTUJ" Style="{StaticResource StandardButton}"/>
+                            <Button Text="USUŃ" Style="{StaticResource StandardButton}"/>
+                        </StackLayout>
                     </StackLayout>
                 </ScrollView>
             </Grid>

@@ -13,11 +13,12 @@ namespace ZRM_TRIAGE
     internal class EventCreateViewModel
     {
 
-        private Database _db;
+        private EventRepository _eventRepos;
+        Database _db = new Database();
        
         public EventCreateViewModel()
         {
-            _db = new Database();
+            _eventRepos = new EventRepository();
         }
 
 
@@ -37,29 +38,22 @@ namespace ZRM_TRIAGE
         {
             bool isExists = false;
 
-            /* niebezpieczne miejsce w programie */
-            var thisSame = _db.GetClient()
-                .Child("Crews")
-                .OnceAsync<EventModel>().Result;
+            EventModel check = _eventRepos.Search(eventId);
 
-             foreach (var item in thisSame)
-             {
-                 if (item.Object.EventId == eventId && isExists == false)
-                 {
-                     isExists = true;                    
-                     break;
-                 }
-             }
+            if (check != null)
+                isExists = true;
 
             return isExists;
         }
 
-        public async void AddEventToDatabase(string eventId)
+        public void AddEventToDatabase(string eventId)
         {
-            await _db.GetClient().Child("Events").PostAsync(new EventModel()
+            EventModel newEvent = new EventModel()
             {
                 EventId = eventId
-            });
+            };
+
+            _eventRepos.Add(newEvent);
         }
 
         private AmbulanceModel ConfigureMajorAmbulance(string ambulanceNumber, string eventId)
@@ -79,13 +73,18 @@ namespace ZRM_TRIAGE
             return ambulance;
         }
 
-        public async void AddMajorAmbulanceToDatabase(string ambulanceNumber, string eventId)
+        public AmbulanceModel AddMajorAmbulanceToDatabase(string ambulanceNumber, string eventId)
         {
+            UserInfo.EventId = eventId;
+            UserInfo.AmbulanceNumber = ambulanceNumber;
+
             AmbulanceModel ambulance = ConfigureMajorAmbulance(ambulanceNumber, eventId);
 
-            UserInfo.EventId = eventId;
+            AmbulanceRepository ambulanceRepos = new AmbulanceRepository();
 
-            await _db.GetClient().Child("Crews").PostAsync(ambulance);
+            ambulanceRepos.Add(ambulance);
+
+            return ambulance;
         }
 
     }

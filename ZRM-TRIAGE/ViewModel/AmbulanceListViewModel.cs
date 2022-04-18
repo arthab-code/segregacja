@@ -11,29 +11,17 @@ namespace ZRM_TRIAGE
 {
     public class AmbulanceListViewModel
     {
-        private Database _db;
+        private AmbulanceRepository _ambulanceRepos;
         private ObservableCollection<AmbulanceModel> _ambulances;
 
         public AmbulanceListViewModel()
         {
-            _db = new Database();
+            _ambulanceRepos = new AmbulanceRepository();
             _ambulances = new ObservableCollection<AmbulanceModel>();
         }
-        public async Task<List<AmbulanceModel>> GetAllAmbulances()
+        public List<AmbulanceModel> GetAllAmbulances()
         {
-            return (await _db.GetClient().
-                Child("Crews")
-                .OnceAsync<AmbulanceModel>())
-                .Select(item => new AmbulanceModel
-                {
-
-                    Number = item.Object.Number,
-                    EventId = item.Object.EventId,
-                    AmbulanceFunction = item.Object.AmbulanceFunction
-
-                })
-                .Where(item => item.EventId == UserInfo.EventId)
-                .ToList();
+            return _ambulanceRepos.GetAll();
         }
     }
 }

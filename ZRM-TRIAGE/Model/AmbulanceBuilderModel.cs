@@ -6,17 +6,19 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
+using Firebase.Database.Query;
+
 namespace ZRM_TRIAGE
 {
     public class AmbulanceBuilderModel
     {
         private AmbulanceModel _ambulanceModel;
-        private Database _db;
+        private Database _database;
 
         public AmbulanceBuilderModel()
         {
             _ambulanceModel = new AmbulanceModel();
-            _db = new Database();
+            _database = new Database();
         }
 
         public AmbulanceBuilderModel AmbulanceSetNumber(string number)
@@ -68,9 +70,9 @@ namespace ZRM_TRIAGE
         {
             bool isExists = false;
 
-            /* niebezpieczne miejsce w programie */
-            var thisSame = _db.GetClient()
+            var thisSame = _database.GetClient()
                 .Child("Crews")
+                .Child(UserInfo.EventId)
                 .OnceAsync<AmbulanceModel>().Result;
 
             foreach (var item in thisSame)

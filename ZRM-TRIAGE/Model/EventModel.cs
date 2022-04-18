@@ -6,7 +6,7 @@ namespace ZRM_TRIAGE
 {
     public class EventModel
     {
-        public string Id { get; set; }
         public string EventId { get; set; }
+ 
     }
 }

@@ -21,11 +21,11 @@ public partial class AmbulanceListPage : ContentPage
             ambulanceVM = new AmbulanceListViewModel();
     }
 
-        protected override async void OnAppearing()
+        protected override  void OnAppearing()
         {
             AmbulanceListViewModel aLvM = new AmbulanceListViewModel();
 
-            var list = await aLvM.GetAllAmbulances();
+            var list = aLvM.GetAllAmbulances();
             BindingContext = list;
             AmbulanceListXAML.ItemsSource = list;
         }
