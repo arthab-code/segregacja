@@ -108,13 +108,69 @@ namespace ZRM_TRIAGE
             return isExists;
         }
 
-        public void Update(AmbulanceModel item)
+        public void Update(AmbulanceModel oldItem, AmbulanceModel newItem)
         {
-            var ambulanceKey = SearchKey(item.Number);
+            var ambulanceKey = SearchKey(oldItem.Number);
+            var dupa = newItem.Number;
 
+            _database.GetClient().Child("Crews").Child(UserInfo.EventId).Child(ambulanceKey).PutAsync(newItem);
 
-            _database.GetClient().Child("Crews").Child(UserInfo.EventId).Child(ambulanceKey).PutAsync(item);
+        }
 
+        public AmbulanceModel.Function AmbulanceFunctionAdd(int selectedIndex)
+        {
+            switch (selectedIndex)
+            {
+                case 0:
+                    return AmbulanceModel.Function.Major;
+                    break;
+
+                case 1:
+                    return AmbulanceModel.Function.Red;
+                    break;
+
+                case 2:
+                    return AmbulanceModel.Function.Yellow;
+                    break;
+
+                case 3:
+                    return AmbulanceModel.Function.Green;
+                    break;
+
+                case 4:
+                    return AmbulanceModel.Function.Transport;
+                    break;
+
+                default:
+                    return AmbulanceModel.Function.Transport;
+                    break;
+
+            }
+        }
+
+        public bool CheckAmbulanceExists(string ambulanceNumber)
+        {
+            bool isExists = false;
+
+            AmbulanceModel check = Search(ambulanceNumber);
+
+            if (check != null)
+                isExists = true;
+
+            return isExists;
+
+        }
+
+        public bool CheckAmbulanceFunctionExists(AmbulanceModel.Function function)
+        {
+            bool isExists = false;
+
+            bool search = SearchFunction(function);
+
+            if (search == true)
+                isExists = true;
+
+            return isExists;
         }
     }
 }

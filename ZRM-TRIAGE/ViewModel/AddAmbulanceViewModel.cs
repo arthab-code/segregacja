@@ -25,39 +25,12 @@ namespace ZRM_TRIAGE
 
         public bool CheckAmbulanceExists(string ambulanceNumber)
         {
-            bool isExists = false;
-
-            /* niebezpieczne miejsce w programie */
-            /* var thisSame =  _db.GetClient().Child("Crews").OnceAsync<AmbulanceModel>().Result;
-
-             foreach (var item in thisSame)
-             {
-                 if (item.Object.Number == ambulanceNumber && item.Object.EventId == UserInfo.EventId && isExists == false)
-                 {
-                     isExists = true;
-                     break;
-                 }
-             }*/
-
-            AmbulanceModel check = _ambulanceRepos.Search(ambulanceNumber);
-
-            if (check != null)
-                isExists = true;
-
-            return isExists;
-
+            return _ambulanceRepos.CheckAmbulanceExists(ambulanceNumber);
         }
 
         public bool CheckAmbulanceFunctionExists(AmbulanceModel.Function function)
         {
-            bool isExists = false;
-
-            bool search = _ambulanceRepos.SearchFunction(function);
-
-            if (search == true)
-                isExists = true;
-
-            return isExists;
+            return _ambulanceRepos.CheckAmbulanceFunctionExists(function);
         }
 
         public void AddAmbulanceToDatabase(AmbulanceModel ambulance)
@@ -67,33 +40,7 @@ namespace ZRM_TRIAGE
 
         public AmbulanceModel.Function AmbulanceFunctionAdd(int selectedIndex)
         {
-            switch (selectedIndex)
-            {
-                case 0:
-                    return AmbulanceModel.Function.Major;
-                    break;
-
-                case 1:
-                    return AmbulanceModel.Function.Red;
-                    break;
-
-                case 2:
-                    return AmbulanceModel.Function.Yellow;
-                    break;
-
-                case 3:
-                    return AmbulanceModel.Function.Green;
-                    break;
-
-                case 4:
-                    return AmbulanceModel.Function.Transport;
-                    break;
-
-                default:
-                    return AmbulanceModel.Function.Transport;
-                    break;
-
-            }
+            return _ambulanceRepos.AmbulanceFunctionAdd(selectedIndex);            
         }
     }
 }

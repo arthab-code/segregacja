@@ -6,6 +6,29 @@ namespace ZRM_TRIAGE
 {
     public class ShowAmbulanceViewModel
     {
+
+        private AmbulanceRepository _ambulanceRepository;
+
+        public ShowAmbulanceViewModel()
+        {
+            _ambulanceRepository = new AmbulanceRepository();  
+        }
+
+        public bool CheckAmbulanceExists(string ambulanceNumber)
+        {
+            return _ambulanceRepository.CheckAmbulanceExists(ambulanceNumber);
+        }
+
+        public bool CheckAmbulanceFunctionExists(AmbulanceModel.Function function)
+        {
+            return _ambulanceRepository.CheckAmbulanceFunctionExists(function);
+        }
+
+        public AmbulanceModel.Function AmbulanceFunctionAdd(int index)
+        {
+            return _ambulanceRepository.AmbulanceFunctionAdd(index);
+        }
+
         public int IndexPicker(int index)
         {
             switch (index)

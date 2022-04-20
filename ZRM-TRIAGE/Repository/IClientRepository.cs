@@ -11,7 +11,7 @@ namespace ZRM_TRIAGE
 
         void Remove(string item);
 
-        void Update(T item);   
+        void Update(T oldItem, T newItem);   
 
         T Search(string item);
         string SearchKey(string item);

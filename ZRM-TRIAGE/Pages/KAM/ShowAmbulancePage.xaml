@@ -30,14 +30,17 @@
                 <Label  x:Name="AmbulanceNumerShow" HorizontalOptions="Center" Padding="10" FontSize="21"/>
             </StackLayout>
 
-            <Grid Grid.Row="1"  Grid.Column="1" Grid.RowSpan="4" Grid.ColumnSpan="6" Background="form_panel.png">
+            <Grid Grid.Row="0"  Grid.Column="1" Grid.RowSpan="5" Grid.ColumnSpan="6" Background="form_panel.png">
                 <ScrollView Padding="10">
                     <StackLayout HorizontalOptions="Center" Padding="10">
                         <Label Text="NUMER ZESPOŁU"/>
                         <Entry x:Name="AmbulanceNumber" BackgroundColor="#F8FDF8"/>
                         <Label></Label>
+                        <Label Text="KOD DO LOGOWANIA"/>
+                        <Label x:Name="AmbulanceLoginCode" BackgroundColor="#F8FDF8"/>
+                        <Label></Label>
                         <Label Text="FUNKCJA"/>
-                        <Picker x:Name="AmbulanceFunction">
+                        <Picker x:Name="AmbulanceFunction" BackgroundColor="#F8FDF8">
                             <Picker.Items>
                                 <x:String>KAM</x:String>
                                 <x:String>Strefa Czerwona</x:String>
@@ -47,7 +50,7 @@
                             </Picker.Items>
                         </Picker>
                         <Label Text="STATUS"/>
-                        <Picker x:Name="AmbulanceStatus" IsEnabled="False">
+                        <Picker x:Name="AmbulanceStatus" IsEnabled="False" BackgroundColor="#F8FDF8">
                             <Picker.Items>
                                 <x:String>Na miejscu</x:String>
                                 <x:String>Transport</x:String>
@@ -55,8 +58,8 @@
                             </Picker.Items>
                         </Picker>
                         <StackLayout Orientation="Horizontal">
-                            <Button Text="EDYTUJ" Style="{StaticResource StandardButton}"/>
-                            <Button Text="USUŃ" Style="{StaticResource StandardButton}"/>
+                            <Button Text="EDYTUJ" Style="{StaticResource StandardButton}" Clicked="UpdateButtonClicked" />
+                            <Button Text="USUŃ" Style="{StaticResource StandardButton}" Clicked="DeleteAmbulanceClicked"/>
                         </StackLayout>
                     </StackLayout>
                 </ScrollView>

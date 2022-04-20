@@ -40,7 +40,7 @@ namespace ZRM_TRIAGE
             throw new NotImplementedException();
         }
 
-        public void Update(EventModel item)
+        public void Update(EventModel oldItem, EventModel newItem)
         {
             throw new NotImplementedException();
         }

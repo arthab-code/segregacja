@@ -38,7 +38,7 @@ namespace ZRM_TRIAGE
             throw new NotImplementedException();
         }
 
-        public void Update(LoginCodeModel item)
+        public void Update(LoginCodeModel oldItem, LoginCodeModel newItem)
         {
             throw new NotImplementedException();
         }
