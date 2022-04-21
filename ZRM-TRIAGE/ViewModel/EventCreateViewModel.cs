@@ -87,5 +87,11 @@ namespace ZRM_TRIAGE
             return ambulance;
         }
 
+        public void CreateTriageDB()
+        {
+            TriageRepository triageRepos = new TriageRepository();
+            triageRepos.InitializeDB();
+        }
+
     }
 }
