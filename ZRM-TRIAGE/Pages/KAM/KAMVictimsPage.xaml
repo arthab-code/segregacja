@@ -1,0 +1,193 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ZRM_TRIAGE.KAMVictimsPage"
+            UnselectedTabColor="#D98A8A"
+            SelectedTabColor="#ACD98A"
+            BarBackgroundColor="#F0F7F0"
+            BackgroundColor="#F8FDF8">
+    
+    <TabbedPage.ToolbarItems>
+        <ToolbarItem Text="Dodaj"/>
+    </TabbedPage.ToolbarItems>
+    <!-- RED VICTIMS -->
+    <ContentPage Title="Czerwoni">
+        <ContentPage.Content>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="2"/>
+                </Grid.ColumnDefinitions>
+
+                <Image Source="form_panel.png" Grid.Row="0" Grid.Column="1" Grid.RowSpan="6" Grid.ColumnSpan="6" Aspect="Fill"></Image>
+
+                <StackLayout  Grid.Row="0"  Grid.Column="1" Grid.RowSpan="4" Grid.ColumnSpan="6">
+                    <Label></Label>
+                    <Button x:Name="VictimInfo"  Grid.Column="1" Style="{StaticResource StandardButton}" Text="Informacje"/>
+                </StackLayout>
+                
+                <Grid Grid.Row="1"  Grid.Column="2" Grid.RowSpan="4" Grid.ColumnSpan="4" Background="form_panel.png">
+                    <ScrollView>
+                        <ListView HorizontalOptions="Center" x:Name="RedVictimsList" BackgroundColor="#F8FDF8">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <Label HorizontalOptions="Center" VerticalOptions="Center" />
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </ScrollView>
+                </Grid>
+            </Grid>
+        </ContentPage.Content>
+    </ContentPage>
+
+    <!-- YELLOW VICTIMS -->
+    <ContentPage Title="Żółci">
+        <ContentPage.Content>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="2"/>
+                </Grid.ColumnDefinitions>
+
+                <Image Source="form_panel.png" Grid.Row="0" Grid.Column="1" Grid.RowSpan="6" Grid.ColumnSpan="6" Aspect="Fill"></Image>
+                <StackLayout  Grid.Row="0"  Grid.Column="1" Grid.RowSpan="4" Grid.ColumnSpan="6">
+                    <Label></Label>
+                    <Button x:Name="VictimInfo"  Grid.Column="1" Style="{StaticResource StandardButton}" Text="Informacje"/>
+                </StackLayout>
+
+                <Grid Grid.Row="1"  Grid.Column="2" Grid.RowSpan="4" Grid.ColumnSpan="4" Background="form_panel.png">
+                    <ScrollView>
+                        <ListView HorizontalOptions="Center" x:Name="YellowVictimsList" BackgroundColor="#F8FDF8">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <Label HorizontalOptions="Center" VerticalOptions="Center" />
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </ScrollView>
+                </Grid>
+            </Grid>
+        </ContentPage.Content>
+    </ContentPage>
+
+    <!-- GREEN VICTIMS -->
+    <ContentPage Title="Zieloni">
+        <ContentPage.Content>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="2"/>
+                </Grid.ColumnDefinitions>
+
+                <Image Source="form_panel.png" Grid.Row="0" Grid.Column="1" Grid.RowSpan="6" Grid.ColumnSpan="6" Aspect="Fill"></Image>
+                <StackLayout  Grid.Row="0"  Grid.Column="1" Grid.RowSpan="4" Grid.ColumnSpan="6">
+                    <Label></Label>
+                    <Button x:Name="VictimInfo"  Grid.Column="1" Style="{StaticResource StandardButton}" Text="Informacje"/>
+                </StackLayout>
+
+                <Grid Grid.Row="1"  Grid.Column="2" Grid.RowSpan="4" Grid.ColumnSpan="4" Background="form_panel.png">
+                    <ScrollView>
+                        <ListView HorizontalOptions="Center" x:Name="GreenVictimsList" BackgroundColor="#F8FDF8">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <Label HorizontalOptions="Center" VerticalOptions="Center" />
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </ScrollView>
+                </Grid>
+            </Grid>
+        </ContentPage.Content>
+    </ContentPage>
+
+    <!-- BLACK VICTIMS -->
+    <ContentPage Title="Czarni">
+        <ContentPage.Content>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="2"/>
+                </Grid.ColumnDefinitions>
+
+                <Image Source="form_panel.png" Grid.Row="0" Grid.Column="1" Grid.RowSpan="6" Grid.ColumnSpan="6" Aspect="Fill"></Image>
+                <StackLayout  Grid.Row="0"  Grid.Column="1" Grid.RowSpan="4" Grid.ColumnSpan="6">
+                    <Label></Label>
+                    <Button x:Name="VictimInfo"  Grid.Column="1" Style="{StaticResource StandardButton}" Text="Informacje"/>
+                </StackLayout>
+
+                <Grid Grid.Row="1"  Grid.Column="2" Grid.RowSpan="4" Grid.ColumnSpan="4" Background="form_panel.png">
+                    <ScrollView>
+                        <ListView HorizontalOptions="Center" x:Name="BlackVictimsList" BackgroundColor="#F8FDF8">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <Label HorizontalOptions="Center" VerticalOptions="Center" />
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </ScrollView>
+                </Grid>
+            </Grid>
+        </ContentPage.Content>
+    </ContentPage>
+</TabbedPage>

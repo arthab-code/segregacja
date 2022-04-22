@@ -23,9 +23,9 @@ namespace ZRM_TRIAGE
             throw new NotImplementedException();
         }
 
-        public void Remove(string item)
+        public void Remove(string eventId)
         {
-            throw new NotImplementedException();
+            _database.GetClient().Child("LoginCodes").Child(eventId).DeleteAsync();
         }
 
         public LoginCodeModel Search(string item)

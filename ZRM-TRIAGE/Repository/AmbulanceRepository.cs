@@ -123,27 +123,21 @@ namespace ZRM_TRIAGE
             {
                 case 0:
                     return AmbulanceModel.Function.Major;
-                    break;
 
                 case 1:
                     return AmbulanceModel.Function.Red;
-                    break;
 
                 case 2:
                     return AmbulanceModel.Function.Yellow;
-                    break;
 
                 case 3:
                     return AmbulanceModel.Function.Green;
-                    break;
 
                 case 4:
                     return AmbulanceModel.Function.Transport;
-                    break;
 
                 default:
                     return AmbulanceModel.Function.Transport;
-                    break;
 
             }
         }
