@@ -14,33 +14,33 @@ namespace ZRM_TRIAGE
 {
     internal class AddAmbulanceViewModel
     {
-        private AmbulanceRepository _ambulanceRepos;
+        private ShowAmbulanceViewModel _ambulanceViewModel;
         private ObservableCollection<AmbulanceModel> _ambulances;
 
         public AddAmbulanceViewModel()
         {
-            _ambulanceRepos = new AmbulanceRepository();
+            _ambulanceViewModel = new ShowAmbulanceViewModel();
             _ambulances = new ObservableCollection<AmbulanceModel>();
         }
 
         public bool CheckAmbulanceExists(string ambulanceNumber)
         {
-            return _ambulanceRepos.CheckAmbulanceExists(ambulanceNumber);
+            return _ambulanceViewModel.CheckAmbulanceExists(ambulanceNumber);
         }
 
         public bool CheckAmbulanceFunctionExists(AmbulanceModel.Function function)
         {
-            return _ambulanceRepos.CheckAmbulanceFunctionExists(function);
+            return _ambulanceViewModel.CheckAmbulanceFunctionExists(function);
         }
 
         public void AddAmbulanceToDatabase(AmbulanceModel ambulance)
         {
-            _ambulanceRepos.Add(ambulance);
+            _ambulanceViewModel.GetRepo().Add(ambulance);
         }
 
         public AmbulanceModel.Function AmbulanceFunctionAdd(int selectedIndex)
         {
-            return _ambulanceRepos.AmbulanceFunctionAdd(selectedIndex);            
+            return _ambulanceViewModel.AmbulanceFunctionAdd(selectedIndex);            
         }
     }
 }

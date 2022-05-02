@@ -14,15 +14,16 @@ namespace ZRM_TRIAGE
     {
 
         private AmbulanceModel _ambulance;
+        ShowAmbulanceViewModel _showAmbulanceVM;
 
         public ShowAmbulancePage(AmbulanceModel ambulance)
         {          
             InitializeComponent();
 
-            ShowAmbulanceViewModel sAvM = new ShowAmbulanceViewModel();
+            _showAmbulanceVM = new ShowAmbulanceViewModel();
 
             _ambulance = ambulance;
-            AmbulanceModel.Function function = sAvM.AmbulanceFunctionAdd((int)_ambulance.AmbulanceFunction);
+            AmbulanceModel.Function function = _showAmbulanceVM.AmbulanceFunctionAdd((int)_ambulance.AmbulanceFunction);
 
             AmbulanceFunction.SelectedIndex = (int)_ambulance.AmbulanceFunction;
             AmbulanceStatus.SelectedIndex = (int)_ambulance.AmbulanceStatus;
@@ -62,27 +63,26 @@ namespace ZRM_TRIAGE
 
             if (choice)
             {
-                AmbulanceRepository ambulanceRepos = new AmbulanceRepository();
 
                 AmbulanceModel newAmbulance = new AmbulanceModel(_ambulance);
                 newAmbulance.Number = AmbulanceNumber.Text;
 
                 if (newAmbulance.Number != _ambulance.Number)
                 {
-                    if (ambulanceRepos.CheckAmbulanceExists(newAmbulance.Number))
+                    if (_showAmbulanceVM.CheckAmbulanceExists(newAmbulance.Number))
                     {
                         await DisplayAlert("Błąd", "Taka karetka bierze już udział w zdarzeniu", "OK");
                         return;
                     }
                 }
                 newAmbulance.AmbulanceFunction = (AmbulanceModel.Function)AmbulanceFunction.SelectedIndex;
-                if (ambulanceRepos.CheckAmbulanceFunctionExists(newAmbulance.AmbulanceFunction))
+                if (_showAmbulanceVM.CheckAmbulanceFunctionExists(newAmbulance.AmbulanceFunction))
                 {
                     await DisplayAlert("Błąd", "Taka funkcja jest już przypisana", "OK");
                     return;
                 }
 
-                ambulanceRepos.Update(_ambulance, newAmbulance);
+                _showAmbulanceVM.Update(_ambulance, newAmbulance);
                 await App.Current.MainPage.Navigation.PopAsync();
             }
         }

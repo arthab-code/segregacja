@@ -5,6 +5,7 @@ using System.Text;
 using System.Linq;
 
 using Firebase.Database.Query;
+using Firebase.Database;
 
 namespace ZRM_TRIAGE
 {
@@ -42,6 +43,7 @@ namespace ZRM_TRIAGE
             return ambulanceList;
         }
 
+
         public void Remove(string ambulanceNumber)
         {
             var ambulanceKey = SearchKey(ambulanceNumber);
@@ -50,7 +52,7 @@ namespace ZRM_TRIAGE
 
         public AmbulanceModel Search(string ambulanceNumber)
         {
-            var search = (_database.GetClient().Child("Crews").Child(UserInfo.EventId).OnceAsync<AmbulanceModel>().Result);
+            var search = _database.GetClient().Child("Crews").Child(UserInfo.EventId).OnceAsync<AmbulanceModel>().Result;
 
             AmbulanceModel findAmbulance = null;
 
@@ -68,7 +70,7 @@ namespace ZRM_TRIAGE
 
         public string SearchKey(string ambulanceNumber)
         {
-            var search = (_database.GetClient().Child("Crews").Child(UserInfo.EventId).OnceAsync<AmbulanceModel>().Result);
+            var search = _database.GetClient().Child("Crews").Child(UserInfo.EventId).OnceAsync<AmbulanceModel>().Result;
 
             string findAmbulanceKey = null;
 
@@ -86,85 +88,19 @@ namespace ZRM_TRIAGE
             return findAmbulanceKey;
         }
 
-        public bool SearchFunction(AmbulanceModel.Function function)
-        {
-            bool isExists = false;
-
-            if (function == AmbulanceModel.Function.Transport) 
-                return false;
-
-            var search = (_database.GetClient().Child("Crews").Child(UserInfo.EventId).OnceAsync<AmbulanceModel>().Result);
-
-            foreach (var item in search)
-            {
-   
-                if (item.Object.AmbulanceFunction == function)
-                {
-                    isExists = true;
-                    break;
-                }
-            }
-
-            return isExists;
-        }
 
         public void Update(AmbulanceModel oldItem, AmbulanceModel newItem)
         {
             var ambulanceKey = SearchKey(oldItem.Number);
-            var dupa = newItem.Number;
 
             _database.GetClient().Child("Crews").Child(UserInfo.EventId).Child(ambulanceKey).PutAsync(newItem);
 
         }
 
-        public AmbulanceModel.Function AmbulanceFunctionAdd(int selectedIndex)
+        public Database GetDatabase()
         {
-            switch (selectedIndex)
-            {
-                case 0:
-                    return AmbulanceModel.Function.Major;
-
-                case 1:
-                    return AmbulanceModel.Function.Red;
-
-                case 2:
-                    return AmbulanceModel.Function.Yellow;
-
-                case 3:
-                    return AmbulanceModel.Function.Green;
-
-                case 4:
-                    return AmbulanceModel.Function.Transport;
-
-                default:
-                    return AmbulanceModel.Function.Transport;
-
-            }
+            return _database;
         }
 
-        public bool CheckAmbulanceExists(string ambulanceNumber)
-        {
-            bool isExists = false;
-
-            AmbulanceModel check = Search(ambulanceNumber);
-
-            if (check != null)
-                isExists = true;
-
-            return isExists;
-
-        }
-
-        public bool CheckAmbulanceFunctionExists(AmbulanceModel.Function function)
-        {
-            bool isExists = false;
-
-            bool search = SearchFunction(function);
-
-            if (search == true)
-                isExists = true;
-
-            return isExists;
-        }
     }
 }

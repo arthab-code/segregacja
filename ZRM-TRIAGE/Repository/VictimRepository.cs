@@ -32,24 +32,66 @@ namespace ZRM_TRIAGE
             return victimList;
         }
 
-        public void Remove(string item)
+        public void Remove(string victimInfoParts)
         {
-            throw new NotImplementedException();
+            var victimKey = SearchKey(victimInfoParts);
+            _database.GetClient().Child("Victims").Child(UserInfo.EventId).Child(victimKey).DeleteAsync();
         }
 
-        public VictimModel Search(string item)
+        public VictimModel Search(string victimInfoParts)
         {
-            throw new NotImplementedException();
+            var tmp = victimInfoParts.Split('.');
+            string name, surname;
+            name = tmp[0];
+            surname = tmp[1];
+
+            var search = _database.GetClient().Child("Victims").Child(UserInfo.EventId).OnceAsync<VictimModel>().Result;
+
+            VictimModel findVictim = null;
+
+            foreach (var item in search)
+            {
+                if (item.Object.Name == name && item.Object.Surname == surname)
+                {
+                    findVictim = item.Object;
+                    break;
+                }
+            }
+
+            return findVictim;
         }
 
-        public string SearchKey(string item1)
+        public string SearchKey(string victimInfoParts)
         {
-            throw new NotImplementedException();
+            var tmp = victimInfoParts.Split('.');
+            string name, surname;
+            name = tmp[0];
+            surname = tmp[1];
+                
+            var search = _database.GetClient().Child("Victims").Child(UserInfo.EventId).OnceAsync<VictimModel>().Result;
+
+            string findKey = null;
+
+            foreach (var item in search)
+            {
+
+                if (item.Object.Name == name && item.Object.Surname == surname)
+                {
+                    findKey = item.Key;
+                    break;
+                }
+            }
+
+            return findKey;
         }
 
         public void Update(VictimModel oldItem, VictimModel newItem)
         {
-            throw new NotImplementedException();
+            string searchParts = oldItem.Name + oldItem.Surname;
+
+            var victimKey = SearchKey(searchParts);
+
+            _database.GetClient().Child("Victims").Child(UserInfo.EventId).Child(victimKey).PutAsync(newItem);
         }
     }
 }

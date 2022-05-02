@@ -63,7 +63,7 @@
                     <Button Text="ZESPOŁY" Style="{StaticResource StandardButton} " Clicked="AmbulanceClicked"/>
                     <Button Text="TRIAGE" Style="{StaticResource ImportantButton}" Clicked="TriageButtonClicked"/>
                     <Button Text="POSZKODOWANI" Style="{StaticResource ImportantButton}" Clicked="VictimsButtonClicked"/>
-                    <Button Text="SZPITALE" Style="{StaticResource StandardButton}"/>
+                    <Button Text="SZPITALE" Style="{StaticResource StandardButton}" Clicked="HospitalsButtonClicked" />
                     <Button Text="RAPORT" Style="{StaticResource StandardButton}"/>
 
                 </StackLayout>

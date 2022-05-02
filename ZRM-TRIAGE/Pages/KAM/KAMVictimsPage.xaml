@@ -36,7 +36,7 @@
 
                 <StackLayout  Grid.Row="0"  Grid.Column="1" Grid.RowSpan="4" Grid.ColumnSpan="6">
                     <Label></Label>
-                    <Button x:Name="VictimInfo"  Grid.Column="1" Style="{StaticResource StandardButton}" Text="Informacje"/>
+                    <Button x:Name="RedVictimInfo"  Grid.Column="1" Style="{StaticResource StandardButton}" Text="Informacje"/>
                 </StackLayout>
                 
                 <Grid Grid.Row="1"  Grid.Column="2" Grid.RowSpan="4" Grid.ColumnSpan="4" Background="form_panel.png">
@@ -81,7 +81,7 @@
                 <Image Source="form_panel.png" Grid.Row="0" Grid.Column="1" Grid.RowSpan="6" Grid.ColumnSpan="6" Aspect="Fill"></Image>
                 <StackLayout  Grid.Row="0"  Grid.Column="1" Grid.RowSpan="4" Grid.ColumnSpan="6">
                     <Label></Label>
-                    <Button x:Name="VictimInfo"  Grid.Column="1" Style="{StaticResource StandardButton}" Text="Informacje"/>
+                    <Button x:Name="YellowVictimInfo"  Grid.Column="1" Style="{StaticResource StandardButton}" Text="Informacje"/>
                 </StackLayout>
 
                 <Grid Grid.Row="1"  Grid.Column="2" Grid.RowSpan="4" Grid.ColumnSpan="4" Background="form_panel.png">
@@ -126,7 +126,7 @@
                 <Image Source="form_panel.png" Grid.Row="0" Grid.Column="1" Grid.RowSpan="6" Grid.ColumnSpan="6" Aspect="Fill"></Image>
                 <StackLayout  Grid.Row="0"  Grid.Column="1" Grid.RowSpan="4" Grid.ColumnSpan="6">
                     <Label></Label>
-                    <Button x:Name="VictimInfo"  Grid.Column="1" Style="{StaticResource StandardButton}" Text="Informacje"/>
+                    <Button x:Name="GreenVictimInfo"  Grid.Column="1" Style="{StaticResource StandardButton}" Text="Informacje"/>
                 </StackLayout>
 
                 <Grid Grid.Row="1"  Grid.Column="2" Grid.RowSpan="4" Grid.ColumnSpan="4" Background="form_panel.png">
@@ -171,7 +171,7 @@
                 <Image Source="form_panel.png" Grid.Row="0" Grid.Column="1" Grid.RowSpan="6" Grid.ColumnSpan="6" Aspect="Fill"></Image>
                 <StackLayout  Grid.Row="0"  Grid.Column="1" Grid.RowSpan="4" Grid.ColumnSpan="6">
                     <Label></Label>
-                    <Button x:Name="VictimInfo"  Grid.Column="1" Style="{StaticResource StandardButton}" Text="Informacje"/>
+                    <Button x:Name="BlackVictimInfo"  Grid.Column="1" Style="{StaticResource StandardButton}" Text="Informacje"/>
                 </StackLayout>
 
                 <Grid Grid.Row="1"  Grid.Column="2" Grid.RowSpan="4" Grid.ColumnSpan="4" Background="form_panel.png">
