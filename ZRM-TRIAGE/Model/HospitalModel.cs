@@ -10,5 +10,12 @@ namespace ZRM_TRIAGE
         public string City { get; set; }
         public string Street { get; set; }
         public string EventId { get; set; }
+
+        public List<VictimModel> VictimList { get; set; }
+
+        public HospitalModel()
+        {
+            VictimList = new List<VictimModel>();
+        }
     }
 }

@@ -3,11 +3,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ZRM_TRIAGE.ShowHospitalPage"
              BackgroundColor="#F8FDF8"
+             Title="SZPITAL"
              >
 
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
@@ -25,34 +31,35 @@
                 <ColumnDefinition Width="2"/>
             </Grid.ColumnDefinitions>
 
-            <Image Source="form_panel.png" Grid.Row="0" Grid.Column="1" Grid.RowSpan="6" Grid.ColumnSpan="6" Aspect="Fill"></Image>
-            <StackLayout  Grid.Row="0"  Grid.Column="1" Grid.RowSpan="4" Grid.ColumnSpan="6">
-                <Label  x:Name="AmbulanceNumerShow" HorizontalOptions="Center" Padding="10" FontSize="21"/>
-            </StackLayout>
+            <Image Source="form_panel.png" Grid.Row="0" Grid.Column="1" Grid.RowSpan="10" Grid.ColumnSpan="6" Aspect="Fill"></Image>
 
-            <Grid Grid.Row="0"  Grid.Column="1" Grid.RowSpan="5" Grid.ColumnSpan="6" Background="form_panel.png">
+
+            <StackLayout Grid.Row="0" Grid.ColumnSpan="7" Orientation="Horizontal" HorizontalOptions="Center">
+                <Button Text="EDYTUJ" Style="{StaticResource StandardButton}" Clicked="EditHospitalButtonClicked" />
+                <Button Text="USUŃ" Style="{StaticResource StandardButton}" Clicked="DeleteHospitalButtonClicked" />
+            </StackLayout>
+            <Grid Grid.Row="1"  Grid.Column="1" Grid.RowSpan="8" Grid.ColumnSpan="6" Background="form_panel.png">
                 <ScrollView Padding="10">
                     <StackLayout HorizontalOptions="Center" Padding="10">
-                        <Label Text="NUMER ZESPOŁU"/>
-                        <Entry x:Name="AmbulanceNumber" BackgroundColor="#F8FDF8"/>
-                        <Label></Label>
-                        <Label Text="KOD DO LOGOWANIA"/>
-                        <Label x:Name="AmbulanceLoginCode" BackgroundColor="#F8FDF8"/>
-                        <Label></Label>
-                        <Label Text="FUNKCJA"/>
-                        <Picker x:Name="AmbulanceFunction" BackgroundColor="#F8FDF8">
-                            <Picker.Items>
-                                <x:String>KAM</x:String>
-                                <x:String>Strefa Czerwona</x:String>
-                                <x:String>Strefa Żółta</x:String>
-                                <x:String>Strefa Zielona</x:String>
-                                <x:String>ZRM</x:String>
-                            </Picker.Items>
-                        </Picker>
-                        <StackLayout Orientation="Horizontal">
-                            <Button Text="EDYTUJ" Style="{StaticResource StandardButton}" />
-                            <Button Text="USUŃ" Style="{StaticResource StandardButton}" />
-                        </StackLayout>
+                        <Label Text="NAZWA"/>
+                        <Entry x:Name="HospitalName" BackgroundColor="#F8FDF8"/>
+                        <Label Text="MIASTO"/>
+                        <Entry x:Name="HospitalCity" BackgroundColor="#F8FDF8"/>
+                        <Label Text="ULICA"/>
+                        <Entry x:Name="HospitalStreet" BackgroundColor="#F8FDF8"/>
+                        <Label Text="PACJENCI:"/>
+                        <ListView x:Name="VictimsListXAML" BackgroundColor="#F8FDF8">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <StackLayout  Orientation="Horizontal">
+                                            <Label HorizontalOptions="Center" VerticalOptions="Center" Text="{Binding Name}" />
+                                            <Label HorizontalOptions="Center" VerticalOptions="Center" Text="{Binding Surname}" />
+                                        </StackLayout>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
                     </StackLayout>
                 </ScrollView>
             </Grid>

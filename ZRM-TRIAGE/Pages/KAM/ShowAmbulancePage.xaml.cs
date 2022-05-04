@@ -42,7 +42,7 @@ namespace ZRM_TRIAGE
 
             AmbulanceRepository ambulanceRepos = new AmbulanceRepository();
 
-            string optionChoice = await DisplayPromptAsync("Uwaga!", "Na pewno chcesz usunąć karetkę " + _ambulance.Number + "? (wpisz: tak jeśli chcesz usunąć)", "USUŃ", "ANULUJ",null,3);
+            string optionChoice = await DisplayPromptAsync("Uwaga!", "Na pewno chcesz usunąć karetkę " + _ambulance.Number + "? (wpisz: TAK jeśli chcesz usunąć)", "USUŃ", "ANULUJ",null,3);
 
             if (optionChoice != null)
             {

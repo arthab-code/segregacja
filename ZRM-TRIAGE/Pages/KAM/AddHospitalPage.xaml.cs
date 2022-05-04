@@ -17,13 +17,23 @@ namespace ZRM_TRIAGE
             InitializeComponent();
         }
 
-        private async void PassAddAmbulanceButtonClicked(object sender, EventArgs e)
-        {
+        private async void PassAddHospitalButtonClicked(object sender, EventArgs e)
+        {           
+
+            HospitalBuilderModel hospitalBuilder = new HospitalBuilderModel();
+
             HospitalModel hospital = new HospitalModel();
 
-            hospital.Name = HospitalName.Text;
-            hospital.City = City.Text;
-            hospital.Street = Street.Text;
+                 hospital =  hospitalBuilder.HospitalNameSet(HospitalName.Text)
+                .HospitalCitySet(City.Text)
+                .HospitalStreetSet(Street.Text)
+                .Build();
+
+            if (!hospitalBuilder.IsCreate)
+            {
+                await DisplayAlert("Błąd dodawania szpitala!",hospitalBuilder.CreateText,"OK");
+                return;
+            }
 
             HospitalAddViewModel hospitalAddViewModel = new HospitalAddViewModel();
             hospitalAddViewModel.AddHospital(hospital);

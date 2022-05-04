@@ -30,5 +30,17 @@ namespace ZRM_TRIAGE
         {
             await Navigation.PushAsync(new AddHospitalPage());
         }
+
+        private async void HospitalInfoButtonClicked(object sender, EventArgs e)
+        {
+            if (HospitalListXAML.SelectedItem == null)
+                return;
+
+            HospitalModel hospital;
+
+            hospital = HospitalListXAML.SelectedItem as HospitalModel;
+
+            await Navigation.PushAsync(new ShowHospitalPage(hospital));
+        }
     }
 }
