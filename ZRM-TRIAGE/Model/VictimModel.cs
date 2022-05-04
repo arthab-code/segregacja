@@ -13,6 +13,8 @@ namespace ZRM_TRIAGE
             Green,
             Black
         }
+
+        public string Id { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
         public string EventId { get; set; }

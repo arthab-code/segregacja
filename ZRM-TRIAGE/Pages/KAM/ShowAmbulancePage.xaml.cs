@@ -50,7 +50,7 @@ namespace ZRM_TRIAGE
 
                 if (optionChoice == "tak")
                 {
-                    ambulanceRepos.Remove(_ambulance.Number);
+                    ambulanceRepos.Remove(_ambulance.Id);
 
                     await App.Current.MainPage.Navigation.PopAsync();
                 }

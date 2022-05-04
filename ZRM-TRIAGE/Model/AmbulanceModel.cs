@@ -41,6 +41,7 @@ namespace ZRM_TRIAGE
         public string KeyString { get; set; }
         public string LoginCode { get;  set; }
         public string EventId { get; set; }
+        public string Id { get; set; }
         public VictimModel Victim { get; set; }
         public HospitalModel Hospital { get; set; }
         public Status AmbulanceStatus { get; set; }

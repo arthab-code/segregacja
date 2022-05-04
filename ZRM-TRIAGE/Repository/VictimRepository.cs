@@ -15,7 +15,9 @@ namespace ZRM_TRIAGE
         }
         public void Add(VictimModel item)
         {
-            _database.GetClient().Child("Victims").Child(UserInfo.EventId).PostAsync(item);
+            var firebaseClient = _database.GetClient().Child("Victims").Child(UserInfo.EventId).PostAsync(item).Result;
+            item.Id = firebaseClient.Key;
+            _database.GetClient().Child("Victims").Child(UserInfo.EventId).Child(item.Id).PutAsync(item);
         }
 
         public List<VictimModel> GetAll()
@@ -32,10 +34,9 @@ namespace ZRM_TRIAGE
             return victimList;
         }
 
-        public void Remove(string victimInfoParts)
+        public void Remove(string victimId)
         {
-            var victimKey = SearchKey(victimInfoParts);
-            _database.GetClient().Child("Victims").Child(UserInfo.EventId).Child(victimKey).DeleteAsync();
+            _database.GetClient().Child("Victims").Child(UserInfo.EventId).Child(victimId).DeleteAsync();
         }
 
         public VictimModel Search(string victimInfoParts)
@@ -87,11 +88,7 @@ namespace ZRM_TRIAGE
 
         public void Update(VictimModel oldItem, VictimModel newItem)
         {
-            string searchParts = oldItem.Name + oldItem.Surname;
-
-            var victimKey = SearchKey(searchParts);
-
-            _database.GetClient().Child("Victims").Child(UserInfo.EventId).Child(victimKey).PutAsync(newItem);
+            _database.GetClient().Child("Victims").Child(UserInfo.EventId).Child(oldItem.Id).PutAsync(newItem);
         }
     }
 }

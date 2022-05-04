@@ -16,7 +16,7 @@ namespace ZRM_TRIAGE
 
         public void DeleteHospital(HospitalModel hospital)
         {
-            _hospitalRepository.Remove(hospital.Name);
+            _hospitalRepository.Remove(hospital.Id);
         }
 
         public void UpdateHospital(HospitalModel oldItem, HospitalModel newItem)

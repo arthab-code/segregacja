@@ -9,7 +9,7 @@ namespace ZRM_TRIAGE
         public string Name { get; set; }
         public string City { get; set; }
         public string Street { get; set; }
-        public string EventId { get; set; }
+        public string Id { get; set; }
 
         public List<VictimModel> VictimList { get; set; }
 

@@ -16,7 +16,13 @@ namespace ZRM_TRIAGE
 
         public void Add(HospitalModel item)
         {
-            _database.GetClient().Child("Hospitals").Child(UserInfo.EventId).PostAsync(item);
+            var firebaseObject = _database.GetClient().Child("Hospitals").Child(UserInfo.EventId).PostAsync(item).Result;
+
+            item.Id = firebaseObject.Key;
+
+            _database.GetClient().Child("Hospitals").Child(UserInfo.EventId).Child(item.Id).PutAsync(item);
+
+
         }
 
         public List<HospitalModel> GetAll()
@@ -35,8 +41,7 @@ namespace ZRM_TRIAGE
 
         public void Remove(string item)
         {
-            string searchKey = SearchKey(item);
-            _database.GetClient().Child("Hospitals").Child(UserInfo.EventId).Child(searchKey).DeleteAsync();
+            _database.GetClient().Child("Hospitals").Child(UserInfo.EventId).Child(item).DeleteAsync();
         }
 
         public HospitalModel Search(string item)
@@ -75,9 +80,7 @@ namespace ZRM_TRIAGE
 
         public void Update(HospitalModel oldItem, HospitalModel newItem)
         {
-            var hospitalKey = SearchKey(oldItem.Name);
-
-            _database.GetClient().Child("Hospitals").Child(UserInfo.EventId).Child(hospitalKey).PutAsync(newItem);
+            _database.GetClient().Child("Hospitals").Child(UserInfo.EventId).Child(oldItem.Id).PutAsync(newItem);
         }
     }
 }

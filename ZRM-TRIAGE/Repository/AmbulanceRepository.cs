@@ -19,7 +19,12 @@ namespace ZRM_TRIAGE
 
         public void Add(AmbulanceModel item)
         {
-            _database.GetClient().Child("Crews").Child(UserInfo.EventId).PostAsync(item);
+            var firebaseClient = _database.GetClient().Child("Crews").Child(UserInfo.EventId).PostAsync(item).Result;
+
+            item.Id = firebaseClient.Key;
+
+            _database.GetClient().Child("Crews").Child(UserInfo.EventId).Child(item.Id).PutAsync(item);
+
             LoginCodeModel loginCodeModel = new LoginCodeModel();
             loginCodeModel.LoginCode = item.LoginCode;
             loginCodeModel.EventId = item.EventId;
@@ -44,10 +49,9 @@ namespace ZRM_TRIAGE
         }
 
 
-        public void Remove(string ambulanceNumber)
+        public void Remove(string ambulanceId)
         {
-            var ambulanceKey = SearchKey(ambulanceNumber);
-            _database.GetClient().Child("Crews").Child(UserInfo.EventId).Child(ambulanceKey).DeleteAsync();
+            _database.GetClient().Child("Crews").Child(UserInfo.EventId).Child(ambulanceId).DeleteAsync();
         }
 
         public AmbulanceModel Search(string ambulanceNumber)
@@ -91,9 +95,7 @@ namespace ZRM_TRIAGE
 
         public void Update(AmbulanceModel oldItem, AmbulanceModel newItem)
         {
-            var ambulanceKey = SearchKey(oldItem.Number);
-
-            _database.GetClient().Child("Crews").Child(UserInfo.EventId).Child(ambulanceKey).PutAsync(newItem);
+            _database.GetClient().Child("Crews").Child(UserInfo.EventId).Child(oldItem.Id).PutAsync(newItem);
 
         }
 
