@@ -79,6 +79,11 @@ namespace ZRM_TRIAGE
 
         }
 
+        public void AddVictim(HospitalModel hospital, VictimModel victim)
+        {
+            hospital.VictimList.Add(victim);
+        }
+
         public HospitalModel Build()
         {
             return _hospitalModel;

@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ZRM_TRIAGE.ShowHospitalPage"
+             x:Class="ZRM_TRIAGE.ShowVictimPage"
              BackgroundColor="#F8FDF8"
-             Title="SZPITAL"
+             Title="POSZKODOWANY"
              >
 
     <ContentPage.Content>
@@ -35,20 +35,18 @@
 
 
             <StackLayout Grid.Row="0" Grid.ColumnSpan="7" Orientation="Horizontal" HorizontalOptions="Center">
-                <Button Text="EDYTUJ" Style="{StaticResource StandardButton}" Clicked="EditHospitalButtonClicked" />
-                <Button Text="USUŃ" Style="{StaticResource StandardButton}" Clicked="DeleteHospitalButtonClicked" />
+                <Button Text="EDYTUJ" Style="{StaticResource StandardButton}" />
+                <Button Text="USUŃ" Style="{StaticResource StandardButton}"/>
             </StackLayout>
             <Grid Grid.Row="1"  Grid.Column="1" Grid.RowSpan="8" Grid.ColumnSpan="6" Background="form_panel.png">
                 <ScrollView Padding="10">
                     <StackLayout HorizontalOptions="Center" Padding="10">
-                        <Label Text="NAZWA"/>
-                        <Entry x:Name="HospitalName" BackgroundColor="#F8FDF8"/>
-                        <Label Text="MIASTO"/>
-                        <Entry x:Name="HospitalCity" BackgroundColor="#F8FDF8"/>
-                        <Label Text="ULICA"/>
-                        <Entry x:Name="HospitalStreet" BackgroundColor="#F8FDF8"/>
-                        <Label Text="PACJENCI:"/>
-                        <ListView x:Name="VictimListXAML" BackgroundColor="#F8FDF8" ItemTapped="VictimsListXAMLItemTapped">
+                        <Label Text="IMIĘ"/>
+                        <Entry x:Name="VictimName" BackgroundColor="#F8FDF8"/>
+                        <Label Text="NAZWISKO"/>
+                        <Entry x:Name="VictimSurname" BackgroundColor="#F8FDF8"/>
+                        <Label Text="OBRAŻENIA:"/>
+                        <ListView x:Name="InjuryListXAML" BackgroundColor="#F8FDF8">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <ViewCell>

@@ -26,7 +26,7 @@ namespace ZRM_TRIAGE
             hospitalModel.VictimList.Add(new VictimModel { Name = "ZJEBUCH", Surname = "Zjebany" });
             hospitalModel.VictimList.Add(new VictimModel { Name = "ZJEBUCH1", Surname = "Zjebany2" });
             hospitalModel.VictimList.Add(new VictimModel { Name = "ZJEBUCH2", Surname = "Zjebany2" });
-            VictimsListXAML.ItemsSource = hospitalModel.VictimList;
+            VictimListXAML.ItemsSource = hospitalModel.VictimList;
         }
 
         private async void DeleteHospitalButtonClicked(object sender, EventArgs e)
@@ -77,6 +77,18 @@ namespace ZRM_TRIAGE
             showHospitalViewModel.UpdateHospital(_hospitalModel, hospital);
 
             await App.Current.MainPage.Navigation.PopAsync();
+        }
+
+        private async void VictimsListXAMLItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            if (VictimListXAML.SelectedItem == null)
+                return;
+
+            VictimModel victim = new VictimModel();
+
+            victim = VictimListXAML.SelectedItem as VictimModel;
+
+            await Navigation.PushAsync(new ShowVictimPage(victim));
         }
     }
 }
