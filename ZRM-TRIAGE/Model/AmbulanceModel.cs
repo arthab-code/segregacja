@@ -28,6 +28,7 @@ namespace ZRM_TRIAGE
             this.Number = original.Number;
             this.LoginCode = original.LoginCode;
             this.EventId = original.EventId;
+            this.Id = original.Id;
             this.Victim = original.Victim;
             this.Hospital = original.Hospital;
             this.AmbulanceStatus = original.AmbulanceStatus;

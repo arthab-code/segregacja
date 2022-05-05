@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ZRM_TRIAGE.AddVictimPage"
+             BackgroundColor="#F8FDF8"
+             Title="Dodaj poszkodowanego"
+             >
+
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2"/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="2"/>
+            </Grid.ColumnDefinitions>
+
+            <Image Source="form_panel.png" Grid.Row="0" Grid.Column="1" Grid.RowSpan="6" Grid.ColumnSpan="6" Aspect="Fill"></Image>
+            <StackLayout  Grid.Row="0"  Grid.Column="1" Grid.RowSpan="4" Grid.ColumnSpan="6">
+            </StackLayout>
+
+            <Grid Grid.Row="0"  Grid.Column="1" Grid.RowSpan="5" Grid.ColumnSpan="6" Background="form_panel.png">
+                <ScrollView Padding="10">
+                    <StackLayout HorizontalOptions="Center" Padding="10">
+                        <Label Text="Imię"/>
+                        <Entry x:Name="VictimName" BackgroundColor="#F8FDF8" Placeholder="imię"/>
+                        <Label Text="Nazwisko"/>
+                        <Entry x:Name="VictimSurname" BackgroundColor="#F8FDF8" Placeholder="nazwisko"/>
+                        <Label Text="Miasto" />
+                        <Entry x:Name="VictimCity" BackgroundColor="#F8FDF8" Placeholder="miasto"/>
+                        <Label Text="Ulica" />
+                        <Entry x:Name="VictimStreet" BackgroundColor="#F8FDF8" Placeholder="ulica"/>
+                        <Label  Text="KOLOR"/>
+                        <Picker x:Name="VictimTriageColor">
+                            <Picker.ItemsSource>
+                                <x:Array Type="{x:Type x:String}">
+                                    <x:String>Czerwony</x:String>
+                                    <x:String>Zółty</x:String>
+                                    <x:String>Zielony</x:String>
+                                    <x:String>Czarny</x:String>
+                                </x:Array>
+                            </Picker.ItemsSource>
+                        </Picker>
+                        <Label Text="Data urodzenia" />
+                        <DatePicker />
+                        <Label Text="Obrażenia :" />
+
+                        <StackLayout Orientation="Horizontal">
+                            <Label VerticalOptions="Center" Text="Głowa"/>
+                            <CheckBox VerticalOptions="Center" x:Name="HeadInjury"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Label VerticalOptions="Center" Text="Kręgosłup szyjny"/>
+                            <CheckBox VerticalOptions="Center" x:Name="NeckSpineInjury"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Label VerticalOptions="Center" Text="Szyja"/>
+                            <CheckBox VerticalOptions="Center" x:Name="NeckInjury"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Label VerticalOptions="Center" Text="Klatka piersiowa"/>
+                            <CheckBox VerticalOptions="Center" x:Name="ChestInjury"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Label VerticalOptions="Center" Text="Brzuch"/>
+                            <CheckBox VerticalOptions="Center" x:Name="StomachInjury"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Label VerticalOptions="Center" Text="Plecy"/>
+                            <CheckBox VerticalOptions="Center" x:Name="BackInjury"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Label VerticalOptions="Center" Text="Miednica"/>
+                            <CheckBox VerticalOptions="Center" x:Name="PelvisInjury"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Label VerticalOptions="Center" Text="Kręgosłup"/>
+                            <CheckBox VerticalOptions="Center" x:Name="SpineInjury"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Label VerticalOptions="Center" Text="Lewa noga"/>
+                            <CheckBox VerticalOptions="Center" x:Name="LeftLegInjury"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Label VerticalOptions="Center" Text="Prawa noga"/>
+                            <CheckBox VerticalOptions="Center" x:Name="RightLegInjury"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Label VerticalOptions="Center" Text="Lewa ręka"/>
+                            <CheckBox VerticalOptions="Center" x:Name="LeftArmInjury"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Label VerticalOptions="Center" Text="Prawa ręka"/>
+                            <CheckBox VerticalOptions="Center" x:Name="RightArmInjury"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Label VerticalOptions="Center" Text="Oparzenia"/>
+                            <CheckBox VerticalOptions="Center" x:Name="BurnInjury"/>
+                            <Entry VerticalOptions="Center" x:Name="BurnPercent" />
+                            <Label VerticalOptions="Center" Text="%"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Label VerticalOptions="Center" Text="Odmrożenia"/>
+                            <CheckBox VerticalOptions="Center" x:Name="FrostbiteInjury"/>
+                        </StackLayout>
+
+
+                        <Button Text="DODAJ" Style="{StaticResource StandardButton}" />
+                    </StackLayout>
+                </ScrollView>
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

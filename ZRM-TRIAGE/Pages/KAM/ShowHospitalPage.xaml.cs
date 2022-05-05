@@ -73,6 +73,7 @@ namespace ZRM_TRIAGE
             hospital.Name = HospitalName.Text;
             hospital.City = HospitalCity.Text;
             hospital.Street = HospitalStreet.Text;
+            hospital.Id = _hospitalModel.Id;
 
             showHospitalViewModel.UpdateHospital(_hospitalModel, hospital);
 

@@ -10,16 +10,11 @@ using Xamarin.Forms.Xaml;
 namespace ZRM_TRIAGE
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class KAMVictimsPage : TabbedPage
+    public partial class AddVictimPage : ContentPage
     {
-        public KAMVictimsPage()
+        public AddVictimPage()
         {
             InitializeComponent();
-        }
-
-        private async void AddVictimButtonClicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new AddVictimPage());
         }
     }
 }

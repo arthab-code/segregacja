@@ -59,11 +59,10 @@ namespace ZRM_TRIAGE
 
         private async void UpdateButtonClicked(object sender, EventArgs e)
         {
-            bool choice = await DisplayAlert("Edycja " + _ambulance.Number, "Dokonać edycji?", "Tak", "nie");
+            bool choice = await DisplayAlert("Edycja " + _ambulance.Number, "Dokonać edycji?", "Tak", "Nie");
 
             if (choice)
             {
-
                 AmbulanceModel newAmbulance = new AmbulanceModel(_ambulance);
                 newAmbulance.Number = AmbulanceNumber.Text;
 
@@ -75,11 +74,16 @@ namespace ZRM_TRIAGE
                         return;
                     }
                 }
-                newAmbulance.AmbulanceFunction = (AmbulanceModel.Function)AmbulanceFunction.SelectedIndex;
-                if (_showAmbulanceVM.CheckAmbulanceFunctionExists(newAmbulance.AmbulanceFunction))
+
+                if (_ambulance.AmbulanceFunction != (AmbulanceModel.Function)AmbulanceFunction.SelectedIndex)
                 {
-                    await DisplayAlert("Błąd", "Taka funkcja jest już przypisana", "OK");
-                    return;
+                    newAmbulance.AmbulanceFunction = (AmbulanceModel.Function)AmbulanceFunction.SelectedIndex;
+                    if (_showAmbulanceVM.CheckAmbulanceFunctionExists(newAmbulance.AmbulanceFunction))
+                    {
+                        await DisplayAlert("Błąd", "Taka funkcja jest już przypisana", "OK");
+                        return;
+                    }
+
                 }
 
                 _showAmbulanceVM.Update(_ambulance, newAmbulance);

@@ -8,7 +8,7 @@
             BackgroundColor="#F8FDF8">
     
     <TabbedPage.ToolbarItems>
-        <ToolbarItem Text="Dodaj"/>
+        <ToolbarItem Text="Dodaj" Clicked="AddVictimButtonClicked"/>
     </TabbedPage.ToolbarItems>
     <!-- RED VICTIMS -->
     <ContentPage Title="Czerwoni">
