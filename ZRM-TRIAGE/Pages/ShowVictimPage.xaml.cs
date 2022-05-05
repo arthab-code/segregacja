@@ -20,6 +20,21 @@ namespace ZRM_TRIAGE
 
             VictimName.Text = _victimModel.Name;
             VictimSurname.Text = _victimModel.Surname;
+            VictimCity.Text = _victimModel.City;
+            VictimStreet.Text = _victimModel.Street;
+
+            HeadInjury.IsChecked = _victimModel.Injuries.Head;
+            NeckInjury.IsChecked = _victimModel.Injuries.Neck;
+            NeckSpineInjury.IsChecked = _victimModel.Injuries.NeckSpine;
+            ChestInjury.IsChecked = _victimModel.Injuries.Chest;
+            StomachInjury.IsChecked= _victimModel.Injuries.Stomach;
+            BackInjury.IsChecked = _victimModel.Injuries.Back;
+            PelvisInjury.IsChecked = _victimModel.Injuries.Pelvis;
+            LeftLegInjury.IsChecked = _victimModel.Injuries.LeftLeg;
+            RightLegInjury.IsChecked = _victimModel.Injuries.RightLeg;
+            LeftArmInjury.IsChecked = _victimModel.Injuries.LeftArm;
+            RightArmInjury.IsChecked = _victimModel.Injuries.RightArm;
+            
 
         }
     }

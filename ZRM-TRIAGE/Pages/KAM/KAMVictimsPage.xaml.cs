@@ -15,11 +15,28 @@ namespace ZRM_TRIAGE
         public KAMVictimsPage()
         {
             InitializeComponent();
+
         }
 
+        protected override void OnAppearing()
+        {
+            VictimRepository vr = new VictimRepository();
+
+            var redVictimsList = vr.GetAll().Where(a => a.Color == VictimModel.TriageColor.Red).ToList<VictimModel>();
+
+            BindingContext = redVictimsList;
+
+            RedVictimsList.ItemsSource = redVictimsList;
+        }
         private async void AddVictimButtonClicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new AddVictimPage());
+        }
+
+        private async void RedVictimsListShowVictim(object sender, ItemTappedEventArgs e)
+        {
+            await Navigation.PushAsync(new ShowVictimPage((VictimModel)RedVictimsList.SelectedItem));
+
         }
     }
 }

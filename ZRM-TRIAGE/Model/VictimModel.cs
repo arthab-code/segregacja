@@ -14,6 +14,11 @@ namespace ZRM_TRIAGE
             Black
         }
 
+        public VictimModel()
+        {
+            Injuries = new InjuriesModel();
+        }
+
         public string Id { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
