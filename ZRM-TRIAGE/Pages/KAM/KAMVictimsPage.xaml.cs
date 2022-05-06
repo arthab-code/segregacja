@@ -20,14 +20,12 @@ namespace ZRM_TRIAGE
 
         protected override void OnAppearing()
         {
-            VictimRepository vr = new VictimRepository();
+            KAMVictimsViewModel _KAMVictimsViewModel = new KAMVictimsViewModel();
 
-            var redVictimsList = vr.GetAll().Where(a => a.Color == VictimModel.TriageColor.Red).ToList<VictimModel>();
-            var yellowVictimsList = vr.GetAll().Where(a => a.Color == VictimModel.TriageColor.Yellow).ToList<VictimModel>();
-            var greenVictimsList = vr.GetAll().Where(a => a.Color == VictimModel.TriageColor.Green).ToList<VictimModel>();
-            var blackVictimsList = vr.GetAll().Where(a => a.Color == VictimModel.TriageColor.Black).ToList<VictimModel>();
-
-            //   BindingContext = redVictimsList;
+            var redVictimsList = _KAMVictimsViewModel.GetVictimList(VictimModel.TriageColor.Red);
+            var yellowVictimsList = _KAMVictimsViewModel.GetVictimList(VictimModel.TriageColor.Yellow);
+            var greenVictimsList = _KAMVictimsViewModel.GetVictimList(VictimModel.TriageColor.Green);
+            var blackVictimsList = _KAMVictimsViewModel.GetVictimList(VictimModel.TriageColor.Black);
 
             RedVictimsList.ItemsSource = redVictimsList;
             YellowVictimsList.ItemsSource = yellowVictimsList;

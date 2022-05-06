@@ -23,6 +23,7 @@ namespace ZRM_TRIAGE
             VictimCity.Text = _victimModel.City;
             VictimStreet.Text = _victimModel.Street;
             VictimTriageColor.SelectedIndex = (int)_victimModel.Color;
+            VictimBirth.Date = _victimModel.BirthDate;
 
             HeadInjury.IsChecked = _victimModel.Injuries.Head;
             NeckInjury.IsChecked = _victimModel.Injuries.Neck;

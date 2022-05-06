@@ -61,7 +61,7 @@
                             </Picker.ItemsSource>
                         </Picker>
                         <Label Text="Data urodzenia" />
-                        <DatePicker x:Name="BirthDate"/>
+                        <DatePicker x:Name="VictimBirth"/>
                         <Label Text="Obrażenia :" />
 
                         <StackLayout Orientation="Horizontal">

@@ -29,6 +29,7 @@ namespace ZRM_TRIAGE
                      .SetVictimCity(VictimCity.Text)
                      .SetVictimStreet(VictimStreet.Text)
                      .SetVictimTriageColor(VictimTriageColor.SelectedIndex)
+                     .SetVictimBirthDate(VictimBirth.Date)
                      .Build();
 
             InjuriesCreatorModel injuriesCreatorModel = new InjuriesCreatorModel(victim.Injuries);
