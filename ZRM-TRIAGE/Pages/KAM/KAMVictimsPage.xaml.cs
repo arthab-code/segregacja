@@ -23,10 +23,16 @@ namespace ZRM_TRIAGE
             VictimRepository vr = new VictimRepository();
 
             var redVictimsList = vr.GetAll().Where(a => a.Color == VictimModel.TriageColor.Red).ToList<VictimModel>();
+            var yellowVictimsList = vr.GetAll().Where(a => a.Color == VictimModel.TriageColor.Yellow).ToList<VictimModel>();
+            var greenVictimsList = vr.GetAll().Where(a => a.Color == VictimModel.TriageColor.Green).ToList<VictimModel>();
+            var blackVictimsList = vr.GetAll().Where(a => a.Color == VictimModel.TriageColor.Black).ToList<VictimModel>();
 
-            BindingContext = redVictimsList;
+            //   BindingContext = redVictimsList;
 
             RedVictimsList.ItemsSource = redVictimsList;
+            YellowVictimsList.ItemsSource = yellowVictimsList;
+            GreenVictimsList.ItemsSource = greenVictimsList;
+            BlackVictimsList.ItemsSource = blackVictimsList;
         }
         private async void AddVictimButtonClicked(object sender, EventArgs e)
         {
@@ -37,6 +43,21 @@ namespace ZRM_TRIAGE
         {
             await Navigation.PushAsync(new ShowVictimPage((VictimModel)RedVictimsList.SelectedItem));
 
+        }
+
+        private async void YellowVictimsListShowVictim(object sender, ItemTappedEventArgs e)
+        {
+            await Navigation.PushAsync(new ShowVictimPage((VictimModel)YellowVictimsList.SelectedItem));
+        }
+
+        private async void GreenVictimsListShowVictim(object sender, ItemTappedEventArgs e)
+        {
+            await Navigation.PushAsync(new ShowVictimPage((VictimModel)GreenVictimsList.SelectedItem));
+        }
+
+        private async void BlackVictimsListShowVictim(object sender, ItemTappedEventArgs e)
+        {
+            await Navigation.PushAsync(new ShowVictimPage((VictimModel)BlackVictimsList.SelectedItem));
         }
     }
 }

@@ -8,13 +8,25 @@ namespace ZRM_TRIAGE
     {
         private VictimModel _victimModel;
 
+        public bool IsCreated { get; private set; }
+        public string CreateText { get; private set; }
+
         public VictimBuilderModel()
         {
             _victimModel = new VictimModel();
+            IsCreated = true;
         }
 
         public VictimBuilderModel SetVictimName(string name)
         {
+            if (IsCreated == false) return this;
+
+            if (name == null || name.Length == 0 || name == " ")
+            {
+                CreateText = "Uzupełnij imię";
+                IsCreated = false;
+            }
+
             _victimModel.Name = name;
 
             return this;
@@ -22,14 +34,31 @@ namespace ZRM_TRIAGE
 
         public VictimBuilderModel SetVictimSurname(string surname)
         {
+            if (IsCreated == false) return this;
+
+            if (surname == null || surname.Length == 0 || surname == " ")
+            {
+                CreateText = "Uzupełnij nazwisko";
+                IsCreated = false;
+            }
+
             _victimModel.Surname = surname;
 
             return this;
         }
 
-        public VictimBuilderModel SetVictimTriageColor(VictimModel.TriageColor triageColor)
+        public VictimBuilderModel SetVictimTriageColor(int triageColor)
         {
-            _victimModel.Color = triageColor;
+            if (IsCreated == false) return this;
+
+            if (triageColor != 0 && triageColor != 1 && triageColor != 2 && triageColor != 3)
+            {
+                CreateText = "Uzupełnij kolor triage";
+                IsCreated = false;
+                return this;
+            }
+
+            _victimModel.Color = (VictimModel.TriageColor)triageColor;
 
             return this;
         }

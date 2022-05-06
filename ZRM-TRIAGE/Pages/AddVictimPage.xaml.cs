@@ -22,13 +22,13 @@ namespace ZRM_TRIAGE
         {
 
             VictimModel victim = new VictimModel();
-
-            victim = new VictimBuilderModel()
+            VictimBuilderModel victimBuilder = new VictimBuilderModel();
+            victim =  victimBuilder
                      .SetVictimName(VictimName.Text)
                      .SetVictimSurname(VictimSurname.Text)
                      .SetVictimCity(VictimCity.Text)
                      .SetVictimStreet(VictimStreet.Text)
-                     .SetVictimTriageColor((VictimModel.TriageColor)VictimTriageColor.SelectedIndex)
+                     .SetVictimTriageColor(VictimTriageColor.SelectedIndex)
                      .Build();
 
             InjuriesCreatorModel injuriesCreatorModel = new InjuriesCreatorModel(victim.Injuries);
@@ -46,6 +46,12 @@ namespace ZRM_TRIAGE
             injuriesCreatorModel.RightArm(RightArmInjury.IsChecked);
          //   injuriesCreatorModel.Burn(BurnInjury.IsChecked, Int16.Parse(BurnPercent.Text));
          //   injuriesCreatorModel.Frostbite(FrostbiteInjury.IsChecked, Int16.Parse(PercentFrostbite.Text));
+            
+            if (!victimBuilder.IsCreated)
+            {
+                await DisplayAlert("Błąd dodawania poszkodowanego!", victimBuilder.CreateText, "OK");
+                return;
+            }
 
             AddVictimViewModel addVictimViewModel = new AddVictimViewModel();
 

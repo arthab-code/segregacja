@@ -41,7 +41,7 @@
                 
                 <Grid Grid.Row="1"  Grid.Column="2" Grid.RowSpan="4" Grid.ColumnSpan="4" Background="form_panel.png">
                     <ScrollView>
-                        <ListView HorizontalOptions="Center" x:Name="RedVictimsList" BackgroundColor="#F8FDF8" ItemTapped="RedVictimsListShowVictim">
+                        <ListView  HorizontalOptions="Center" x:Name="RedVictimsList" BackgroundColor="#F8FDF8" ItemTapped="RedVictimsListShowVictim">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <ViewCell>
@@ -86,11 +86,11 @@
 
                 <Grid Grid.Row="1"  Grid.Column="2" Grid.RowSpan="4" Grid.ColumnSpan="4" Background="form_panel.png">
                     <ScrollView>
-                        <ListView HorizontalOptions="Center" x:Name="YellowVictimsList" BackgroundColor="#F8FDF8">
+                        <ListView HorizontalOptions="Center" x:Name="YellowVictimsList" BackgroundColor="#F8FDF8" ItemTapped="YellowVictimsListShowVictim">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <ViewCell>
-                                        <Label HorizontalOptions="Center" VerticalOptions="Center" />
+                                        <Label HorizontalOptions="Center" VerticalOptions="Center" Text="{Binding Name}"/>
                                     </ViewCell>
                                 </DataTemplate>
                             </ListView.ItemTemplate>
@@ -131,11 +131,11 @@
 
                 <Grid Grid.Row="1"  Grid.Column="2" Grid.RowSpan="4" Grid.ColumnSpan="4" Background="form_panel.png">
                     <ScrollView>
-                        <ListView HorizontalOptions="Center" x:Name="GreenVictimsList" BackgroundColor="#F8FDF8">
+                        <ListView HorizontalOptions="Center" x:Name="GreenVictimsList" BackgroundColor="#F8FDF8" ItemTapped="GreenVictimsListShowVictim">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <ViewCell>
-                                        <Label HorizontalOptions="Center" VerticalOptions="Center" />
+                                        <Label HorizontalOptions="Center" VerticalOptions="Center" Text="{Binding Name}"/>
                                     </ViewCell>
                                 </DataTemplate>
                             </ListView.ItemTemplate>
@@ -176,11 +176,11 @@
 
                 <Grid Grid.Row="1"  Grid.Column="2" Grid.RowSpan="4" Grid.ColumnSpan="4" Background="form_panel.png">
                     <ScrollView>
-                        <ListView HorizontalOptions="Center" x:Name="BlackVictimsList" BackgroundColor="#F8FDF8">
+                        <ListView HorizontalOptions="Center" x:Name="BlackVictimsList" BackgroundColor="#F8FDF8" ItemTapped="BlackVictimsListShowVictim">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <ViewCell>
-                                        <Label HorizontalOptions="Center" VerticalOptions="Center" />
+                                        <Label HorizontalOptions="Center" VerticalOptions="Center" Text="{Binding Name}"/>
                                     </ViewCell>
                                 </DataTemplate>
                             </ListView.ItemTemplate>
