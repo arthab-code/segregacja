@@ -10,13 +10,17 @@ using Xamarin.Forms.Xaml;
 namespace ZRM_TRIAGE
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ShowVictimPage : ContentPage
+    public partial class ShowVictimPage : TabbedPage
     {
         private VictimModel _victimModel;
+        private ShowVictimViewModel _showVictimViewModel;
         public ShowVictimPage(VictimModel victimModel)
         {
             InitializeComponent();
+            _showVictimViewModel = new ShowVictimViewModel();
             _victimModel = victimModel;
+
+            Title = _victimModel.Name + " " + _victimModel.Surname;
 
             VictimName.Text = _victimModel.Name;
             VictimSurname.Text = _victimModel.Surname;
@@ -36,7 +40,109 @@ namespace ZRM_TRIAGE
             RightLegInjury.IsChecked = _victimModel.Injuries.RightLeg;
             LeftArmInjury.IsChecked = _victimModel.Injuries.LeftArm;
             RightArmInjury.IsChecked = _victimModel.Injuries.RightArm;
-            
+            BurnInjury.IsChecked = _victimModel.Injuries.Burn;
+            FrostbiteInjury.IsChecked = _victimModel.Injuries.Frostbite;
+
+            if (_victimModel.Injuries.Burn)
+            {
+                BurnPercent.Text = _victimModel.Injuries.PercentBurn.ToString();
+            }
+            if (_victimModel.Injuries.Frostbite)
+            {
+                PercentFrostbite.Text = _victimModel.Injuries.PercentFrostbite.ToString();
+            }
+
+
+        }
+
+        private async void UpdateVictimButtonClicked(object sender, EventArgs e)
+        {
+            VictimModel victim = new VictimModel();
+
+            ShowHospitalViewModel showHospitalViewModel = new ShowHospitalViewModel();
+
+            bool choice = await DisplayAlert("Edycja poszkodowanego " + _victimModel.Name + " " + _victimModel.Surname, " Dokonać edycji?", "Tak", "nie");
+
+            if (!choice)
+                return;
+
+            if (BurnInjury.IsChecked)
+            {
+                try
+                {
+
+                    if (BurnPercent.Text == null || BurnPercent.Text == "" || Int16.Parse(BurnPercent.Text) > 100 || Int16.Parse(BurnPercent.Text) < 0)
+                    {
+                        await DisplayAlert("Błąd edycji poszkodowanego!", "Wartość rozległości oparzeń powinna być w zakresie 0 - 100", "OK");
+                        return;
+                    }
+                    victim.Injuries.PercentBurn = Int16.Parse(BurnPercent.Text);
+                }catch 
+                {
+                    await DisplayAlert("Błąd edycji poszkodowanego!", "Wartość rozległości opażeń powinna być liczbą", "OK");
+                    return;
+                }
+            }
+            if (FrostbiteInjury.IsChecked)
+            {
+                try
+                {
+                    if (PercentFrostbite.Text == null || PercentFrostbite.Text == "" || Int16.Parse(PercentFrostbite.Text) > 100 || Int16.Parse(PercentFrostbite.Text) < 0)
+                {
+                    await DisplayAlert("Błąd edycji poszkodowanego!", "Wartość rozległości odmrożeń powinna być w zakresie 0 - 100", "OK");
+                    return;
+                }
+                }
+                catch 
+                {
+                    await DisplayAlert("Błąd edycji poszkodowanego!", "Wartość rozległości odmrożeń powinna być liczbą", "OK");
+                    return;
+                }
+                victim.Injuries.PercentFrostbite = Int16.Parse(PercentFrostbite.Text);
+            }
+
+            victim.Id = _victimModel.Id;
+            victim.Name = VictimName.Text;
+            victim.Surname = VictimSurname.Text;
+            victim.City = VictimCity.Text;
+            victim.Street = VictimStreet.Text;
+            victim.Color = (VictimModel.TriageColor)VictimTriageColor.SelectedIndex;
+            victim.BirthDate = VictimBirth.Date;
+
+            victim.Injuries.Head = HeadInjury.IsChecked;
+            victim.Injuries.Neck = NeckInjury.IsChecked;
+            victim.Injuries.NeckSpine = NeckSpineInjury.IsChecked;
+            victim.Injuries.Chest = ChestInjury.IsChecked;
+            victim.Injuries.Stomach = StomachInjury.IsChecked;
+            victim.Injuries.Back = BackInjury.IsChecked;
+            victim.Injuries.Pelvis = PelvisInjury.IsChecked;
+            victim.Injuries.LeftLeg = LeftLegInjury.IsChecked;
+            victim.Injuries.RightLeg = RightLegInjury.IsChecked;
+            victim.Injuries.LeftArm = LeftArmInjury.IsChecked;
+            victim.Injuries.RightArm = RightArmInjury.IsChecked;
+            victim.Injuries.Burn = BurnInjury.IsChecked;
+
+
+            _showVictimViewModel.UpdateVictim(_victimModel, victim);
+
+            await App.Current.MainPage.Navigation.PopAsync();
+        }
+
+        private async void DeleteVictimButtonClicked(object sender, EventArgs e)
+        {
+            string optionChoice = await DisplayPromptAsync("Uwaga!", "Na pewno chcesz usunąć poszkodowanego " + _victimModel.Name + " "+ _victimModel.Surname+ "? (wpisz: TAK jeśli chcesz usunąć)", "USUŃ", "ANULUJ", null, 3);
+
+            if (optionChoice != null)
+            {
+                optionChoice = optionChoice.ToLower();
+
+                if (optionChoice == "tak")
+                {
+                    _showVictimViewModel.DeleteVictim(_victimModel);
+
+                    await App.Current.MainPage.Navigation.PopAsync();
+                }
+            }
         }
     }
 }

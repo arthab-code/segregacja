@@ -34,18 +34,16 @@
 
                 <Image Source="form_panel.png" Grid.Row="0" Grid.Column="1" Grid.RowSpan="6" Grid.ColumnSpan="6" Aspect="Fill"></Image>
 
-                <StackLayout  Grid.Row="0"  Grid.Column="1" Grid.RowSpan="4" Grid.ColumnSpan="6">
-                    <Label></Label>
-                    <Button x:Name="RedVictimInfo"  Grid.Column="1" Style="{StaticResource StandardButton}" Text="Informacje"/>
-                </StackLayout>
-                
-                <Grid Grid.Row="1"  Grid.Column="2" Grid.RowSpan="4" Grid.ColumnSpan="4" Background="form_panel.png">
-                    <ScrollView>
-                        <ListView  HorizontalOptions="Center" x:Name="RedVictimsList" BackgroundColor="#F8FDF8" ItemTapped="RedVictimsListShowVictim">
+                <Grid Padding="30" Grid.Row="0"  Grid.Column="1" Grid.RowSpan="5" Grid.ColumnSpan="6" Background="form_panel.png">
+                    <ScrollView >
+                        <ListView  x:Name="RedVictimsList" BackgroundColor="#F8FDF8" ItemTapped="RedVictimsListShowVictim">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <ViewCell>
-                                        <Label HorizontalOptions="Center" VerticalOptions="Center" Text="{Binding Name}"/>
+                                        <StackLayout Padding="10" Orientation="Horizontal">
+                                            <Label HorizontalOptions="Center" VerticalOptions="Center" Text="{Binding Name}"/>
+                                            <Label HorizontalOptions="Center" VerticalOptions="Center" Text="{Binding Surname}"/>
+                                        </StackLayout>
                                     </ViewCell>
                                 </DataTemplate>
                             </ListView.ItemTemplate>
@@ -79,18 +77,18 @@
                 </Grid.ColumnDefinitions>
 
                 <Image Source="form_panel.png" Grid.Row="0" Grid.Column="1" Grid.RowSpan="6" Grid.ColumnSpan="6" Aspect="Fill"></Image>
-                <StackLayout  Grid.Row="0"  Grid.Column="1" Grid.RowSpan="4" Grid.ColumnSpan="6">
-                    <Label></Label>
-                    <Button x:Name="YellowVictimInfo"  Grid.Column="1" Style="{StaticResource StandardButton}" Text="Informacje"/>
-                </StackLayout>
 
-                <Grid Grid.Row="1"  Grid.Column="2" Grid.RowSpan="4" Grid.ColumnSpan="4" Background="form_panel.png">
+
+                <Grid Padding="30" Grid.Row="0"  Grid.Column="1" Grid.RowSpan="5" Grid.ColumnSpan="6" Background="form_panel.png">
                     <ScrollView>
                         <ListView HorizontalOptions="Center" x:Name="YellowVictimsList" BackgroundColor="#F8FDF8" ItemTapped="YellowVictimsListShowVictim">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <ViewCell>
-                                        <Label HorizontalOptions="Center" VerticalOptions="Center" Text="{Binding Name}"/>
+                                        <StackLayout Padding="10" Orientation="Horizontal">
+                                            <Label HorizontalOptions="Center" VerticalOptions="Center" Text="{Binding Name}"/>
+                                            <Label HorizontalOptions="Center" VerticalOptions="Center" Text="{Binding Surname}"/>
+                                        </StackLayout>
                                     </ViewCell>
                                 </DataTemplate>
                             </ListView.ItemTemplate>
@@ -124,18 +122,17 @@
                 </Grid.ColumnDefinitions>
 
                 <Image Source="form_panel.png" Grid.Row="0" Grid.Column="1" Grid.RowSpan="6" Grid.ColumnSpan="6" Aspect="Fill"></Image>
-                <StackLayout  Grid.Row="0"  Grid.Column="1" Grid.RowSpan="4" Grid.ColumnSpan="6">
-                    <Label></Label>
-                    <Button x:Name="GreenVictimInfo"  Grid.Column="1" Style="{StaticResource StandardButton}" Text="Informacje"/>
-                </StackLayout>
 
-                <Grid Grid.Row="1"  Grid.Column="2" Grid.RowSpan="4" Grid.ColumnSpan="4" Background="form_panel.png">
+                <Grid Padding="30" Grid.Row="0"  Grid.Column="1" Grid.RowSpan="5" Grid.ColumnSpan="6" Background="form_panel.png">
                     <ScrollView>
                         <ListView HorizontalOptions="Center" x:Name="GreenVictimsList" BackgroundColor="#F8FDF8" ItemTapped="GreenVictimsListShowVictim">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
-                                    <ViewCell>
-                                        <Label HorizontalOptions="Center" VerticalOptions="Center" Text="{Binding Name}"/>
+                                    <ViewCell >
+                                        <StackLayout Padding="10" Orientation="Horizontal">
+                                            <Label HorizontalOptions="Center" VerticalOptions="Center" Text="{Binding Name}"/>
+                                            <Label HorizontalOptions="Center" VerticalOptions="Center" Text="{Binding Surname}"/>
+                                        </StackLayout>
                                     </ViewCell>
                                 </DataTemplate>
                             </ListView.ItemTemplate>
@@ -169,18 +166,17 @@
                 </Grid.ColumnDefinitions>
 
                 <Image Source="form_panel.png" Grid.Row="0" Grid.Column="1" Grid.RowSpan="6" Grid.ColumnSpan="6" Aspect="Fill"></Image>
-                <StackLayout  Grid.Row="0"  Grid.Column="1" Grid.RowSpan="4" Grid.ColumnSpan="6">
-                    <Label></Label>
-                    <Button x:Name="BlackVictimInfo"  Grid.Column="1" Style="{StaticResource StandardButton}" Text="Informacje"/>
-                </StackLayout>
 
-                <Grid Grid.Row="1"  Grid.Column="2" Grid.RowSpan="4" Grid.ColumnSpan="4" Background="form_panel.png">
+                <Grid Padding="30" Grid.Row="0"  Grid.Column="1" Grid.RowSpan="5" Grid.ColumnSpan="6" Background="form_panel.png">
                     <ScrollView>
                         <ListView HorizontalOptions="Center" x:Name="BlackVictimsList" BackgroundColor="#F8FDF8" ItemTapped="BlackVictimsListShowVictim">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <ViewCell>
-                                        <Label HorizontalOptions="Center" VerticalOptions="Center" Text="{Binding Name}"/>
+                                        <StackLayout Padding="10" Orientation="Horizontal">
+                                            <Label HorizontalOptions="Center" VerticalOptions="Center" Text="{Binding Name}" />
+                                            <Label HorizontalOptions="Center" VerticalOptions="Center" Text="{Binding Surname}" />
+                                        </StackLayout>
                                     </ViewCell>
                                 </DataTemplate>
                             </ListView.ItemTemplate>

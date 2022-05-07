@@ -41,11 +41,11 @@
             <Grid Grid.Row="1"  Grid.Column="1" Grid.RowSpan="8" Grid.ColumnSpan="6" Background="form_panel.png">
                 <ScrollView Padding="10">
                     <StackLayout HorizontalOptions="Center" Padding="10">
-                        <Label Text="NAZWA"/>
+                        <Label Text="NAZWA*"/>
                         <Entry x:Name="HospitalName" BackgroundColor="#F8FDF8"/>
-                        <Label Text="MIASTO"/>
+                        <Label Text="MIASTO*"/>
                         <Entry x:Name="HospitalCity" BackgroundColor="#F8FDF8"/>
-                        <Label Text="ULICA"/>
+                        <Label Text="ULICA*"/>
                         <Entry x:Name="HospitalStreet" BackgroundColor="#F8FDF8"/>
                         <Label Text="PACJENCI:"/>
                         <ListView x:Name="VictimListXAML" BackgroundColor="#F8FDF8" ItemTapped="VictimsListXAMLItemTapped">

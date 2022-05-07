@@ -9,7 +9,7 @@
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition/>
+                <RowDefinition Height="10"/>
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
@@ -30,7 +30,7 @@
             <StackLayout  Grid.Row="0"  Grid.Column="1" Grid.RowSpan="4" Grid.ColumnSpan="6">
             </StackLayout>
 
-            <Grid Grid.Row="0"  Grid.Column="1" Grid.RowSpan="5" Grid.ColumnSpan="6" Background="form_panel.png">
+            <Grid Grid.Row="1"  Grid.Column="1" Grid.RowSpan="4" Grid.ColumnSpan="6" Background="form_panel.png">
                 <ScrollView Padding="10">
                     <StackLayout HorizontalOptions="Center" Padding="10">
                         <Label Text="Imię"/>
@@ -56,66 +56,140 @@
                         <DatePicker x:Name="VictimBirth" />
                         <Label Text="Obrażenia :" />
 
-                        <StackLayout Orientation="Horizontal">
-                            <Label VerticalOptions="Center" Text="Głowa"/>
-                            <CheckBox VerticalOptions="Center" x:Name="HeadInjury"/>
-                        </StackLayout>
-                        <StackLayout Orientation="Horizontal">
-                            <Label VerticalOptions="Center" Text="Kręgosłup szyjny"/>
-                            <CheckBox VerticalOptions="Center" x:Name="NeckSpineInjury"/>
-                        </StackLayout>
-                        <StackLayout Orientation="Horizontal">
-                            <Label VerticalOptions="Center" Text="Szyja"/>
-                            <CheckBox VerticalOptions="Center" x:Name="NeckInjury"/>
-                        </StackLayout>
-                        <StackLayout Orientation="Horizontal">
-                            <Label VerticalOptions="Center" Text="Klatka piersiowa"/>
-                            <CheckBox VerticalOptions="Center" x:Name="ChestInjury"/>
-                        </StackLayout>
-                        <StackLayout Orientation="Horizontal">
-                            <Label VerticalOptions="Center" Text="Brzuch"/>
-                            <CheckBox VerticalOptions="Center" x:Name="StomachInjury"/>
-                        </StackLayout>
-                        <StackLayout Orientation="Horizontal">
-                            <Label VerticalOptions="Center" Text="Plecy"/>
-                            <CheckBox VerticalOptions="Center" x:Name="BackInjury"/>
-                        </StackLayout>
-                        <StackLayout Orientation="Horizontal">
-                            <Label VerticalOptions="Center" Text="Miednica"/>
-                            <CheckBox VerticalOptions="Center" x:Name="PelvisInjury"/>
-                        </StackLayout>
-                        <StackLayout Orientation="Horizontal">
-                            <Label VerticalOptions="Center" Text="Kręgosłup"/>
-                            <CheckBox VerticalOptions="Center" x:Name="SpineInjury"/>
-                        </StackLayout>
-                        <StackLayout Orientation="Horizontal">
-                            <Label VerticalOptions="Center" Text="Lewa noga"/>
-                            <CheckBox VerticalOptions="Center" x:Name="LeftLegInjury"/>
-                        </StackLayout>
-                        <StackLayout Orientation="Horizontal">
-                            <Label VerticalOptions="Center" Text="Prawa noga"/>
-                            <CheckBox VerticalOptions="Center" x:Name="RightLegInjury"/>
-                        </StackLayout>
-                        <StackLayout Orientation="Horizontal">
-                            <Label VerticalOptions="Center" Text="Lewa ręka"/>
-                            <CheckBox VerticalOptions="Center" x:Name="LeftArmInjury"/>
-                        </StackLayout>
-                        <StackLayout Orientation="Horizontal">
-                            <Label VerticalOptions="Center" Text="Prawa ręka"/>
-                            <CheckBox VerticalOptions="Center" x:Name="RightArmInjury"/>
-                        </StackLayout>
-                        <StackLayout Orientation="Horizontal">
-                            <Label VerticalOptions="Center" Text="Oparzenia"/>
-                            <CheckBox VerticalOptions="Center" x:Name="BurnInjury"/>
-                            <Entry VerticalOptions="Center" x:Name="BurnPercent" />
-                            <Label VerticalOptions="Center" Text="%"/>
-                        </StackLayout>
-                        <StackLayout Orientation="Horizontal">
-                            <Label VerticalOptions="Center" Text="Odmrożenia"/>
-                            <CheckBox VerticalOptions="Center" x:Name="FrostbiteInjury"/>
-                            <Entry VerticalOptions="Center" x:Name="PercentFrostbite"/>
-                            <Label VerticalOptions="Center" Text="%"/>
-                        </StackLayout>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" HorizontalOptions="FillAndExpand" Text="Głowa"/>
+                            <CheckBox Grid.Column="1" VerticalOptions="FillAndExpand" x:Name="HeadInjury"/>
+                        </Grid>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" HorizontalOptions="FillAndExpand" Text="Kręgosłup szyjny"/>
+                            <CheckBox Grid.Column="1" HorizontalOptions="FillAndExpand" x:Name="NeckSpineInjury"/>
+                        </Grid>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" HorizontalOptions="FillAndExpand" Text="Szyja"/>
+                            <CheckBox Grid.Column="1" HorizontalOptions="FillAndExpand" x:Name="NeckInjury"/>
+                        </Grid>
+
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" HorizontalOptions="FillAndExpand" Text="Klatka piersiowa"/>
+                            <CheckBox Grid.Column="1" HorizontalOptions="FillAndExpand" x:Name="ChestInjury"/>
+                        </Grid>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" HorizontalOptions="FillAndExpand" Text="Brzuch"/>
+                            <CheckBox Grid.Column="1" HorizontalOptions="FillAndExpand" x:Name="StomachInjury"/>
+                        </Grid>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" HorizontalOptions="FillAndExpand" Text="Plecy"/>
+                            <CheckBox Grid.Column="1" HorizontalOptions="FillAndExpand" x:Name="BackInjury"/>
+                        </Grid>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" HorizontalOptions="FillAndExpand" Text="Miednica"/>
+                            <CheckBox Grid.Column="1" HorizontalOptions="FillAndExpand" x:Name="PelvisInjury"/>
+                        </Grid>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" HorizontalOptions="FillAndExpand" Text="Kręgosłup"/>
+                            <CheckBox Grid.Column="1" HorizontalOptions="FillAndExpand" x:Name="SpineInjury"/>
+                        </Grid>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" HorizontalOptions="FillAndExpand" Text="Lewa noga"/>
+                            <CheckBox Grid.Column="1" HorizontalOptions="FillAndExpand" x:Name="LeftLegInjury"/>
+                        </Grid>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" HorizontalOptions="FillAndExpand" Text="Prawa noga"/>
+                            <CheckBox Grid.Column="1" HorizontalOptions="FillAndExpand" x:Name="RightLegInjury"/>
+                        </Grid>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" HorizontalOptions="FillAndExpand" Text="Lewa ręka"/>
+                            <CheckBox Grid.Column="1" HorizontalOptions="FillAndExpand" x:Name="LeftArmInjury"/>
+                        </Grid>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" HorizontalOptions="FillAndExpand" Text="Prawa ręka"/>
+                            <CheckBox Grid.Column="1" HorizontalOptions="FillAndExpand" x:Name="RightArmInjury"/>
+                        </Grid>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" HorizontalOptions="FillAndExpand" Text="Oparzenia"/>
+                            <StackLayout Grid.Column="1" Orientation="Horizontal">
+                                <CheckBox HorizontalOptions="FillAndExpand" x:Name="BurnInjury"/>
+                                <Entry  HorizontalOptions="FillAndExpand" x:Name="BurnPercent" />
+                                <Label HorizontalOptions="FillAndExpand" Text="%"/>
+                            </StackLayout>
+                        </Grid>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" HorizontalOptions="FillAndExpand" Text="Odmrożenia"/>
+                            <StackLayout Grid.Column="1" Orientation="Horizontal">
+                                <CheckBox  HorizontalOptions="FillAndExpand" x:Name="FrostbiteInjury"/>
+                                <Entry  HorizontalOptions="FillAndExpand" x:Name="PercentFrostbite"/>
+                                <Label  HorizontalOptions="FillAndExpand" Text="%"/>
+                            </StackLayout>
+                        </Grid>
 
 
                         <Button Text="DODAJ" Style="{StaticResource StandardButton}" Clicked="PassAddVictimButtonClicked"/>

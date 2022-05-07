@@ -63,7 +63,7 @@ namespace ZRM_TRIAGE
                 {
                     if (showHospitalViewModel.CheckHospitalExists(HospitalName.Text))
                     {
-                        await DisplayAlert("Błąd", "Takai szpital już jest dodany", "OK");
+                        await DisplayAlert("Błąd", "Taki szpital już jest dodany", "OK");
                         return;
                     }
                 }
