@@ -29,6 +29,7 @@ namespace ZRM_TRIAGE
                      .SetVictimStreet(VictimStreet.Text)
                      .SetVictimTriageColor(VictimTriageColor.SelectedIndex)
                      .SetVictimBirthDate(VictimBirth.Date)
+                     .SetIsTransported(false)
                      .Build();
 
             if (!victimBuilder.IsCreated)

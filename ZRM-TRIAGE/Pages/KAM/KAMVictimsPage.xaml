@@ -36,13 +36,13 @@
 
                 <Grid Padding="30" Grid.Row="0"  Grid.Column="1" Grid.RowSpan="5" Grid.ColumnSpan="6" Background="form_panel.png">
                     <ScrollView >
-                        <ListView  x:Name="RedVictimsList" BackgroundColor="#F8FDF8" ItemTapped="RedVictimsListShowVictim">
+                        <ListView x:Name="RedVictimsList" BackgroundColor="#F8FDF8" ItemTapped="RedVictimsListShowVictim">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <ViewCell>
                                         <StackLayout Padding="10" Orientation="Horizontal">
-                                            <Label HorizontalOptions="Center" VerticalOptions="Center" Text="{Binding Name}"/>
-                                            <Label HorizontalOptions="Center" VerticalOptions="Center" Text="{Binding Surname}"/>
+                                            <Label TextColor="#D98A8A" HorizontalOptions="Center" VerticalOptions="Center" Text="{Binding Name}"/>
+                                            <Label TextColor="#D98A8A" HorizontalOptions="Center" VerticalOptions="Center" Text="{Binding Surname}"/>
                                         </StackLayout>
                                     </ViewCell>
                                 </DataTemplate>
@@ -86,8 +86,8 @@
                                 <DataTemplate>
                                     <ViewCell>
                                         <StackLayout Padding="10" Orientation="Horizontal">
-                                            <Label HorizontalOptions="Center" VerticalOptions="Center" Text="{Binding Name}"/>
-                                            <Label HorizontalOptions="Center" VerticalOptions="Center" Text="{Binding Surname}"/>
+                                            <Label TextColor="#D9CB8A" HorizontalOptions="Center" VerticalOptions="Center" Text="{Binding Name}"/>
+                                            <Label TextColor="#D9CB8A" HorizontalOptions="Center" VerticalOptions="Center" Text="{Binding Surname}"/>
                                         </StackLayout>
                                     </ViewCell>
                                 </DataTemplate>
@@ -130,8 +130,8 @@
                                 <DataTemplate>
                                     <ViewCell >
                                         <StackLayout Padding="10" Orientation="Horizontal">
-                                            <Label HorizontalOptions="Center" VerticalOptions="Center" Text="{Binding Name}"/>
-                                            <Label HorizontalOptions="Center" VerticalOptions="Center" Text="{Binding Surname}"/>
+                                            <Label TextColor="#ACD98A" HorizontalOptions="Center" VerticalOptions="Center" Text="{Binding Name}"/>
+                                            <Label TextColor="#ACD98A" HorizontalOptions="Center" VerticalOptions="Center" Text="{Binding Surname}"/>
                                         </StackLayout>
                                     </ViewCell>
                                 </DataTemplate>
@@ -174,8 +174,8 @@
                                 <DataTemplate>
                                     <ViewCell>
                                         <StackLayout Padding="10" Orientation="Horizontal">
-                                            <Label HorizontalOptions="Center" VerticalOptions="Center" Text="{Binding Name}" />
-                                            <Label HorizontalOptions="Center" VerticalOptions="Center" Text="{Binding Surname}" />
+                                            <Label TextColor="#626262" HorizontalOptions="Center" VerticalOptions="Center" Text="{Binding Name}" />
+                                            <Label TextColor="#626262" HorizontalOptions="Center" VerticalOptions="Center" Text="{Binding Surname}" />
                                         </StackLayout>
                                     </ViewCell>
                                 </DataTemplate>

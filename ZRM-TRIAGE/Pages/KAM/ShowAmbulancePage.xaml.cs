@@ -10,7 +10,7 @@ using Xamarin.Forms.Xaml;
 namespace ZRM_TRIAGE
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ShowAmbulancePage : ContentPage
+    public partial class ShowAmbulancePage : TabbedPage
     {
 
         private AmbulanceModel _ambulance;
@@ -29,6 +29,8 @@ namespace ZRM_TRIAGE
             AmbulanceStatus.SelectedIndex = (int)_ambulance.AmbulanceStatus;
             AmbulanceNumber.Text = _ambulance.Number;
             AmbulanceLoginCode.Text = _ambulance.LoginCode;
+
+            VictimListXAML.ItemsSource = _ambulance.Victims;
         }
 
         private async void DeleteAmbulanceClicked(object sender, EventArgs e)
@@ -89,6 +91,18 @@ namespace ZRM_TRIAGE
                 _showAmbulanceVM.Update(_ambulance, newAmbulance);
                 await App.Current.MainPage.Navigation.PopAsync();
             }
+        }
+
+        private async void VictimsListXAMLItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            if (VictimListXAML.SelectedItem == null)
+                return;
+
+            VictimModel victim = new VictimModel();
+
+            victim = VictimListXAML.SelectedItem as VictimModel;
+
+            await Navigation.PushAsync(new ShowVictimPage(victim));
         }
     }
 }

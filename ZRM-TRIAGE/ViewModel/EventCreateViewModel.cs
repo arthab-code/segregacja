@@ -67,7 +67,6 @@ namespace ZRM_TRIAGE
                 .AmbulanceFunctionSet(AmbulanceModel.Function.Major)
                 .AmbulanceStatusSet()
                 .AmbulanceHospitalSet()
-                .AmbulanceVictimSet()
                 .Build();
 
             return ambulance;

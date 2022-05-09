@@ -44,22 +44,11 @@ namespace ZRM_TRIAGE
             _database.GetClient().Child("Hospitals").Child(UserInfo.EventId).Child(item).DeleteAsync();
         }
 
-        public HospitalModel Search(string item)
+        public HospitalModel Search(string hospitalId)
         {
-            var search = _database.GetClient().Child("Hospitals").Child(UserInfo.EventId).OnceAsync<HospitalModel>().Result;
+            var result = _database.GetClient().Child("Hospitals").Child(UserInfo.EventId).Child(hospitalId).OnceSingleAsync<HospitalModel>().Result;
 
-            HospitalModel findHospital = null;
-
-            foreach (var i in search)
-            {
-                if (i.Object.Name == item)
-                {
-                    findHospital = i.Object;
-                    break;
-                }
-            }
-
-            return findHospital;
+            return result;
         }
 
         public string SearchKey(string item)

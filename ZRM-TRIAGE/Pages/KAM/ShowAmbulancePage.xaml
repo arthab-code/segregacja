@@ -1,10 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ZRM_TRIAGE.ShowAmbulancePage"
              BackgroundColor="#F8FDF8"
+             UnselectedTabColor="#D98A8A"
+             SelectedTabColor="#ACD98A"
+             BarBackgroundColor="#F0F7F0"    
              >
 
+    <!-- Informations -->
+    <ContentPage Title="Informacje">
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
@@ -66,4 +71,51 @@
             </Grid>
         </Grid>
     </ContentPage.Content>
-</ContentPage>
+    </ContentPage>
+
+    <!-- Transport -->
+    <ContentPage Title="Transport">
+        <ContentPage.Content>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="2"/>
+                </Grid.ColumnDefinitions>
+
+                <Image Source="form_panel.png" Grid.Row="0" Grid.Column="1" Grid.RowSpan="6" Grid.ColumnSpan="6" Aspect="Fill"></Image>
+
+                <Grid Grid.Row="0"  Grid.Column="1" Grid.RowSpan="5" Grid.ColumnSpan="6" Background="form_panel.png">
+                    <ScrollView Padding="10">
+                        <StackLayout HorizontalOptions="Center" Padding="10">
+                            <ListView x:Name="VictimListXAML" BackgroundColor="#F8FDF8" ItemTapped="VictimsListXAMLItemTapped">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <StackLayout  Orientation="Horizontal">
+                                                <Label HorizontalOptions="Center" VerticalOptions="Center" Text="{Binding Name}" />
+                                                <Label HorizontalOptions="Center" VerticalOptions="Center" Text="{Binding Surname}" />
+                                            </StackLayout>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </StackLayout>
+                    </ScrollView>
+                </Grid>
+            </Grid>
+        </ContentPage.Content>
+    </ContentPage>
+</TabbedPage>

@@ -14,13 +14,19 @@ namespace ZRM_TRIAGE
     {
         private VictimModel _victimModel;
         private ShowVictimViewModel _showVictimViewModel;
+        private List<AmbulanceModel> _ambulanceList;
+        private List<HospitalModel> _hospitalList;
         public ShowVictimPage(VictimModel victimModel)
         {
             InitializeComponent();
             _showVictimViewModel = new ShowVictimViewModel();
+            _ambulanceList = new List<AmbulanceModel>();
+            _hospitalList = new List<HospitalModel>();
             _victimModel = victimModel;
 
             Title = _victimModel.Name + " " + _victimModel.Surname;
+
+            GetLists();
 
             VictimName.Text = _victimModel.Name;
             VictimSurname.Text = _victimModel.Surname;
@@ -28,6 +34,35 @@ namespace ZRM_TRIAGE
             VictimStreet.Text = _victimModel.Street;
             VictimTriageColor.SelectedIndex = (int)_victimModel.Color;
             VictimBirth.Date = _victimModel.BirthDate;
+
+            if (_victimModel.IsTransported)
+                VictimStatus.Text = "Transportowany";
+            else
+                VictimStatus.Text = "Na miejscu";
+
+            int index = -1;
+
+            for (int i=0; i<_ambulanceList.Count; i++)
+            {
+                if (_ambulanceList[i].Number == _victimModel.Ambulance)
+                {
+                    index = i;
+                    break;
+                }
+            }
+
+            SelectAmbulance.SelectedIndex = index;
+
+            for (int i = 0; i < _hospitalList.Count; i++)
+            {
+                if (_hospitalList[i].Name == _victimModel.Hospital)
+                {
+                    index = i;
+                    break;
+                }
+            }
+
+            SelectHospital.SelectedIndex = index;
 
             HeadInjury.IsChecked = _victimModel.Injuries.Head;
             NeckInjury.IsChecked = _victimModel.Injuries.Neck;
@@ -51,8 +86,22 @@ namespace ZRM_TRIAGE
             {
                 PercentFrostbite.Text = _victimModel.Injuries.PercentFrostbite.ToString();
             }
+        }
 
+        private void GetLists()
+        {
+            _ambulanceList = _showVictimViewModel.GetTransportController().GetAmbulances();
+            _hospitalList = _showVictimViewModel.GetTransportController().GetHospitals();
 
+            for (int i = 0; i < _ambulanceList.Count; i++)
+            {
+                SelectAmbulance.Items.Add(_ambulanceList[i].Number);
+            }
+
+            for (int i=0; i<_hospitalList.Count;i++)
+            {
+                SelectHospital.Items.Add(_hospitalList[i].Name);
+            }
         }
 
         private async void UpdateVictimButtonClicked(object sender, EventArgs e)
@@ -108,6 +157,11 @@ namespace ZRM_TRIAGE
             victim.Street = VictimStreet.Text;
             victim.Color = (VictimModel.TriageColor)VictimTriageColor.SelectedIndex;
             victim.BirthDate = VictimBirth.Date;
+            victim.IsTransported = _victimModel.IsTransported;
+            victim.Hospital = _victimModel.Hospital;
+            victim.HospitalId = _victimModel.HospitalId;
+            victim.Ambulance = _victimModel.Ambulance;
+            victim.AmbulanceId = _victimModel.AmbulanceId;
 
             victim.Injuries.Head = HeadInjury.IsChecked;
             victim.Injuries.Neck = NeckInjury.IsChecked;
@@ -143,6 +197,41 @@ namespace ZRM_TRIAGE
                     await App.Current.MainPage.Navigation.PopAsync();
                 }
             }
+        }
+
+        private async void SaveTransportButtonClicked(object sender, EventArgs e)
+        {
+            if (SelectAmbulance.SelectedIndex == -1)
+            {
+                await DisplayAlert("Błąd transportu", "Wybierz karetkę!", "OK");
+                return;
+            }
+
+            if (SelectHospital.SelectedIndex == -1)
+            {
+                await DisplayAlert("Błąd transportu", "Wybierz szpital docelowy!", "OK");
+                return;
+            }
+
+            AmbulanceModel ambulance = new AmbulanceModel();
+            HospitalModel hospital = new HospitalModel();
+
+            _showVictimViewModel.GetTransportController().CorrectData(_victimModel);
+
+            ambulance = _ambulanceList[SelectAmbulance.SelectedIndex];
+            hospital = _hospitalList[SelectHospital.SelectedIndex];
+
+            _victimModel.Ambulance = ambulance.Number;
+            _victimModel.AmbulanceId = ambulance.Id;
+            _victimModel.Hospital = hospital.Name;
+            _victimModel.HospitalId = hospital.Id;
+
+            ambulance.Victims.Add(_victimModel);
+            hospital.VictimList.Add(_victimModel);
+
+            _showVictimViewModel.GetTransportController().SaveData(_victimModel, ambulance, hospital);
+
+            await App.Current.MainPage.Navigation.PopAsync();
         }
     }
 }

@@ -91,6 +91,13 @@ namespace ZRM_TRIAGE
             return this;
         }
 
+        public VictimBuilderModel SetIsTransported(bool value)
+        {
+            _victimModel.IsTransported = false;
+
+            return this;
+        }
+
         public VictimModel Build() => _victimModel;
     }
 }

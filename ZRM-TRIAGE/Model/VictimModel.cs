@@ -28,6 +28,11 @@ namespace ZRM_TRIAGE
         public string Street { get; set; }
         public DateTime BirthDate { get; set; }
         public InjuriesModel Injuries { get; set; }
+        public string Hospital { get; set; }
+        public string HospitalId { get; set; }
+        public string Ambulance { get; set; }
+        public string AmbulanceId { get; set; }
+        public bool IsTransported { get; set; }
 
     }
 }

@@ -25,25 +25,27 @@ namespace ZRM_TRIAGE
 
         public AmbulanceModel (AmbulanceModel original)
         {
+            Victims = new List<VictimModel>();
             this.Number = original.Number;
             this.LoginCode = original.LoginCode;
             this.EventId = original.EventId;
             this.Id = original.Id;
-            this.Victim = original.Victim;
+            this.Victims = original.Victims;
             this.Hospital = original.Hospital;
             this.AmbulanceStatus = original.AmbulanceStatus;
             this.AmbulanceFunction = original.AmbulanceFunction;
         }
 
         public AmbulanceModel()
-        { }
+        {
+            Victims = new List<VictimModel>();
+        }
 
         public string Number { get; set; }
-        public string KeyString { get; set; }
         public string LoginCode { get;  set; }
         public string EventId { get; set; }
         public string Id { get; set; }
-        public VictimModel Victim { get; set; }
+        public List<VictimModel> Victims { get; set; }
         public HospitalModel Hospital { get; set; }
         public Status AmbulanceStatus { get; set; }
         public Function AmbulanceFunction { get; set; }

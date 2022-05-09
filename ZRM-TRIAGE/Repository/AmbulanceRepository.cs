@@ -54,22 +54,11 @@ namespace ZRM_TRIAGE
             _database.GetClient().Child("Crews").Child(UserInfo.EventId).Child(ambulanceId).DeleteAsync();
         }
 
-        public AmbulanceModel Search(string ambulanceNumber)
+        public AmbulanceModel Search(string ambulanceId)
         {
-            var search = _database.GetClient().Child("Crews").Child(UserInfo.EventId).OnceAsync<AmbulanceModel>().Result;
+            var result = _database.GetClient().Child("Crews").Child(UserInfo.EventId).Child(ambulanceId).OnceSingleAsync<AmbulanceModel>().Result;
 
-            AmbulanceModel findAmbulance = null;
-
-            foreach(var item in search)
-            {
-                if (item.Object.Number == ambulanceNumber)
-                {
-                    findAmbulance = item.Object;
-                    break;
-                }
-            }
-
-            return findAmbulance;
+            return result;
         }
 
         public string SearchKey(string ambulanceNumber)

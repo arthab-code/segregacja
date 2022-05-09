@@ -334,8 +334,13 @@
                 <Grid Grid.Row="1"  Grid.Column="1" Grid.RowSpan="8" Grid.ColumnSpan="6" Background="form_panel.png">
                     <ScrollView Padding="10">
                         <StackLayout HorizontalOptions="FillAndExpand" Padding="10">
-                            
-
+                            <Label Text="STATUS:" />
+                            <Label x:Name="VictimStatus" />
+                            <Label Text="Wybierz karetkę" />
+                            <Picker x:Name="SelectAmbulance" />
+                            <Label Text="Wybierz szpital docelowy" />
+                            <Picker x:Name="SelectHospital" />
+                            <Button Text="ZAPISZ" Style="{StaticResource StandardButton}" Clicked="SaveTransportButtonClicked"/>
                         </StackLayout>
                     </ScrollView>
                 </Grid>

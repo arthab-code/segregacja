@@ -101,17 +101,9 @@ namespace ZRM_TRIAGE
             return this;
         }
 
-
         public AmbulanceBuilderModel AmbulanceHospitalSet()
         {
             _ambulanceModel.Hospital = null;
-
-            return this;
-        }
-
-        public AmbulanceBuilderModel AmbulanceVictimSet()
-        {
-            _ambulanceModel.Victim = null;
 
             return this;
         }

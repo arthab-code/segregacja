@@ -48,7 +48,6 @@ namespace ZRM_TRIAGE
                                        .LoginCodeGenerate()
                                        .AmbulanceStatusSet()
                                        .AmbulanceHospitalSet()
-                                       .AmbulanceVictimSet()
                                        .Build();
 
             addAmbulanceViewModel.AddAmbulanceToDatabase(ambulance);

@@ -23,9 +23,6 @@ namespace ZRM_TRIAGE
             HospitalStreet.Text = hospitalModel.Street;
 
             BindingContext = hospitalModel.VictimList;
-            hospitalModel.VictimList.Add(new VictimModel { Name = "ZJEBUCH", Surname = "Zjebany" });
-            hospitalModel.VictimList.Add(new VictimModel { Name = "ZJEBUCH1", Surname = "Zjebany2" });
-            hospitalModel.VictimList.Add(new VictimModel { Name = "ZJEBUCH2", Surname = "Zjebany2" });
             VictimListXAML.ItemsSource = hospitalModel.VictimList;
         }
 
