@@ -31,7 +31,7 @@ namespace ZRM_TRIAGE
             this.EventId = original.EventId;
             this.Id = original.Id;
             this.Victims = original.Victims;
-            this.Hospital = original.Hospital;
+            this.HospitalId = original.HospitalId;
             this.AmbulanceStatus = original.AmbulanceStatus;
             this.AmbulanceFunction = original.AmbulanceFunction;
         }
@@ -46,7 +46,9 @@ namespace ZRM_TRIAGE
         public string EventId { get; set; }
         public string Id { get; set; }
         public List<VictimModel> Victims { get; set; }
-        public HospitalModel Hospital { get; set; }
+        public string HospitalId { get; set; }
+        public string HospitalName { get; set; }
+        public HospitalModel SelectedHospital { get; set; }
         public Status AmbulanceStatus { get; set; }
         public Function AmbulanceFunction { get; set; }
 

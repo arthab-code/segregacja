@@ -1,18 +1,28 @@
 ﻿using Firebase.Database.Query;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
+
 
 namespace ZRM_TRIAGE
 {
-    public class ShowAmbulanceViewModel
+    public class ShowAmbulanceViewModel 
     {
 
         private AmbulanceRepository _ambulanceRepository;
+        private TransportController _transportController;
 
         public ShowAmbulanceViewModel()
         {
-            _ambulanceRepository = new AmbulanceRepository();  
+            _ambulanceRepository = new AmbulanceRepository();
+            _transportController = new TransportController();
+
+        }
+
+        public TransportController GetTransportController()
+        {
+            return _transportController;
         }
 
         public bool CheckAmbulanceExists(string ambulanceNumber)

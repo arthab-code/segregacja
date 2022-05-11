@@ -103,7 +103,7 @@ namespace ZRM_TRIAGE
 
         public AmbulanceBuilderModel AmbulanceHospitalSet()
         {
-            _ambulanceModel.Hospital = null;
+            _ambulanceModel.HospitalId = null;
 
             return this;
         }

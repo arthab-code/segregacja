@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace ZRM_TRIAGE
 {
-    internal class TransportController
+    public class TransportController
     {
         private AmbulanceRepository _ambulanceRepository;
         private HospitalRepository _hospitalRepository;
@@ -32,6 +32,16 @@ namespace ZRM_TRIAGE
 
         }
 
+        public List<VictimModel> GetVictims()
+        {
+            return _victimRepository.GetAll();
+        }
+
+        public void SaveVictimData(VictimModel victim)
+        {
+            _victimRepository.Update(victim, victim);
+        }
+
         public void SaveData(VictimModel victim, AmbulanceModel ambulance, HospitalModel hospital)
         {
             _victimRepository.Update(victim, victim);
@@ -50,7 +60,7 @@ namespace ZRM_TRIAGE
             /** DELETE VICTIM FROM VICTIM LIST IN AMBULANCE MODEL **/
             for (int i=0; i< ambulanceCheck.Victims.Count; i++)
             {
-                if (ambulanceCheck.Victims[i].Id == victim.Id)
+                if (ambulanceCheck.Victims[i].AmbulanceId == victim.AmbulanceId)
                 {
                     ambulanceCheck.Victims.RemoveAt(i);
 
@@ -60,7 +70,7 @@ namespace ZRM_TRIAGE
             /** DELETE VICTIM FROM VICTIM LIST IN HOSPITAL MODEL **/
             for (int i = 0; i < hospitalCheck.VictimList.Count; i++)
             {
-                if (hospitalCheck.VictimList[i].Id == victim.Id)
+                if (hospitalCheck.VictimList[i].HospitalId == victim.HospitalId)
                 {
                     hospitalCheck.VictimList.RemoveAt(i);
 

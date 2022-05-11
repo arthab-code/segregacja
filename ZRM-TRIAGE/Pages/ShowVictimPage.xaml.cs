@@ -14,19 +14,15 @@ namespace ZRM_TRIAGE
     {
         private VictimModel _victimModel;
         private ShowVictimViewModel _showVictimViewModel;
-        private List<AmbulanceModel> _ambulanceList;
-        private List<HospitalModel> _hospitalList;
+
         public ShowVictimPage(VictimModel victimModel)
         {
             InitializeComponent();
-            _showVictimViewModel = new ShowVictimViewModel();
-            _ambulanceList = new List<AmbulanceModel>();
-            _hospitalList = new List<HospitalModel>();
+
             _victimModel = victimModel;
+            _showVictimViewModel = new ShowVictimViewModel();
 
             Title = _victimModel.Name + " " + _victimModel.Surname;
-
-            GetLists();
 
             VictimName.Text = _victimModel.Name;
             VictimSurname.Text = _victimModel.Surname;
@@ -40,29 +36,11 @@ namespace ZRM_TRIAGE
             else
                 VictimStatus.Text = "Na miejscu";
 
-            int index = -1;
 
-            for (int i=0; i<_ambulanceList.Count; i++)
-            {
-                if (_ambulanceList[i].Number == _victimModel.Ambulance)
-                {
-                    index = i;
-                    break;
-                }
-            }
+            HospitalTransport.Text = _victimModel.Hospital;
+            AmbulanceTransport.Text = _victimModel.Ambulance;
 
-            SelectAmbulance.SelectedIndex = index;
 
-            for (int i = 0; i < _hospitalList.Count; i++)
-            {
-                if (_hospitalList[i].Name == _victimModel.Hospital)
-                {
-                    index = i;
-                    break;
-                }
-            }
-
-            SelectHospital.SelectedIndex = index;
 
             HeadInjury.IsChecked = _victimModel.Injuries.Head;
             NeckInjury.IsChecked = _victimModel.Injuries.Neck;
@@ -88,21 +66,6 @@ namespace ZRM_TRIAGE
             }
         }
 
-        private void GetLists()
-        {
-            _ambulanceList = _showVictimViewModel.GetTransportController().GetAmbulances();
-            _hospitalList = _showVictimViewModel.GetTransportController().GetHospitals();
-
-            for (int i = 0; i < _ambulanceList.Count; i++)
-            {
-                SelectAmbulance.Items.Add(_ambulanceList[i].Number);
-            }
-
-            for (int i=0; i<_hospitalList.Count;i++)
-            {
-                SelectHospital.Items.Add(_hospitalList[i].Name);
-            }
-        }
 
         private async void UpdateVictimButtonClicked(object sender, EventArgs e)
         {
@@ -199,39 +162,6 @@ namespace ZRM_TRIAGE
             }
         }
 
-        private async void SaveTransportButtonClicked(object sender, EventArgs e)
-        {
-            if (SelectAmbulance.SelectedIndex == -1)
-            {
-                await DisplayAlert("Błąd transportu", "Wybierz karetkę!", "OK");
-                return;
-            }
-
-            if (SelectHospital.SelectedIndex == -1)
-            {
-                await DisplayAlert("Błąd transportu", "Wybierz szpital docelowy!", "OK");
-                return;
-            }
-
-            AmbulanceModel ambulance = new AmbulanceModel();
-            HospitalModel hospital = new HospitalModel();
-
-            _showVictimViewModel.GetTransportController().CorrectData(_victimModel);
-
-            ambulance = _ambulanceList[SelectAmbulance.SelectedIndex];
-            hospital = _hospitalList[SelectHospital.SelectedIndex];
-
-            _victimModel.Ambulance = ambulance.Number;
-            _victimModel.AmbulanceId = ambulance.Id;
-            _victimModel.Hospital = hospital.Name;
-            _victimModel.HospitalId = hospital.Id;
-
-            ambulance.Victims.Add(_victimModel);
-            hospital.VictimList.Add(_victimModel);
-
-            _showVictimViewModel.GetTransportController().SaveData(_victimModel, ambulance, hospital);
-
-            await App.Current.MainPage.Navigation.PopAsync();
-        }
+      
     }
 }

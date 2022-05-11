@@ -19,18 +19,26 @@ namespace ZRM_TRIAGE
         public ShowAmbulancePage(AmbulanceModel ambulance)
         {          
             InitializeComponent();
+            _ambulance = ambulance;
+        }
 
+        protected override void OnAppearing()
+        {
             _showAmbulanceVM = new ShowAmbulanceViewModel();
 
-            _ambulance = ambulance;
             AmbulanceModel.Function function = _showAmbulanceVM.AmbulanceFunctionAdd((int)_ambulance.AmbulanceFunction);
+
+            RefreshVictimList();
+
+            if (_ambulance.SelectedHospital == null)
+                TargetHospital.Text = "";
+            else
+                TargetHospital.Text = _ambulance.SelectedHospital.Name;
 
             AmbulanceFunction.SelectedIndex = (int)_ambulance.AmbulanceFunction;
             AmbulanceStatus.SelectedIndex = (int)_ambulance.AmbulanceStatus;
             AmbulanceNumber.Text = _ambulance.Number;
             AmbulanceLoginCode.Text = _ambulance.LoginCode;
-
-            VictimListXAML.ItemsSource = _ambulance.Victims;
         }
 
         private async void DeleteAmbulanceClicked(object sender, EventArgs e)
@@ -103,6 +111,45 @@ namespace ZRM_TRIAGE
             victim = VictimListXAML.SelectedItem as VictimModel;
 
             await Navigation.PushAsync(new ShowVictimPage(victim));
+        }
+
+        private async void SelectHospitalButtonClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new SelectHospitalForAmbulancePage(_ambulance));
+        }
+
+        private async void SelectVictimButtonClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new SelectVictimsForAmbulancePage(_ambulance));
+        }
+
+        private void DeleteButtonClicked(object sender, EventArgs e)
+        {
+            if (VictimListXAML.SelectedItem == null)
+                return;
+
+            VictimModel victimModel = VictimListXAML.SelectedItem as VictimModel;
+
+            victimModel.AmbulanceId = null;
+            victimModel.Ambulance = null;
+            victimModel.HospitalId = null;
+            victimModel.Hospital = null;
+
+            VictimRepository victimRepository = new VictimRepository();
+
+            victimRepository.Update(victimModel, victimModel);
+
+            RefreshVictimList();
+
+        }
+
+        private void RefreshVictimList()
+        {
+            VictimListXAML.BeginRefresh();
+            var victimList = _showAmbulanceVM.GetTransportController().GetVictims().Where<VictimModel>(a => a.AmbulanceId == _ambulance.Id).ToList();
+            BindingContext = victimList;          
+            VictimListXAML.ItemsSource = victimList;
+            VictimListXAML.EndRefresh();
         }
     }
 }
