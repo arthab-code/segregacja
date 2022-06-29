@@ -27,7 +27,7 @@ namespace ZRM_TRIAGE
 
             TransportController transportController = new TransportController();
 
-            VictimListXAML.ItemsSource = transportController.GetVictims();
+            VictimListXAML.ItemsSource = transportController.GetVictims().Where<VictimModel>(a => a.AmbulanceId == null);
 
         }
 

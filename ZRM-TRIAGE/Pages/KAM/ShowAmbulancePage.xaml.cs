@@ -28,10 +28,8 @@ namespace ZRM_TRIAGE
 
             AmbulanceModel.Function function = _showAmbulanceVM.AmbulanceFunctionAdd((int)_ambulance.AmbulanceFunction);
 
-            RefreshVictimList();
-
             if (_ambulance.SelectedHospital == null)
-                TargetHospital.Text = "";
+                TargetHospital.Text = "NIE WYBRANO";
             else
                 TargetHospital.Text = _ambulance.SelectedHospital.Name;
 
@@ -39,6 +37,8 @@ namespace ZRM_TRIAGE
             AmbulanceStatus.SelectedIndex = (int)_ambulance.AmbulanceStatus;
             AmbulanceNumber.Text = _ambulance.Number;
             AmbulanceLoginCode.Text = _ambulance.LoginCode;
+
+            RefreshVictimList(_showAmbulanceVM);
         }
 
         private async void DeleteAmbulanceClicked(object sender, EventArgs e)
@@ -123,7 +123,7 @@ namespace ZRM_TRIAGE
             await Navigation.PushAsync(new SelectVictimsForAmbulancePage(_ambulance));
         }
 
-        private void DeleteButtonClicked(object sender, EventArgs e)
+        private void DeleteVictimButtonClicked(object sender, EventArgs e)
         {
             if (VictimListXAML.SelectedItem == null)
                 return;
@@ -139,15 +139,18 @@ namespace ZRM_TRIAGE
 
             victimRepository.Update(victimModel, victimModel);
 
-            RefreshVictimList();
+            DisplayAlert("Usunięto", victimModel.Name + " " + victimModel.Surname, "OK");
+
+            RefreshVictimList(_showAmbulanceVM);
 
         }
 
-        private void RefreshVictimList()
+        private void RefreshVictimList(ShowAmbulanceViewModel _showAmbulanceVM)
         {
             VictimListXAML.BeginRefresh();
+            VictimListXAML.ItemsSource = null;
             var victimList = _showAmbulanceVM.GetTransportController().GetVictims().Where<VictimModel>(a => a.AmbulanceId == _ambulance.Id).ToList();
-            BindingContext = victimList;          
+           // BindingContext = victimList;          
             VictimListXAML.ItemsSource = victimList;
             VictimListXAML.EndRefresh();
         }

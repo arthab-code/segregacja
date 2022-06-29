@@ -21,8 +21,9 @@ namespace ZRM_TRIAGE
 
         private async void PassCreateEventButtonClicked(object sender, EventArgs e)
         {
-
-            EventCreateViewModel evM = new EventCreateViewModel();  
+            try
+            {
+                EventCreateViewModel evM = new EventCreateViewModel();  
 
             if (!evM.CheckCorrectFormFields(EventName.Text, AmbulanceNumber.Text))
             {
@@ -38,15 +39,21 @@ namespace ZRM_TRIAGE
                 return;
             }
 
-            evM.AddEventToDatabase(EventName.Text);
+                evM.AddEventToDatabase(EventName.Text);
 
-            AmbulanceModel ambulance = evM.AddMajorAmbulanceToDatabase(AmbulanceNumber.Text, EventName.Text);
+                AmbulanceModel ambulance = evM.AddMajorAmbulanceToDatabase(AmbulanceNumber.Text, EventName.Text);
 
-            evM.CreateTriageDB();
+                evM.CreateTriageDB();
 
-            await DisplayAlert("TWÓJ KOD, ZAPISZ GO: ", ambulance.LoginCode, "OK");
+                await DisplayAlert("TWÓJ KOD, ZAPISZ GO: ", ambulance.LoginCode, "OK");
 
-            await Navigation.PushAsync(new KAMPage());
+                await Navigation.PushAsync(new KAMPage());
+
+            } catch (Exception ex)
+            {
+                await DisplayAlert("Connection Database Error","Nie można połączyć się z bazą danych, skontaktuj się z administratorem\n"+ex.Message, "OK");
+                return;
+            }
 
 
         }

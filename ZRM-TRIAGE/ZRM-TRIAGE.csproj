@@ -40,7 +40,7 @@
     <EmbeddedResource Update="Pages\MajorRedPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Pages\KAM\EventCreatePage.xaml">
+    <EmbeddedResource Update="Pages\EventCreatePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Pages\KAM\AddAmbulancePage.xaml">

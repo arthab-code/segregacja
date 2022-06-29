@@ -108,7 +108,7 @@
                             <Label/>
                             <Label Text="Transportowani poszkodowani:"/>
                             <Button Text="DODAJ" Style="{StaticResource StandardButton}" Clicked="SelectVictimButtonClicked"/>
-                            <Button Text="USUŃ" Style="{StaticResource StandardButton}" Clicked="DeleteButtonClicked" />
+                            <Button Text="USUŃ" Style="{StaticResource StandardButton}" Clicked="DeleteVictimButtonClicked" />
                             <ListView x:Name="VictimListXAML" BackgroundColor="#F8FDF8">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>

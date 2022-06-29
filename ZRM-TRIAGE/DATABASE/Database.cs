@@ -9,7 +9,7 @@ namespace ZRM_TRIAGE
 {
     public class Database
     {
-        private string _connectionString = "https://test-62d49-default-rtdb.europe-west1.firebasedatabase.app/";
+        private string _connectionString = "https://zrm-triage-test-54325-default-rtdb.europe-west1.firebasedatabase.app/";
         private FirebaseClient _fbClient;
 
         public Database()
