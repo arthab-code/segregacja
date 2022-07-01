@@ -30,12 +30,12 @@
             <Image Source="form_panel.png" Grid.Row="0" Grid.Column="1" Grid.RowSpan="6" Grid.ColumnSpan="6" Aspect="Fill"></Image>
             <StackLayout  Grid.Row="0"  Grid.Column="1" Grid.RowSpan="4" Grid.ColumnSpan="6">
                 <Label HorizontalOptions="Center" Padding="10" Text="ZESPOŁY" FontSize="21"/>
-                <Button x:Name="AmbulanceInfoButton"  Grid.Column="1" Style="{StaticResource StandardButton}" Text="Info" Clicked="ShowAmbulanceButtonClicked"/>
+              <!--  <Button x:Name="AmbulanceInfoButton"  Grid.Column="1" Style="{StaticResource StandardButton}" Text="Info" Clicked="ShowAmbulanceButtonClicked"/> -->
             </StackLayout>
 
             <Grid Grid.Row="1"  Grid.Column="1" Grid.RowSpan="4" Grid.ColumnSpan="6" Background="form_panel.png">
                 <ScrollView Padding="10">
-                    <ListView x:Name="AmbulanceListXAML" BackgroundColor="#F8FDF8">
+                    <ListView x:Name="AmbulanceListXAML" BackgroundColor="#F8FDF8" ItemTapped="ShowAmbulanceButtonClicked">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>

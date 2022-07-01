@@ -22,8 +22,13 @@ namespace ZRM_TRIAGE
             HospitalCity.Text = hospitalModel.City;
             HospitalStreet.Text = hospitalModel.Street;
 
+            var _showAmbulanceVM = new ShowAmbulanceViewModel();
+
+            var victimList = _showAmbulanceVM.GetTransportController().GetVictims().Where<VictimModel>(a => a.HospitalId == _hospitalModel.Id).ToList();
+            // BindingContext = victimList;          
+            VictimListXAML.ItemsSource = victimList;
             BindingContext = hospitalModel.VictimList;
-            VictimListXAML.ItemsSource = hospitalModel.VictimList;
+            VictimListXAML.ItemsSource = victimList;
         }
 
         private async void DeleteHospitalButtonClicked(object sender, EventArgs e)

@@ -38,7 +38,7 @@ namespace ZRM_TRIAGE
             AmbulanceNumber.Text = _ambulance.Number;
             AmbulanceLoginCode.Text = _ambulance.LoginCode;
 
-            RefreshVictimList(_showAmbulanceVM);
+            RefreshVictimList();
         }
 
         private async void DeleteAmbulanceClicked(object sender, EventArgs e)
@@ -118,9 +118,10 @@ namespace ZRM_TRIAGE
             await Navigation.PushAsync(new SelectHospitalForAmbulancePage(_ambulance));
         }
 
-        private async void SelectVictimButtonClicked(object sender, EventArgs e)
+        private void SelectVictimButtonClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new SelectVictimsForAmbulancePage(_ambulance));
+             Navigation.PushAsync(new SelectVictimsForAmbulancePage(_ambulance));
+            RefreshVictimList();
         }
 
         private void DeleteVictimButtonClicked(object sender, EventArgs e)
@@ -141,16 +142,15 @@ namespace ZRM_TRIAGE
 
             DisplayAlert("Usunięto", victimModel.Name + " " + victimModel.Surname, "OK");
 
-            RefreshVictimList(_showAmbulanceVM);
+            RefreshVictimList();
 
         }
 
-        private void RefreshVictimList(ShowAmbulanceViewModel _showAmbulanceVM)
+        private void RefreshVictimList()
         {
             VictimListXAML.BeginRefresh();
-            VictimListXAML.ItemsSource = null;
             var victimList = _showAmbulanceVM.GetTransportController().GetVictims().Where<VictimModel>(a => a.AmbulanceId == _ambulance.Id).ToList();
-           // BindingContext = victimList;          
+            BindingContext = victimList;          
             VictimListXAML.ItemsSource = victimList;
             VictimListXAML.EndRefresh();
         }

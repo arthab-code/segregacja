@@ -32,8 +32,8 @@
             <Grid Grid.Row="1"  Grid.Column="1" Grid.RowSpan="4" Grid.ColumnSpan="6" Background="form_panel.png">
                 <ScrollView Padding="10">
                     <StackLayout HorizontalOptions="Center" Padding="10">
-                        <Button Text="WYBIERZ" Style="{StaticResource StandardButton}" Clicked="SelectButtonClicked"/>
-                        <ListView x:Name="VictimListXAML" BackgroundColor="#F8FDF8">
+                    <!--    <Button Text="WYBIERZ" Style="{StaticResource StandardButton}" Clicked="SelectButtonClicked"/> -->
+                        <ListView x:Name="VictimListXAML" BackgroundColor="#F8FDF8" ItemTapped="SelectButtonClicked">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <ViewCell>

@@ -22,7 +22,6 @@ namespace ZRM_TRIAGE
             _selectVictimsForAmbulanceViewModel = new SelectVictimsForAmbulanceViewModel();
 
             _ambulanceModel = ambulance;
-
             Title = "Wybierz poszkodowanych dla karetki: " + _ambulanceModel.Number;
 
             TransportController transportController = new TransportController();
@@ -31,7 +30,7 @@ namespace ZRM_TRIAGE
 
         }
 
-        private async void SelectButtonClicked(object sender, EventArgs e)
+        private void SelectButtonClicked(object sender, EventArgs e)
         {
             if (VictimListXAML.SelectedItem == null)
                 return;
@@ -44,8 +43,9 @@ namespace ZRM_TRIAGE
             victimSelected.Hospital = _ambulanceModel.SelectedHospital.Name;
 
             _selectVictimsForAmbulanceViewModel.AddVictim(victimSelected);
+             App.Current.MainPage.Navigation.PopAsync();
 
-            await App.Current.MainPage.Navigation.PopAsync();
+            DisplayAlert("Dodano", victimSelected.Name + " " + victimSelected.Surname, "OK");
         }
     }
 }
