@@ -54,5 +54,10 @@ public partial class KAMPage : ContentPage
         {
             await Navigation.PushAsync(new HospitalsListPage());
         }
+
+        private async void ReportButtonClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new ReportPage());
+        }
     }
 }
