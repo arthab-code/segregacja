@@ -8,7 +8,7 @@ namespace ZRM_TRIAGE
     public class HospitalRepository : IClientRepository<HospitalModel>
     {
         private Database _database;
-
+        private string _dataName = "Hospitals";
         public HospitalRepository()
         {
             _database = new Database();
@@ -16,18 +16,18 @@ namespace ZRM_TRIAGE
 
         public void Add(HospitalModel item)
         {
-            var firebaseObject = _database.GetClient().Child("Hospitals").Child(UserInfo.EventId).PostAsync(item).Result;
+            var firebaseObject = _database.GetClient().Child(_dataName).Child(UserInfo.EventId).PostAsync(item).Result;
 
             item.Id = firebaseObject.Key;
 
-            _database.GetClient().Child("Hospitals").Child(UserInfo.EventId).Child(item.Id).PutAsync(item);
+            _database.GetClient().Child(_dataName).Child(UserInfo.EventId).Child(item.Id).PutAsync(item);
 
 
         }
 
         public List<HospitalModel> GetAll()
         {
-            var list = _database.GetClient().Child("Hospitals").Child(UserInfo.EventId).OnceAsync<HospitalModel>().Result;
+            var list = _database.GetClient().Child(_dataName).Child(UserInfo.EventId).OnceAsync<HospitalModel>().Result;
 
             List<HospitalModel> hospitalList = new List<HospitalModel>();
 
@@ -41,19 +41,19 @@ namespace ZRM_TRIAGE
 
         public void Remove(string item)
         {
-            _database.GetClient().Child("Hospitals").Child(UserInfo.EventId).Child(item).DeleteAsync();
+            _database.GetClient().Child(_dataName).Child(UserInfo.EventId).Child(item).DeleteAsync();
         }
 
         public HospitalModel Search(string hospitalId)
         {
-            var result = _database.GetClient().Child("Hospitals").Child(UserInfo.EventId).Child(hospitalId).OnceSingleAsync<HospitalModel>().Result;
+            var result = _database.GetClient().Child(_dataName).Child(UserInfo.EventId).Child(hospitalId).OnceSingleAsync<HospitalModel>().Result;
 
             return result;
         }
 
         public string SearchKey(string item)
         {
-            var search = _database.GetClient().Child("Hospitals").Child(UserInfo.EventId).OnceAsync<HospitalModel>().Result;
+            var search = _database.GetClient().Child(_dataName).Child(UserInfo.EventId).OnceAsync<HospitalModel>().Result;
             string result = "";
             foreach(var i in search)
             {
@@ -69,7 +69,7 @@ namespace ZRM_TRIAGE
 
         public void Update(HospitalModel oldItem, HospitalModel newItem)
         {
-            _database.GetClient().Child("Hospitals").Child(UserInfo.EventId).Child(oldItem.Id).PutAsync(newItem);
+            _database.GetClient().Child(_dataName).Child(UserInfo.EventId).Child(oldItem.Id).PutAsync(newItem);
         }
     }
 }

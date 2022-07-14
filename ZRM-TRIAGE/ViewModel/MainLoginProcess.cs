@@ -35,23 +35,23 @@ namespace ZRM_TRIAGE
             return false;
         }
 
-        public AmbulanceModel.Function RetrieveAmbulanceFunction()
-        {
-            var search = _database.GetClient().Child("Crews").Child(_eventId).OnceAsync<AmbulanceModel>().Result;
-
-            AmbulanceModel.Function function = AmbulanceModel.Function.Transport;
-
-            foreach(var item in search)
+            public AmbulanceModel.Function RetrieveAmbulanceFunction(string eventId)
             {
-                if (item.Object.LoginCode == _loginCode)
-                {
-                    function = item.Object.AmbulanceFunction;
-                    break;
-                }
-            }
+                var search = _database.GetClient().Child("Crews").Child(eventId).OnceAsync<AmbulanceModel>().Result;
 
-            return function;
-        }
+                AmbulanceModel.Function function = AmbulanceModel.Function.Transport;
+
+                foreach(var item in search)
+                {
+                    if (item.Object.LoginCode == _loginCode)
+                    {
+                        function = item.Object.AmbulanceFunction;
+                        break;
+                    }
+                }
+
+                return function;
+            } 
 
         public string GetEventId() => _eventId;
         public string GetLoginCode() => _loginCode;

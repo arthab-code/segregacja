@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ZRM_TRIAGE
 {
-   public class VictimModel
+   public class VictimModel : Component
    {
         public enum TriageColor
         {
@@ -19,7 +19,6 @@ namespace ZRM_TRIAGE
             Injuries = new InjuriesModel();
         }
 
-        public string Id { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
         public string EventId { get; set; }

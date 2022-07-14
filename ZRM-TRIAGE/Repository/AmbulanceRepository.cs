@@ -12,6 +12,7 @@ namespace ZRM_TRIAGE
     public class AmbulanceRepository : IClientRepository<AmbulanceModel>
     {
         private Database _database;
+        private string _dataName = "Crews";
         public AmbulanceRepository()
         {
             _database = new Database();
@@ -19,15 +20,15 @@ namespace ZRM_TRIAGE
 
         public void Add(AmbulanceModel item)
         {
-            var firebaseClient = _database.GetClient().Child("Crews").Child(UserInfo.EventId).PostAsync(item).Result;
+            var firebaseClient = _database.GetClient().Child(_dataName).Child(UserInfo.EventId).PostAsync(item).Result;
 
             item.Id = firebaseClient.Key;
 
-            _database.GetClient().Child("Crews").Child(UserInfo.EventId).Child(item.Id).PutAsync(item);
+            _database.GetClient().Child(_dataName).Child(UserInfo.EventId).Child(item.Id).PutAsync(item);
 
             LoginCodeModel loginCodeModel = new LoginCodeModel();
             loginCodeModel.LoginCode = item.LoginCode;
-            loginCodeModel.EventId = item.EventId;
+            loginCodeModel.EventId = UserInfo.EventId;
 
             LoginCodeRepository lCr = new LoginCodeRepository();
 
@@ -36,7 +37,7 @@ namespace ZRM_TRIAGE
 
         public List<AmbulanceModel> GetAll()
         {
-            var list = _database.GetClient().Child("Crews").Child(UserInfo.EventId).OnceAsync<AmbulanceModel>().Result;
+            var list = _database.GetClient().Child(_dataName).Child(UserInfo.EventId).OnceAsync<AmbulanceModel>().Result;
 
             List<AmbulanceModel> ambulanceList = new List<AmbulanceModel>();
 
@@ -51,19 +52,19 @@ namespace ZRM_TRIAGE
 
         public void Remove(string ambulanceId)
         {
-            _database.GetClient().Child("Crews").Child(UserInfo.EventId).Child(ambulanceId).DeleteAsync();
+            _database.GetClient().Child(_dataName).Child(UserInfo.EventId).Child(ambulanceId).DeleteAsync();
         }
 
         public AmbulanceModel Search(string ambulanceId)
         {
-            var result = _database.GetClient().Child("Crews").Child(UserInfo.EventId).Child(ambulanceId).OnceSingleAsync<AmbulanceModel>().Result;
+            var result = _database.GetClient().Child(_dataName).Child(UserInfo.EventId).Child(ambulanceId).OnceSingleAsync<AmbulanceModel>().Result;
 
             return result;
         }
 
         public string SearchKey(string ambulanceNumber)
         {
-            var search = _database.GetClient().Child("Crews").Child(UserInfo.EventId).OnceAsync<AmbulanceModel>().Result;
+            var search = _database.GetClient().Child(_dataName).Child(UserInfo.EventId).OnceAsync<AmbulanceModel>().Result;
 
             string findAmbulanceKey = null;
 
@@ -84,7 +85,7 @@ namespace ZRM_TRIAGE
 
         public void Update(AmbulanceModel oldItem, AmbulanceModel newItem)
         {
-            _database.GetClient().Child("Crews").Child(UserInfo.EventId).Child(oldItem.Id).PutAsync(newItem);
+            _database.GetClient().Child(_dataName).Child(UserInfo.EventId).Child(oldItem.Id).PutAsync(newItem);
 
         }
 

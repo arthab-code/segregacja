@@ -8,6 +8,7 @@ namespace ZRM_TRIAGE
     public class LoginCodeRepository : IClientRepository<LoginCodeModel>
     {
         private Database _database;
+        private string _dataName = "LoginCodes";
 
         public LoginCodeRepository()
         {
@@ -15,7 +16,7 @@ namespace ZRM_TRIAGE
         }
         public void Add(LoginCodeModel item)
         {
-            _database.GetClient().Child("LoginCodes").PostAsync(item);
+            _database.GetClient().Child(_dataName).PostAsync(item);
         }
 
         public List<LoginCodeModel> GetAll()
@@ -25,7 +26,7 @@ namespace ZRM_TRIAGE
 
         public void Remove(string eventId)
         {
-            _database.GetClient().Child("LoginCodes").Child(eventId).DeleteAsync();
+            _database.GetClient().Child(_dataName).Child(eventId).DeleteAsync();
         }
 
         public LoginCodeModel Search(string item)

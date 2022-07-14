@@ -10,6 +10,7 @@ namespace ZRM_TRIAGE
     {
         private Database _database;
         private TriageModel _triageModel;
+        private string _dataName = "Triage";
 
         public TriageRepository()
         {
@@ -27,19 +28,19 @@ namespace ZRM_TRIAGE
                 Amount = 0
             };
 
-            _database.GetClient().Child("Triage").Child(UserInfo.EventId).PostAsync(triageModel);
+            _database.GetClient().Child(_dataName).Child(UserInfo.EventId).PostAsync(triageModel);
         }
 
         public void GetTriageModel()
         {
-            var result = _database.GetClient().Child("Triage").Child(UserInfo.EventId).OnceSingleAsync<TriageModel>().Result;
+            var result = _database.GetClient().Child(_dataName).Child(UserInfo.EventId).OnceSingleAsync<TriageModel>().Result;
 
             _triageModel = result;
         }
 
         public void SaveTriageModel()
         {
-            _database.GetClient().Child("Triage").Child(UserInfo.EventId).PutAsync(_triageModel);
+            _database.GetClient().Child(_dataName).Child(UserInfo.EventId).PutAsync(_triageModel);
         }
 
         public void NumberRed(int value)

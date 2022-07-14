@@ -16,28 +16,33 @@ namespace ZRM_TRIAGE
         public MainPage()
         {
             InitializeComponent();
+            FileSystem fs = new FileSystem();
+           // fs.DeleteFile();
+                      
 
         }
-
+        protected override void OnAppearing()
+        {
+            AutoLogin();
+        }
         private async void CreateEventClicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new EventCreatePage());
         }
 
-        private async void SubmitLogin(object sender, EventArgs e)
+        private async void LoginProcess(string loginTxt, string _event)
         {
-            MainLoginProcess mLp = new MainLoginProcess(LoginCode.Text);
+            MainLoginProcess mLp = new MainLoginProcess(loginTxt);
 
-            if (!mLp.IsLocalizedLoginCode())
-            {
-                await DisplayAlert("Błąd logowania", "Podany kod jest nieprawidłowy", "OK");
-                return;
-            }
+            var ambulanceFunction = mLp.RetrieveAmbulanceFunction(_event);
 
-            var ambulanceFunction = mLp.RetrieveAmbulanceFunction();
+            FileSystem fs = new FileSystem();
 
-            UserInfo.EventId = mLp.GetEventId();
-            UserInfo.AmbulanceNumber = mLp.GetLoginCode();
+            string eventId = _event;
+            string loginCode = loginTxt;
+
+            UserInfo.SetEventId(eventId);
+            UserInfo.SetAmbulanceNumber(loginCode);
 
             switch (ambulanceFunction)
             {
@@ -62,6 +67,34 @@ namespace ZRM_TRIAGE
                     break;
             }
 
+        }
+
+        private void SubmitLogin(object sender, EventArgs e)
+        {
+            MainLoginProcess mLp = new MainLoginProcess(LoginCode.Text);
+
+            if (!mLp.IsLocalizedLoginCode())
+            {
+                DisplayAlert("Błąd logowania", "Podany kod jest nieprawidłowy", "OK");
+                return;
+            }
+            string a = mLp.GetEventId();
+            LoginProcess(mLp.GetLoginCode(), mLp.GetEventId());
+
+            FileSystem fs = new FileSystem();
+            fs.CreateDataFile(LoginCode.Text, UserInfo.EventId);
+        }
+
+        private void AutoLogin()
+        {
+            FileSystem fs = new FileSystem();
+
+            if (!fs.CheckFileExists())
+                return;
+
+            string pwd = fs.RetrieveLogin();
+            string eventId = fs.RetrieveEventId();
+            LoginProcess(pwd, eventId);
         }
         
     }

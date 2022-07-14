@@ -22,11 +22,11 @@ namespace ZRM_TRIAGE
         }
 
 
-        public bool CheckCorrectFormFields(string a, string b)
+        public bool CheckCorrectFormFields(string a)
         {
             bool isCorrect = true;
 
-            if (String.IsNullOrWhiteSpace(a) || String.IsNullOrWhiteSpace(b))
+            if (String.IsNullOrWhiteSpace(a))
             {
                 isCorrect = false;
             }
@@ -46,13 +46,10 @@ namespace ZRM_TRIAGE
             return isExists;
         }
 
-        public void AddEventToDatabase(string eventId)
+        public void AddEventToDatabase()
         {
-            EventModel newEvent = new EventModel()
-            {
-                EventId = eventId
-            };
-
+            EventModel newEvent = new EventModel();
+            newEvent.EventNumber = _eventRepos.CreateNewEventCounter();
             _eventRepos.Add(newEvent);
         }
 
@@ -62,7 +59,7 @@ namespace ZRM_TRIAGE
 
             AmbulanceModel ambulance = ambulanceBuilder
                 .AmbulanceSetNumber(ambulanceNumber)
-                .AmbulanceSetEventId(eventId)
+               // .AmbulanceSetEventId(eventId)
                 .LoginCodeGenerate()
                 .AmbulanceFunctionSet(AmbulanceModel.Function.Major)
                 .AmbulanceStatusSet()
@@ -72,10 +69,15 @@ namespace ZRM_TRIAGE
             return ambulance;
         }
 
+        public string GetEventNumber()
+        {
+            return _eventRepos.GetEventCounter();
+        }
+
         public AmbulanceModel AddMajorAmbulanceToDatabase(string ambulanceNumber, string eventId)
         {
-            UserInfo.EventId = eventId;
-            UserInfo.AmbulanceNumber = ambulanceNumber;
+            UserInfo.SetEventId(eventId);
+            UserInfo.SetAmbulanceNumber(ambulanceNumber);
 
             AmbulanceModel ambulance = ConfigureMajorAmbulance(ambulanceNumber, eventId);
 

@@ -44,7 +44,7 @@ namespace ZRM_TRIAGE
             AmbulanceModel ambulance = ambulanceBuilder
                                        .AmbulanceSetNumber(AmbulanceNumber.Text)
                                        .AmbulanceFunctionSet(ambulanceFunction)
-                                       .AmbulanceSetEventId(UserInfo.EventId)
+                                       //.AmbulanceSetEventId(UserInfo.EventId)
                                        .LoginCodeGenerate()
                                        .AmbulanceStatusSet()
                                        .AmbulanceHospitalSet()

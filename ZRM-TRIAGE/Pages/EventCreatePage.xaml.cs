@@ -25,27 +25,30 @@ namespace ZRM_TRIAGE
             {
                 EventCreateViewModel evM = new EventCreateViewModel();  
 
-            if (!evM.CheckCorrectFormFields(EventName.Text, AmbulanceNumber.Text))
+            if (!evM.CheckCorrectFormFields(AmbulanceNumber.Text))
             {
-                await DisplayAlert("Błąd", "Pole NAZWA ZDRAZENIA oraz NUMER ZESPOŁU nie mogą być puste", "OK");
+                await DisplayAlert("Błąd", "Uzupełnij pole Numer Zespołu", "OK");
 
                 return;
             }
 
-            if (evM.CheckEventExists(EventName.Text))
+        /*    if (evM.CheckEventExists(EventName.Text))
             {
                 await DisplayAlert("Błąd", "Użyj innej nazwy zdarzenie - ta nazwa juz jest wykorzystywana", "OK");
 
                 return;
-            }
+            } */
 
-                evM.AddEventToDatabase(EventName.Text);
-
-                AmbulanceModel ambulance = evM.AddMajorAmbulanceToDatabase(AmbulanceNumber.Text, EventName.Text);
+                evM.AddEventToDatabase();
+                string eventNumber = evM.GetEventNumber();
+                AmbulanceModel ambulance = evM.AddMajorAmbulanceToDatabase(AmbulanceNumber.Text, eventNumber);
 
                 evM.CreateTriageDB();
 
                 await DisplayAlert("TWÓJ KOD, ZAPISZ GO: ", ambulance.LoginCode, "OK");
+
+                FileSystem fs = new FileSystem();
+                fs.CreateDataFile(ambulance.LoginCode, UserInfo.EventId);
 
                 await Navigation.PushAsync(new KAMPage());
 

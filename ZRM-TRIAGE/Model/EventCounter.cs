@@ -4,10 +4,8 @@ using System.Text;
 
 namespace ZRM_TRIAGE
 {
-    public class EventModel : Component
+    public class EventCounter
     {
-        public string EventNumber { get;  set; }
-
- 
+        public string eventCounter;
     }
 }

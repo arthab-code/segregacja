@@ -28,12 +28,12 @@ namespace ZRM_TRIAGE
             return this;
         }
 
-        public AmbulanceBuilderModel AmbulanceSetEventId(string eventId)
+       /* public AmbulanceBuilderModel AmbulanceSetEventId(string eventId)
         {
             _ambulanceModel.EventId = eventId;
 
             return this;
-        }
+        } */
 
         public AmbulanceBuilderModel LoginCodeGenerate()
         {
