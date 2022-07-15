@@ -36,7 +36,7 @@ namespace ZRM_TRIAGE
         {
             MainLoginProcess mLp = new MainLoginProcess(loginTxt);
 
-            var ambulanceFunction = mLp.RetrieveAmbulanceFunction(_event);
+            var ambulance = mLp.RetrieveAmbulance(_event);
 
             FileSystem fs = new FileSystem();
 
@@ -45,23 +45,18 @@ namespace ZRM_TRIAGE
 
             UserInfo.SetEventId(eventId);
             UserInfo.SetAmbulanceNumber(loginCode);
+            UserInfo.SetAmbulance(ambulance);
 
-            switch (ambulanceFunction)
+            switch (ambulance.AmbulanceFunction)
             {
                 case AmbulanceModel.Function.Major:
                     await Navigation.PushAsync(new KAMPage());
                     break;
 
                 case AmbulanceModel.Function.Red:
-                    await Navigation.PushAsync(new MajorRedPage());
-                    break;
-
                 case AmbulanceModel.Function.Yellow:
-                    await Navigation.PushAsync(new MajorYellowPage());
-                    break;
-
                 case AmbulanceModel.Function.Green:
-                    await Navigation.PushAsync(new MajorGreenPage());
+                    await Navigation.PushAsync(new ChiefAreaPage(ambulance));
                     break;
 
                 case AmbulanceModel.Function.Transport:

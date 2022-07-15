@@ -10,11 +10,23 @@ using Xamarin.Forms.Xaml;
 namespace ZRM_TRIAGE
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MajorRedPage : ContentPage
+    public partial class ChiefAreaPage : ContentPage
     {
-        public MajorRedPage()
+        public ChiefAreaPage(AmbulanceModel ambulance)
         {
             InitializeComponent();
+
+            if (ambulance.AmbulanceFunction == AmbulanceModel.Function.Red)
+                InfoText.Text = "CZERWONA STREFA";
+
+            if (ambulance.AmbulanceFunction == AmbulanceModel.Function.Yellow)
+                InfoText.Text = "ŻÓŁTA STREFA";
+
+            if (ambulance.AmbulanceFunction == AmbulanceModel.Function.Green)
+                InfoText.Text = "ZIELONA STREFA";
+
+
+
         }
 
         private async void AmbulanceClicked(object sender, EventArgs e)
@@ -25,7 +37,7 @@ namespace ZRM_TRIAGE
 
         private async void VictimsButtonClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new KAMVictimsPage());
+            await Navigation.PushAsync(new VictimsPage());
         }
 
         private async void ExitButtonClicked(object sender, EventArgs e)
@@ -35,6 +47,7 @@ namespace ZRM_TRIAGE
 
             UserInfo.SetEventId(null);
             UserInfo.SetAmbulanceNumber(null);
+            UserInfo.SetAmbulance(null);
 
             await Navigation.PushAsync(new MainPage());
         }

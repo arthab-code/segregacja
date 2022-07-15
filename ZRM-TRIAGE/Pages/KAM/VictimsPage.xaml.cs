@@ -10,12 +10,11 @@ using Xamarin.Forms.Xaml;
 namespace ZRM_TRIAGE
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class KAMVictimsPage : TabbedPage
+    public partial class VictimsPage : TabbedPage
     {
-        public KAMVictimsPage()
+        public VictimsPage()
         {
             InitializeComponent();
-
         }
 
         protected override void OnAppearing()

@@ -85,6 +85,9 @@ namespace ZRM_TRIAGE
 
             ambulanceRepos.Add(ambulance);
 
+
+            UserInfo.SetAmbulance(ambulance);
+
             return ambulance;
         }
 

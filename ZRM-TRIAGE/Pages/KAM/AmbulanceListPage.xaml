@@ -5,7 +5,7 @@
              BackgroundColor="#F8FDF8"
              >
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Dodaj" Clicked="AddAmbulanceButtonClicked" />
+        <ToolbarItem Text="Dodaj" Clicked="AddAmbulanceButtonClicked" x:Name="AddToolbar"/>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <Grid>

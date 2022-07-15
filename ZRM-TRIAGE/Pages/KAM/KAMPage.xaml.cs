@@ -53,7 +53,7 @@ public partial class KAMPage : ContentPage
 
         private async void VictimsButtonClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new KAMVictimsPage());
+            await Navigation.PushAsync(new VictimsPage());
         }
 
         private async void HospitalsButtonClicked(object sender, EventArgs e)
@@ -68,6 +68,17 @@ public partial class KAMPage : ContentPage
 
         private async void ExitButtonClicked(object sender, EventArgs e)
         {
+            string optionChoice = await DisplayPromptAsync("Uwaga!", "Na pewno chcesz opuscic zdarzenie? (wpisz: TAK jeśli chcesz usunąć)", "OPUŚĆ", "ANULUJ", null, 3);
+
+            if (optionChoice != null)
+            {
+                optionChoice = optionChoice.ToLower();
+
+                if (optionChoice != "tak")
+                {
+                    return;
+                }
+            }
             FileSystem fs = new FileSystem();
             fs.DeleteFile();
 

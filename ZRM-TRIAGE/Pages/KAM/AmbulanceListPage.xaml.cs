@@ -19,6 +19,9 @@ public partial class AmbulanceListPage : ContentPage
         InitializeComponent();
 
             ambulanceVM = new AmbulanceListViewModel();
+
+            if (UserInfo.Ambulance.AmbulanceFunction != AmbulanceModel.Function.Major)
+                AddToolbar.IsEnabled = false;
     }
 
         protected override  void OnAppearing()

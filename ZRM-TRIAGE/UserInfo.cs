@@ -9,6 +9,7 @@ namespace ZRM_TRIAGE
 
         public static string EventId { get; private set; }      
         public static string AmbulanceNumber { get; private set; } 
+        public static AmbulanceModel Ambulance { get; private set; }
 
         public static void SetEventId(string eventId)
         {
@@ -18,6 +19,11 @@ namespace ZRM_TRIAGE
         public static void SetAmbulanceNumber(string ambulanceNumber)
         {
             AmbulanceNumber = ambulanceNumber;
+        }
+
+        public static void SetAmbulance(AmbulanceModel ambulance)
+        {
+            Ambulance = ambulance;
         }
 
     }

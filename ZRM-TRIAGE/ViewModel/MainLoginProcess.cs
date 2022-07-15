@@ -51,7 +51,25 @@ namespace ZRM_TRIAGE
                 }
 
                 return function;
-            } 
+            }
+
+        public AmbulanceModel RetrieveAmbulance(string eventId)
+        {
+            var search = _database.GetClient().Child("Crews").Child(eventId).OnceAsync<AmbulanceModel>().Result;
+
+            AmbulanceModel ambulance = null;
+
+            foreach (var item in search)
+            {
+                if (item.Object.LoginCode == _loginCode)
+                {
+                    ambulance = item.Object;
+                    break;
+                }
+            }
+
+            return ambulance;
+        }
 
         public string GetEventId() => _eventId;
         public string GetLoginCode() => _loginCode;
