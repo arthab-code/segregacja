@@ -59,7 +59,9 @@
 
                 <StackLayout HorizontalOptions="Center" VerticalOptions="Center" Padding="10">
 
-                    
+                    <Button Text="ZESPOŁY" Style="{StaticResource StandardButton} " Clicked="AmbulanceClicked"/>
+                    <Button Text="POSZKODOWANI" Style="{StaticResource ImportantButton}" Clicked="VictimsButtonClicked"/>
+                    <Button Text="OPUŚĆ ZDARZENIE" Style="{StaticResource ProcedureButton}" Clicked="ExitButtonClicked" />
 
                 </StackLayout>
 

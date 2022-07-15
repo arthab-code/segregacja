@@ -65,6 +65,7 @@
                     <Button Text="POSZKODOWANI" Style="{StaticResource ImportantButton}" Clicked="VictimsButtonClicked"/>
                     <Button Text="SZPITALE" Style="{StaticResource StandardButton}" Clicked="HospitalsButtonClicked" />
                     <Button Text="RAPORT" Style="{StaticResource StandardButton}" Clicked="ReportButtonClicked" />
+                    <Button Text="OPUŚĆ ZDARZENIE" Style="{StaticResource ProcedureButton}" Clicked="ExitButtonClicked" />
 
                 </StackLayout>
                

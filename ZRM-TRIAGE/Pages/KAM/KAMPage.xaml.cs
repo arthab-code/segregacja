@@ -30,6 +30,12 @@ public partial class KAMPage : ContentPage
             GreenAmount.Text = _triageModel.Green.ToString();
             BlackAmount.Text = _triageModel.Black.ToString();
         }
+
+        protected override bool OnBackButtonPressed()
+        {
+            return true;
+        }
+
         private async void ProceduresClicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new Procedures());
@@ -58,6 +64,17 @@ public partial class KAMPage : ContentPage
         private async void ReportButtonClicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new ReportPage());
+        }
+
+        private async void ExitButtonClicked(object sender, EventArgs e)
+        {
+            FileSystem fs = new FileSystem();
+            fs.DeleteFile();
+
+            UserInfo.SetEventId(null);
+            UserInfo.SetAmbulanceNumber(null);
+
+            await Navigation.PushAsync(new MainPage());
         }
     }
 }

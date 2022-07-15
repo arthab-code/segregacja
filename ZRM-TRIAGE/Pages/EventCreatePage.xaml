@@ -33,7 +33,7 @@
             <Grid Grid.Row="1"  Grid.Column="1" Grid.RowSpan="4" Grid.ColumnSpan="6" Background="form_panel.png">
                 <ScrollView Padding="10">
                     <StackLayout HorizontalOptions="Center" Padding="10">
-                        <Label Text="Numer twojego zrespołu"/>
+                        <Label Text="Numer twojego zespołu"/>
                         <Entry x:Name="AmbulanceNumber" BackgroundColor="#F8FDF8" Placeholder="numer zespołu"/>
                         <Label></Label>
 

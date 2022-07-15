@@ -16,15 +16,17 @@ namespace ZRM_TRIAGE
         public MainPage()
         {
             InitializeComponent();
-            FileSystem fs = new FileSystem();
-           // fs.DeleteFile();
-                      
-
         }
         protected override void OnAppearing()
         {
             AutoLogin();
         }
+
+        protected override bool OnBackButtonPressed()
+        {
+            return true;
+        }
+
         private async void CreateEventClicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new EventCreatePage());
