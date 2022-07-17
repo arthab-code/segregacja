@@ -12,7 +12,7 @@ namespace ZRM_TRIAGE
         public FileSystem()
         {
             _fileName = "login.txt";
-             _path = Xamarin.Essentials.FileSystem.AppDataDirectory + "/" + _fileName;
+            _path = Xamarin.Essentials.FileSystem.AppDataDirectory + "/" + _fileName;
         }
 
         public string GetPath()
@@ -29,6 +29,7 @@ namespace ZRM_TRIAGE
         {
             string result = File.ReadAllText(_path);
             var results = result.Split('\n');
+            
 
             return results[0];
         }
@@ -50,8 +51,8 @@ namespace ZRM_TRIAGE
         public void CreateDataFile(string pwd,string eventId)
         {
             string combine = pwd + "\n" + eventId;
-           if (!CheckFileExists()) 
-             File.WriteAllText(_path, combine);
+            if (!CheckFileExists())
+                File.WriteAllText(_path, combine);
         }
 
     }

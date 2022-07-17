@@ -59,7 +59,13 @@
 
                 <StackLayout HorizontalOptions="Center" VerticalOptions="Center" Padding="10">
 
+                    <Label Text="Poszkodowany"/>
+                    <Label Text="Szpital docelowy"/>
 
+                    <Label Text="STATUS" />
+                    <Button Style="{StaticResource PassProcedureButton}" Text="NA MIEJSCU"/>
+                    <Button Style="{StaticResource StandardButton}" Text="TRANSPORT"/>
+                    <Button Style="{StaticResource StandardButton}" Text="SZPITAL"/>
 
                 </StackLayout>
 

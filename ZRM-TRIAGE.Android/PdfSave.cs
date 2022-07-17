@@ -36,20 +36,25 @@ using Xamarin.Forms;
 
         Java.IO.File file = new Java.IO.File(myDir, fileName);
 
-        if (file.Exists()) file.Delete();
+      //  if (file.Exists()) file.Delete();
 
         try
         {
             FileOutputStream outs = new FileOutputStream(file);
             outs.Write(stream.ToArray());
-
             outs.Flush();
             outs.Close();
+
+            Xamarin.Forms.Application.Current.MainPage.DisplayAlert("Plik pdf zapisano w:", "Moje pliki/Pamięć wewnętrzna/_ZRM-TRIAGE", "OK");
+           
+            //OPEN PDF FILE FOR DEVICE VIEWER
+            Xamarin.Essentials.Launcher.OpenAsync(new Xamarin.Essentials.OpenFileRequest() { File = new Xamarin.Essentials.ReadOnlyFile(file.AbsolutePath) }) ;
         }
         catch (Exception e)
         {
             exception = e.ToString();
         }
+
        /* if (file.Exists() && contentType != "application/html")
         {
             string extension = Android.Webkit.MimeTypeMap.GetFileExtensionFromUrl(Android.Net.Uri.FromFile(file).ToString());
