@@ -55,17 +55,40 @@
 
             <Grid Grid.Row="1"  Grid.Column="1" Grid.RowSpan="5" Grid.ColumnSpan="6" Background="form_panel.png">
 
-                <Label HorizontalOptions="Center" Text="Panel zespołu transportowego" FontSize="21"/>
-
                 <StackLayout HorizontalOptions="Center" VerticalOptions="Center" Padding="10">
+                    <Label HorizontalOptions="Center" Padding="10" FontSize="Default" x:Name="Subtitle"/>
+                    <Label Text="Poszkodowani"/>
+                    <ListView  x:Name="VictimsList" BackgroundColor="#F8FDF8" ItemTapped="VictimsListShowVictim">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <StackLayout Padding="10" Orientation="Horizontal">
+                                        <Label  HorizontalOptions="Center" VerticalOptions="Center" Text="{Binding Name}"/>
+                                        <Label  HorizontalOptions="Center" VerticalOptions="Center" Text="{Binding Surname}"/>
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
 
-                    <Label Text="Poszkodowany"/>
                     <Label Text="Szpital docelowy"/>
+                    <ListView HeightRequest="50" x:Name="HospitalList" BackgroundColor="#F8FDF8" IsEnabled="False">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Label  HorizontalOptions="Start" VerticalOptions="Center" Text="{Binding Name}"/>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
 
                     <Label Text="STATUS" />
-                    <Button Style="{StaticResource PassProcedureButton}" Text="NA MIEJSCU"/>
-                    <Button Style="{StaticResource StandardButton}" Text="TRANSPORT"/>
-                    <Button Style="{StaticResource StandardButton}" Text="SZPITAL"/>
+                    <Button Style="{StaticResource PassProcedureButton}" x:Name="AtLocation" Text="NA MIEJSCU" Clicked="AtLocation_Clicked"/>
+                    <Button Style="{StaticResource StandardButton}" x:Name="Transport" Text="TRANSPORT" Clicked="Transport_Clicked"/>
+                    <Button Style="{StaticResource StandardButton}" x:Name="Hospital" Text="SZPITAL" Clicked="Hospital_Clicked"/>
+                    <Label />
+                    <Label />
+                    <Button Text="OPUŚĆ ZDARZENIE" Style="{StaticResource ProcedureButton}" Clicked="ExitButtonClicked" />
 
                 </StackLayout>
 

@@ -40,7 +40,10 @@ namespace ZRM_TRIAGE
             victimSelected.AmbulanceId = _ambulanceModel.Id;
             victimSelected.Ambulance = _ambulanceModel.Number;
             victimSelected.HospitalId = _ambulanceModel.HospitalId;
-            victimSelected.Hospital = _ambulanceModel.SelectedHospital.Name;
+            var selectedHospital = _ambulanceModel.SelectedHospital;
+
+            if (selectedHospital != null)
+               victimSelected.Hospital = selectedHospital.Name;
 
             _selectVictimsForAmbulanceViewModel.AddVictim(victimSelected);
              App.Current.MainPage.Navigation.PopAsync();

@@ -10,8 +10,8 @@ namespace ZRM_TRIAGE
         public enum Status
         {
             AtLocation,
-            Transporting,
-            InHospital
+            Transport,
+            Hospital
         }
 
         public enum Function
@@ -24,7 +24,6 @@ namespace ZRM_TRIAGE
         }
         public string Number { get; set; }
         public string LoginCode { get; set; }
-      //  public string EventId { get; set; }
         public List<VictimModel> Victims { get; set; }
         public string HospitalId { get; set; }
         public string HospitalName { get; set; }
@@ -36,7 +35,6 @@ namespace ZRM_TRIAGE
             Victims = new List<VictimModel>();
             this.Number = original.Number;
             this.LoginCode = original.LoginCode;
-           // this.EventId = original.EventId;
             this.Id = original.Id;
             this.Victims = original.Victims;
             this.HospitalId = original.HospitalId;

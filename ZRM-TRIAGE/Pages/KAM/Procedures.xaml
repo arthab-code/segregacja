@@ -31,28 +31,131 @@
             </StackLayout>
 
             <Grid Grid.Row="1"  Grid.Column="1" Grid.RowSpan="4" Grid.ColumnSpan="6" Background="form_panel.png">
-                <ScrollView>
-                    <StackLayout  HorizontalOptions="Center"  >
+                <ScrollView HorizontalScrollBarVisibility="Default">
+                    <StackLayout  HorizontalOptions="Start" Padding="10" >
 
 
-                        <Button Text="PROCEDURYPROCEDURYPROCEDURYPROCEDURYPROCEDURYPROCEDURYPROCEDURY" Style="{StaticResource PassProcedureButton}"/>
-                        <Button Text="PROCEDURY" Style="{StaticResource PassProcedureButton}"/>
-                        <Button Text="PROCEDURY" Style="{StaticResource PassProcedureButton}"/>
-                        <Button Text="PROCEDURY" Style="{StaticResource PassProcedureButton}"/>
-                        <Button Text="PROCEDURY" Style="{StaticResource PassProcedureButton}"/>
-                        <Button Text="PROCEDURY" Style="{StaticResource PassProcedureButton}"/>
-                        <Button Text="PROCEDURY" Style="{StaticResource PassProcedureButton}"/>
-                        <Button Text="PROCEDURY" Style="{StaticResource PassProcedureButton}"/>
-                        <Button Text="PROCEDURY" Style="{StaticResource ProcedureButton}"/>
-                        <Button Text="PROCEDURY" Style="{StaticResource ProcedureButton}"/>
-                        <Button Text="PROCEDURY" Style="{StaticResource ProcedureButton}"/>
-                        <Button Text="PROCEDURY" Style="{StaticResource ProcedureButton}"/>
-                        <Button Text="PROCEDURY" Style="{StaticResource ProcedureButton}"/>
-                        <Button Text="PROCEDURY" Style="{StaticResource ProcedureButton}"/>
-                        <Button Text="PROCEDURY" Style="{StaticResource ProcedureButton}"/>
-                        <Button Text="PROCEDURY" Style="{StaticResource ProcedureButton}"/>
-                        <Button Text="PROCEDURY" Style="{StaticResource ProcedureButton}"/>
-                        <Button Text="PROCEDURY" Style="{StaticResource ProcedureButton}"/>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" Grid.ColumnSpan="3" HorizontalOptions="FillAndExpand" Text="Zaparkuj odpowiednio ambulans"/>
+                            <CheckBox Grid.Column="3" VerticalOptions="FillAndExpand" x:Name="procedure1"/>
+                        </Grid>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" Grid.ColumnSpan="3" HorizontalOptions="FillAndExpand" Text="Zadbaj o własne bezpieczeństwo"/>
+                            <CheckBox Grid.Column="3" HorizontalOptions="FillAndExpand" x:Name="procedure2"/>
+                        </Grid>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" Grid.ColumnSpan="3" HorizontalOptions="FillAndExpand" Text="Zadbaj o bezpieczeństwo na miejscu zdarzenia"/>
+                            <CheckBox Grid.Column="3" HorizontalOptions="FillAndExpand" x:Name="procedure3"/>
+                        </Grid>
+
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" Grid.ColumnSpan="3" HorizontalOptions="FillAndExpand" Text="Powiadom dyspozytora medycznego o przejęciu roli KAM"/>
+                            <CheckBox Grid.Column="3" HorizontalOptions="FillAndExpand" x:Name="procedure4"/>
+                        </Grid>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" Grid.ColumnSpan="3" HorizontalOptions="FillAndExpand" Text="Ustal zasady łączności z dyspozytorem medycznym"/>
+                            <CheckBox Grid.Column="3" HorizontalOptions="FillAndExpand" x:Name="procedure5"/>
+                        </Grid>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" Grid.ColumnSpan="3" HorizontalOptions="FillAndExpand" Text="Skontaktuj się z Kierującym Działaniami Ratowniczymi"/>
+                            <CheckBox Grid.Column="3" HorizontalOptions="FillAndExpand" x:Name="procedure6"/>
+                        </Grid>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" Grid.ColumnSpan="3" HorizontalOptions="FillAndExpand" Text="Ustal plan działania i zasady współpracy z Kierującym Działaniami Ratowniczymi"/>
+                            <CheckBox Grid.Column="3" HorizontalOptions="FillAndExpand" x:Name="procedure7"/>
+                        </Grid>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" Grid.ColumnSpan="3" HorizontalOptions="FillAndExpand" Text="Gdy upewnisz się, że jest bezpiecznie zleć wykonanie wstępnej segregacji medycznej"/>
+                            <CheckBox Grid.Column="3" HorizontalOptions="FillAndExpand" x:Name="procedure8"/>
+                        </Grid>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" Grid.ColumnSpan="3" HorizontalOptions="FillAndExpand" Text="Ustal potrzebę zadysponowania dodatkowych sił i środków na miejsce zdarzenia"/>
+                            <CheckBox Grid.Column="3" HorizontalOptions="FillAndExpand" x:Name="procedure9"/>
+                        </Grid>
+                        
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" Grid.ColumnSpan="3" HorizontalOptions="FillAndExpand" Text="Stwórz punkty medyczne (czerwony, żółty, zielony, czarny)"/>
+                            <CheckBox Grid.Column="3" HorizontalOptions="FillAndExpand" x:Name="procedure10"/>
+                        </Grid>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" Grid.ColumnSpan="3" HorizontalOptions="FillAndExpand" Text="Ustal miejsca dostepne w szpitalach"/>
+                            <CheckBox Grid.Column="3" HorizontalOptions="FillAndExpand" x:Name="procedure11"/>
+                        </Grid>
 
 
                     </StackLayout>

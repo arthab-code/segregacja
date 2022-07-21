@@ -16,6 +16,8 @@ public partial class KAMPage : ContentPage
     public KAMPage()
     {
         InitializeComponent();
+
+            Subtitle.Text = "PANEL KAM DLA ZDARZENIA NR " + UserInfo.EventId;
     }
         protected override void OnAppearing()
         {
@@ -84,6 +86,7 @@ public partial class KAMPage : ContentPage
 
             UserInfo.SetEventId(null);
             UserInfo.SetAmbulanceNumber(null);
+            UserInfo.SetAmbulance(null);
 
             await Navigation.PushAsync(new MainPage());
         }

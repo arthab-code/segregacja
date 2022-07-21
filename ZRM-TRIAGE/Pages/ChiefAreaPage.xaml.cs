@@ -17,15 +17,13 @@ namespace ZRM_TRIAGE
             InitializeComponent();
 
             if (ambulance.AmbulanceFunction == AmbulanceModel.Function.Red)
-                InfoText.Text = "CZERWONA STREFA";
+                Subtitle.Text = "CZERWONA STREFA DLA ZDARZENIA NR "+UserInfo.EventId;
 
             if (ambulance.AmbulanceFunction == AmbulanceModel.Function.Yellow)
-                InfoText.Text = "ŻÓŁTA STREFA";
+                Subtitle.Text = "ŻÓŁTA STREFA DLA ZDARZENIA NR" + UserInfo.EventId;
 
             if (ambulance.AmbulanceFunction == AmbulanceModel.Function.Green)
-                InfoText.Text = "ZIELONA STREFA";
-
-
+                Subtitle.Text = "ZIELONA STREFA DLA ZDARZENIA NR" + UserInfo.EventId;
 
         }
 
@@ -42,6 +40,17 @@ namespace ZRM_TRIAGE
 
         private async void ExitButtonClicked(object sender, EventArgs e)
         {
+            string optionChoice = await DisplayPromptAsync("Uwaga!", "Na pewno chcesz opuscic zdarzenie? (wpisz: TAK jeśli chcesz usunąć)", "OPUŚĆ", "ANULUJ", null, 3);
+
+            if (optionChoice != null)
+            {
+                optionChoice = optionChoice.ToLower();
+
+                if (optionChoice != "tak")
+                {
+                    return;
+                }
+            }
             FileSystem fs = new FileSystem();
             fs.DeleteFile();
 

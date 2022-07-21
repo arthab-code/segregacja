@@ -55,10 +55,11 @@
 
             <Grid Grid.Row="1"  Grid.Column="1" Grid.RowSpan="5" Grid.ColumnSpan="6" Background="form_panel.png">
                
-                <Label HorizontalOptions="Center" Text="KAM PANEL" FontSize="21"/>
+                
 
                 <StackLayout HorizontalOptions="Center" VerticalOptions="Center" Padding="10">
-                    
+                    <Label HorizontalOptions="Center" Padding="10"  FontSize="Default" x:Name="Subtitle"/>
+                    <Label/>
                     <Button Text="PROCEDURY" Style="{StaticResource StandardButton}" Clicked="ProceduresClicked"/>
                     <Button Text="ZESPOŁY" Style="{StaticResource StandardButton} " Clicked="AmbulanceClicked"/>
                     <Button Text="TRIAGE" Style="{StaticResource ImportantButton}" Clicked="TriageButtonClicked"/>

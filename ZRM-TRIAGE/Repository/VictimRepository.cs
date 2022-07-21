@@ -1,6 +1,7 @@
 ﻿using Firebase.Database.Query;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 
 namespace ZRM_TRIAGE
@@ -33,7 +34,8 @@ namespace ZRM_TRIAGE
             }
 
             return victimList;
-        }
+        } 
+
 
         public void Remove(string victimId)
         {
