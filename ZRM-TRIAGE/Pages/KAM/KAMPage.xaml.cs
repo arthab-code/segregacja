@@ -12,7 +12,7 @@ namespace ZRM_TRIAGE
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 public partial class KAMPage : ContentPage
 {
-        private TriageModel _triageModel;
+ 
     public KAMPage()
     {
         InitializeComponent();
@@ -24,13 +24,7 @@ public partial class KAMPage : ContentPage
             AmbulanceListViewModel aLvM = new AmbulanceListViewModel();
 
             TriageRepository triageRepos = new TriageRepository();
-            triageRepos.GetTriageModel();
-            _triageModel = triageRepos.GetTriageModelObject();
-
-            RedAmount.Text = _triageModel.Red.ToString();
-            YellowAmount.Text = _triageModel.Yellow.ToString();
-            GreenAmount.Text = _triageModel.Green.ToString();
-            BlackAmount.Text = _triageModel.Black.ToString();
+            triageRepos.LoadTriageData(ref RedAmount, ref YellowAmount, ref GreenAmount, ref BlackAmount);
         }
 
         protected override bool OnBackButtonPressed()
@@ -50,7 +44,7 @@ public partial class KAMPage : ContentPage
 
         private async void TriageButtonClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new TriagePage(_triageModel));
+            await Navigation.PushAsync(new TriagePage());
         }
 
         private async void VictimsButtonClicked(object sender, EventArgs e)
@@ -68,6 +62,11 @@ public partial class KAMPage : ContentPage
             await Navigation.PushAsync(new ReportPage());
         }
 
+        private async void ChiefTransportButtonClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new TransportAmbulancePage());
+        }
+        
         private async void ExitButtonClicked(object sender, EventArgs e)
         {
             string optionChoice = await DisplayPromptAsync("Uwaga!", "Na pewno chcesz opuscic zdarzenie? (wpisz: TAK jeśli chcesz usunąć)", "OPUŚĆ", "ANULUJ", null, 3);

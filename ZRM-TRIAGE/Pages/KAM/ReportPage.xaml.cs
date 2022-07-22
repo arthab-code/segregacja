@@ -19,7 +19,7 @@ namespace ZRM_TRIAGE
 
         private void ReportGenerateButtonClicked(object sender, EventArgs e)
         {
-            ReportGenerator reportGenerator = new ReportGenerator(EventPlace.Text, PersonalChief.Text);
+            ReportGenerator reportGenerator = new ReportGenerator(EventPlace.Text, UserInfo.Ambulance.ChiefPersonalData);
             reportGenerator.LoadData();
             reportGenerator.Generate();
         }

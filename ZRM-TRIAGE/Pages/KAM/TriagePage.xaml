@@ -50,7 +50,7 @@
                         <Image Grid.Row="0" Grid.Column="1" Source="red_info_panel.png" Aspect="Fill"/>
                         <Label x:Name="RedInfo" Grid.Row="0" Grid.Column="1" Text="0" Style="{StaticResource TriageInfo}"/>
                         <Button Grid.Row="0" Grid.Column="0" Text="-" Style="{StaticResource StandardButton}" Clicked="RedDecClicked" />
-                        <Button Grid.Row="0" Grid.Column="2" Text="+" Style="{StaticResource StandardButton}" Clicked="RedIncLicked"/>
+                        <Button Grid.Row="0" Grid.Column="2" Text="+" Style="{StaticResource StandardButton}" Clicked="RedIncClicked"/>
 
                         <Image Grid.Row="1" Grid.Column="1" Source="yellow_info_panel.png" Aspect="Fill"/>
                         <Label x:Name="YellowInfo" Grid.Row="1" Grid.Column="1" Text="0" Style="{StaticResource TriageInfo}"/>

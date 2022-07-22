@@ -53,17 +53,17 @@ namespace ZRM_TRIAGE
             _eventRepos.Add(newEvent);
         }
 
-        private AmbulanceModel ConfigureMajorAmbulance(string ambulanceNumber, string eventId)
+        private AmbulanceModel ConfigureMajorAmbulance(string ambulanceNumber, string eventId,string chiefName, string chiefSurname)
         {
             AmbulanceBuilderModel ambulanceBuilder = new AmbulanceBuilderModel();
 
             AmbulanceModel ambulance = ambulanceBuilder
                 .AmbulanceSetNumber(ambulanceNumber)
-               // .AmbulanceSetEventId(eventId)
                 .LoginCodeGenerate()
                 .AmbulanceFunctionSet(AmbulanceModel.Function.Major)
                 .AmbulanceStatusSet()
                 .AmbulanceHospitalSet()
+                .SetChiefPersonalData(chiefName, chiefSurname)
                 .Build();
 
             return ambulance;
@@ -74,12 +74,12 @@ namespace ZRM_TRIAGE
             return _eventRepos.GetEventCounter();
         }
 
-        public AmbulanceModel AddMajorAmbulanceToDatabase(string ambulanceNumber, string eventId)
+        public AmbulanceModel AddMajorAmbulanceToDatabase(string ambulanceNumber, string eventId, string chiefName, string chiefSurname)
         {
             UserInfo.SetEventId(eventId);
             UserInfo.SetAmbulanceNumber(ambulanceNumber);
 
-            AmbulanceModel ambulance = ConfigureMajorAmbulance(ambulanceNumber, eventId);
+            AmbulanceModel ambulance = ConfigureMajorAmbulance(ambulanceNumber, eventId, chiefName, chiefSurname);
 
             AmbulanceRepository ambulanceRepos = new AmbulanceRepository();
 

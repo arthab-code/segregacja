@@ -22,16 +22,29 @@ namespace ZRM_TRIAGE
             _ambulance = ambulance;
         }
 
+        private void TargetHospitalUpdate()
+        {
+            if (_ambulance.SelectedHospital == null)
+            {
+                TargetHospital.Text = "NIE WYBRANO";
+                CancelHospital.IsVisible = false;
+                SelectHospital.IsVisible = true;
+            }
+            else
+            {
+                TargetHospital.Text = _ambulance.SelectedHospital.Name;
+                CancelHospital.IsVisible = true;
+                SelectHospital.IsVisible = false;
+            }
+        }
+
         protected override void OnAppearing()
         {
             _showAmbulanceVM = new ShowAmbulanceViewModel();
 
             AmbulanceModel.Function function = _showAmbulanceVM.AmbulanceFunctionAdd((int)_ambulance.AmbulanceFunction);
 
-            if (_ambulance.SelectedHospital == null)
-                TargetHospital.Text = "NIE WYBRANO";
-            else
-                TargetHospital.Text = _ambulance.SelectedHospital.Name;
+            TargetHospitalUpdate();
 
             AmbulanceFunction.SelectedIndex = (int)_ambulance.AmbulanceFunction;
             AmbulanceStatus.SelectedIndex = (int)_ambulance.AmbulanceStatus;
@@ -153,6 +166,15 @@ namespace ZRM_TRIAGE
             BindingContext = victimList;          
             VictimListXAML.ItemsSource = victimList;
             VictimListXAML.EndRefresh();
+        }
+
+        private void CancelHospitalButtonClicked(object sender, EventArgs e)
+        {
+            _ambulance.HospitalId = null;
+            _ambulance.HospitalName = null;
+            _ambulance.SelectedHospital = null;
+
+            TargetHospitalUpdate();
         }
     }
 }

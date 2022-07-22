@@ -38,16 +38,16 @@
                     </Grid.ColumnDefinitions>
 
                     <Image Grid.Row="0" Grid.Column="0" Source="red_info_panel.png" Aspect="Fill"/>
-                    <Label Grid.Row="0" Grid.Column="0" Text="0" Style="{StaticResource TriageInfo}"/>
+                    <Label x:Name="RedAmount" Grid.Row="0" Grid.Column="0" Text="0" Style="{StaticResource TriageInfo}"/>
 
                     <Image Grid.Row="0" Grid.Column="1" Source="yellow_info_panel.png" Aspect="Fill"/>
-                    <Label Grid.Row="0" Grid.Column="1" Text="0" Style="{StaticResource TriageInfo}"/>
+                    <Label x:Name="YellowAmount" Grid.Row="0" Grid.Column="1" Text="0" Style="{StaticResource TriageInfo}"/>
 
                     <Image Grid.Row="1" Grid.Column="0" Source="green_info_panel.png" Aspect="Fill"/>
-                    <Label Grid.Row="1" Grid.Column="0" Text="0" Style="{StaticResource TriageInfo}"/>
+                    <Label x:Name="GreenAmount" Grid.Row="1" Grid.Column="0" Text="0" Style="{StaticResource TriageInfo}"/>
 
                     <Image Grid.Row="1" Grid.Column="1" Source="black_info_panel.png" Aspect="Fill"/>
-                    <Label Grid.Row="1" Grid.Column="1" Text="0" Style="{StaticResource TriageInfo}"/>
+                    <Label x:Name="BlackAmount" Grid.Row="1" Grid.Column="1" Text="0" Style="{StaticResource TriageInfo}"/>
                 </Grid>
             </Grid>
 
@@ -61,6 +61,7 @@
 
                     <Button Text="ZESPOŁY" Style="{StaticResource StandardButton} " Clicked="AmbulanceClicked"/>
                     <Button Text="POSZKODOWANI" Style="{StaticResource ImportantButton}" Clicked="VictimsButtonClicked"/>
+                    <Button Text="TWÓJ TRANSPORT" Style="{StaticResource ImportantButton}" Clicked="ChiefTransportButtonClicked" />
                     <Button Text="OPUŚĆ ZDARZENIE" Style="{StaticResource ProcedureButton}" Clicked="ExitButtonClicked" />
 
                 </StackLayout>

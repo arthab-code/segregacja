@@ -30,12 +30,15 @@
                 <Label x:Name =" test" HorizontalOptions="Center" Padding="10" Text="STWÓRZ ZDARZENIE" FontSize="21"/>
             </StackLayout>
 
-            <Grid Grid.Row="1"  Grid.Column="1" Grid.RowSpan="4" Grid.ColumnSpan="6" Background="form_panel.png">
+            <Grid Grid.Row="1"  Grid.Column="1" Grid.RowSpan="6" Grid.ColumnSpan="6" Background="form_panel.png">
                 <ScrollView Padding="10">
                     <StackLayout HorizontalOptions="Center" Padding="10">
                         <Label Text="Numer twojego zespołu"/>
                         <Entry x:Name="AmbulanceNumber" BackgroundColor="#F8FDF8" Placeholder="numer zespołu"/>
                         <Label></Label>
+                        <Label Text="Imię i nazwisko KAM"/>
+                        <Entry x:Name="ChiefName" BackgroundColor="#F8FDF8" Placeholder="imię"/>
+                        <Entry x:Name="ChiefSurname" BackgroundColor="#F8FDF8" Placeholder="nazwisko"/>
 
                         <Button Text="DODAJ" Style="{StaticResource StandardButton}" Clicked="PassCreateEventButtonClicked"/>
                     </StackLayout>

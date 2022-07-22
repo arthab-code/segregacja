@@ -35,6 +35,14 @@ namespace ZRM_TRIAGE
             return this;
         } */
 
+        public AmbulanceBuilderModel SetChiefPersonalData(string name, string surname)
+        {
+            _ambulanceModel.ChiefPersonalData = name + " " + surname;
+
+            return this;
+        }
+
+
         public AmbulanceBuilderModel LoginCodeGenerate()
         {
             //GENERATE CODE LOGICAL

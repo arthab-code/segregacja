@@ -8,7 +8,7 @@ namespace ZRM_TRIAGE
     public class HospitalRepository : IClientRepository<HospitalModel>
     {
         private Database _database;
-        private string _dataName = "Hospitals";
+        public string _dataName { get => "Hospitals"; private set { } }
         public HospitalRepository()
         {
             _database = new Database();

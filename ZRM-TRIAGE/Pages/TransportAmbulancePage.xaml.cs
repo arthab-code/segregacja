@@ -21,10 +21,20 @@ namespace ZRM_TRIAGE
             InitializeComponent();
             _tAVM = new TransportAmbulanceViewModel();
             Subtitle.Text = "ZESPÓŁ TRANSPORTOWY "+UserInfo.Ambulance.Number+" DLA ZDARZENIA NR "+UserInfo.EventId;
+
+            if (UserInfo.Ambulance.AmbulanceFunction != AmbulanceModel.Function.Transport)
+            {
+                ExitButton.IsVisible = false;
+                TriageBar.IsVisible = false;
+                NavigationPage.SetHasNavigationBar(this, true);
+            }
         }
 
         protected override void OnAppearing()
         {
+            TriageRepository triageRepos = new TriageRepository();
+            triageRepos.LoadTriageData(ref RedAmount, ref YellowAmount, ref GreenAmount, ref BlackAmount);
+
             if (UserInfo.Ambulance.AmbulanceStatus == AmbulanceModel.Status.AtLocation)
                 ChangeColor(AtLocation, Transport, Hospital);
 

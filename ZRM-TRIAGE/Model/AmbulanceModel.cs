@@ -24,6 +24,7 @@ namespace ZRM_TRIAGE
         }
         public string Number { get; set; }
         public string LoginCode { get; set; }
+        public string ChiefPersonalData { get; set; }
         public List<VictimModel> Victims { get; set; }
         public string HospitalId { get; set; }
         public string HospitalName { get; set; }

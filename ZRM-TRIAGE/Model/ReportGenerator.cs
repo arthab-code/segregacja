@@ -18,8 +18,6 @@ namespace ZRM_TRIAGE
         private List<VictimModel> _victims;
         private List<AmbulanceModel> _ambulances;
         private List<HospitalModel> _hospitals;
-        private TriageModel _triage;
-        private int _triageAmount;
         private string _eventPlace;
         private string _personalChief;
 
@@ -68,28 +66,15 @@ namespace ZRM_TRIAGE
             _hospitals = hospitalRepository.GetAll();
         }
 
-        private void LoadTriage()
-        {
-            TriageRepository triageRepository = new TriageRepository();
-            triageRepository.GetTriageModel();
-
-            _triage = triageRepository.GetTriageModelObject();
-            _triageAmount = _triage.Red + _triage.Yellow + _triage.Green + _triage.Black;
-
-        }
-
         public void LoadData()
         {
             LoadVictims();
             LoadAmbulances();
             LoadHospitals();
-            LoadTriage();
-
         }
 
         public void Generate()
-        {
-            
+        {      
             PdfDocument document = new PdfDocument();
             List <PdfPage> pages = new List<PdfPage> ();
             pages.Add(document.AddPage());
@@ -113,31 +98,31 @@ namespace ZRM_TRIAGE
             /* Wyświetlanie poszkodowanych wyrażone w liczbach */
             SetNewValues(ref pointY, ref pagePosition, ref gfx, ref pages, ref document);  //new page
             pointY += 2 * space;
-            gfx.DrawString("ŁĄCZNA LICZBA POSZKODOWANYCH: " + _triageAmount, font, XBrushes.Black, new XRect(pointX, pointY, pages[pagePosition].Width, pages[pagePosition].Height), XStringFormats.TopLeft);
+            gfx.DrawString("ŁĄCZNA LICZBA POSZKODOWANYCH: " + TriageModel.Instance.Amount, font, XBrushes.Black, new XRect(pointX, pointY, pages[pagePosition].Width, pages[pagePosition].Height), XStringFormats.TopLeft);
             pointY += space;
             if (CheckEndPage(pointY, (int)pages[pagePosition].Height - space))
             {
                 SetNewValues(ref pointY, ref pagePosition, ref gfx, ref pages, ref document);
             }
-            gfx.DrawString("CZERWONI: " + _triage.Red, font, XBrushes.Black, new XRect(pointX, pointY, pages[pagePosition].Width, pages[pagePosition].Height), XStringFormats.TopLeft);
+            gfx.DrawString("CZERWONI: " + TriageModel.Instance.Red, font, XBrushes.Black, new XRect(pointX, pointY, pages[pagePosition].Width, pages[pagePosition].Height), XStringFormats.TopLeft);
             pointY += space;
             if (CheckEndPage(pointY, (int)pages[pagePosition].Height - space))
             {
                 SetNewValues(ref pointY, ref pagePosition, ref gfx, ref pages, ref document);
             }
-            gfx.DrawString("ŻÓŁCI: " + _triage.Yellow, font, XBrushes.Black, new XRect(pointX, pointY, pages[pagePosition].Width, pages[pagePosition].Height), XStringFormats.TopLeft);
+            gfx.DrawString("ŻÓŁCI: " + TriageModel.Instance.Yellow, font, XBrushes.Black, new XRect(pointX, pointY, pages[pagePosition].Width, pages[pagePosition].Height), XStringFormats.TopLeft);
             pointY += space;
             if (CheckEndPage(pointY, (int)pages[pagePosition].Height - space))
             {
                 SetNewValues(ref pointY, ref pagePosition, ref gfx, ref pages, ref document);
             }
-            gfx.DrawString("ZIELONI: " + _triage.Green, font, XBrushes.Black, new XRect(pointX, pointY, pages[pagePosition].Width, pages[pagePosition].Height), XStringFormats.TopLeft);
+            gfx.DrawString("ZIELONI: " + TriageModel.Instance.Green, font, XBrushes.Black, new XRect(pointX, pointY, pages[pagePosition].Width, pages[pagePosition].Height), XStringFormats.TopLeft);
             pointY += space;
             if (CheckEndPage(pointY, (int)pages[pagePosition].Height - space))
             {
                 SetNewValues(ref pointY, ref pagePosition, ref gfx, ref pages, ref document);
             }
-            gfx.DrawString("CZARNI: " + _triage.Black, font, XBrushes.Black, new XRect(pointX, pointY, pages[pagePosition].Width, pages[pagePosition].Height), XStringFormats.TopLeft);
+            gfx.DrawString("CZARNI: " + TriageModel.Instance.Black, font, XBrushes.Black, new XRect(pointX, pointY, pages[pagePosition].Width, pages[pagePosition].Height), XStringFormats.TopLeft);
             pointY += space;
             if (CheckEndPage(pointY, (int)pages[pagePosition].Height - space))
             {
@@ -195,6 +180,12 @@ namespace ZRM_TRIAGE
             {
 
                 gfx.DrawString("Numer zespołu: " + item.Number, font, XBrushes.Black, new XRect(pointX, pointY, pages[pagePosition].Width, pages[pagePosition].Height), XStringFormats.TopLeft);
+                pointY += space;
+                if (CheckEndPage(pointY, (int)pages[pagePosition].Height - space))
+                {
+                    SetNewValues(ref pointY, ref pagePosition, ref gfx, ref pages, ref document);
+                }
+                gfx.DrawString("Kierownik zespołu: " + item.ChiefPersonalData, font, XBrushes.Black, new XRect(pointX, pointY, pages[pagePosition].Width, pages[pagePosition].Height), XStringFormats.TopLeft);
                 pointY += space;
                 if (CheckEndPage(pointY, (int)pages[pagePosition].Height - space))
                 {

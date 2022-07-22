@@ -12,79 +12,77 @@ namespace ZRM_TRIAGE
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class TriagePage : ContentPage
     {
-        private TriageModel _triageModel;
         private TriagePageViewModel _triagePageViewModel;
-        public TriagePage(TriageModel triageModel)
+        public TriagePage()
         {
             InitializeComponent();
-            _triageModel = triageModel;
             _triagePageViewModel = new TriagePageViewModel();
-
-        }
-        protected override void OnAppearing()
-        {
-            _triagePageViewModel.GetTriageModel();
-            _triageModel = _triagePageViewModel.GetTriageModelObject();
-            RedInfo.Text = _triageModel.Red.ToString();
-            YellowInfo.Text = _triageModel.Yellow.ToString();
-            GreenInfo.Text = _triageModel.Green.ToString();
-            BlackInfo.Text = _triageModel.Black.ToString();
+            _triagePageViewModel.RefreshTriageData(ref RedInfo, ref YellowInfo, ref GreenInfo, ref BlackInfo);
         }
 
         private void RedDecClicked(object sender, EventArgs e)
         {
+            if (TriageModel.Instance.Red <= 0) return;
+
             _triagePageViewModel.NumberRed(-1);
-            _triageModel = _triagePageViewModel.GetTriageModelObject();
-            RedInfo.Text = _triageModel.Red.ToString();
+            _triagePageViewModel.GetTriageModel();
+            RedInfo.Text = TriageModel.Instance.Red.ToString();
         }
 
-        private void RedIncLicked(object sender, EventArgs e)
+        private void RedIncClicked(object sender, EventArgs e)
         {
             _triagePageViewModel.NumberRed(1);
-            _triageModel = _triagePageViewModel.GetTriageModelObject();
-            RedInfo.Text = _triageModel.Red.ToString();
+            _triagePageViewModel.GetTriageModel();
+            RedInfo.Text = TriageModel.Instance.Red.ToString();
         }
 
         private void YellowDecClicked(object sender, EventArgs e)
         {
+            if (TriageModel.Instance.Yellow <= 0) return;
+
             _triagePageViewModel.NumberYellow(-1);
-            _triageModel = _triagePageViewModel.GetTriageModelObject();
-            YellowInfo.Text = _triageModel.Yellow.ToString();
+            _triagePageViewModel.GetTriageModel();
+            YellowInfo.Text = TriageModel.Instance.Yellow.ToString();
         }
 
         private void YellowIncClicked(object sender, EventArgs e)
         {
             _triagePageViewModel.NumberYellow(1);
-            _triageModel = _triagePageViewModel.GetTriageModelObject();
-            YellowInfo.Text = _triageModel.Yellow.ToString();
+            _triagePageViewModel.GetTriageModel();
+            YellowInfo.Text = TriageModel.Instance.Yellow.ToString();
         }
 
         private void GreenDecClicked(object sender, EventArgs e)
         {
+            if (TriageModel.Instance.Green <= 0) return;
+
             _triagePageViewModel.NumberGreen(-1);
-            _triageModel = _triagePageViewModel.GetTriageModelObject();
-            GreenInfo.Text = _triageModel.Green.ToString();
+            _triagePageViewModel.GetTriageModel();
+            GreenInfo.Text = TriageModel.Instance.Green.ToString();
         }
 
         private void GreenIncClicked(object sender, EventArgs e)
         {
             _triagePageViewModel.NumberGreen(1);
-            _triageModel = _triagePageViewModel.GetTriageModelObject();
-            GreenInfo.Text = _triageModel.Green.ToString();
+            _triagePageViewModel.GetTriageModel();
+            GreenInfo.Text = TriageModel.Instance.Green.ToString();
         }
 
         private void BlackDecClicked(object sender, EventArgs e)
         {
+
+            if (TriageModel.Instance.Black <= 0) return;
+
             _triagePageViewModel.NumberBlack(-1);
-            _triageModel = _triagePageViewModel.GetTriageModelObject();
-            BlackInfo.Text = _triageModel.Black.ToString();
+            _triagePageViewModel.GetTriageModel();
+            BlackInfo.Text = TriageModel.Instance.Black.ToString();
         }
 
         private void BlackIncClicked(object sender, EventArgs e)
         {
             _triagePageViewModel.NumberBlack(1);
-            _triageModel = _triagePageViewModel.GetTriageModelObject();
-            BlackInfo.Text = _triageModel.Black.ToString();
+            _triagePageViewModel.GetTriageModel();
+            BlackInfo.Text = TriageModel.Instance.Black.ToString();
         }
     }
 }

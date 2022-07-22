@@ -36,6 +36,10 @@
                         <Label Text="NUMER ZESPOŁU"/>
                         <Entry x:Name="AmbulanceNumber" BackgroundColor="#F8FDF8" Placeholder="numer zespołu"/>
                         <Label></Label>
+                        <Label Text="IMIĘ I NAZWISKO KIEROWNIKA"/>
+                        <Entry x:Name="ChiefName" BackgroundColor="#F8FDF8" Placeholder="imię"/>
+                        <Entry x:Name="ChiefSurname" BackgroundColor="#F8FDF8" Placeholder="nazwisko"/>
+                        <Label></Label>
                         <Label  Text="FUNKCJA"/>
                         <Picker x:Name="AmbulanceFunction">
                             <Picker.ItemsSource>

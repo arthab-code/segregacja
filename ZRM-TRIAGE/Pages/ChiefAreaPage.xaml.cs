@@ -27,6 +27,12 @@ namespace ZRM_TRIAGE
 
         }
 
+        protected override void OnAppearing()
+        {
+            TriageRepository triageRepos = new TriageRepository();
+            triageRepos.LoadTriageData(ref RedAmount, ref YellowAmount, ref GreenAmount, ref BlackAmount);
+        }
+
         private async void AmbulanceClicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new AmbulanceListPage());
@@ -61,5 +67,9 @@ namespace ZRM_TRIAGE
             await Navigation.PushAsync(new MainPage());
         }
 
+        private async void ChiefTransportButtonClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new TransportAmbulancePage());
+        }
     }
 }

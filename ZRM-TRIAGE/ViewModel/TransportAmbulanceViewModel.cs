@@ -13,12 +13,17 @@ namespace ZRM_TRIAGE
         private HospitalRepository _hospitalRepository;
         private AmbulanceRepository _ambulanceRepository;
         private VictimRepository _victimRepository;
+        private string _victimDbName;
+        private string _hospitalDbName;
 
         public TransportAmbulanceViewModel()
         {
             _hospitalRepository = new HospitalRepository();
             _ambulanceRepository = new AmbulanceRepository();
             _victimRepository = new VictimRepository();
+
+            _victimDbName = _victimRepository._dataName;
+            _hospitalDbName = _hospitalRepository._dataName;
         }
 
         public void ChangeAmbulanceStatus(AmbulanceModel ambulance, AmbulanceModel.Status status)
@@ -33,7 +38,7 @@ namespace ZRM_TRIAGE
             Database db = new Database();
             ObservableCollection<VictimModel> victims = new ObservableCollection<VictimModel>();
 
-            db.GetClient().Child("Victims").Child(UserInfo.EventId).AsObservable<VictimModel>().Subscribe(a =>
+            db.GetClient().Child(_victimDbName).Child(UserInfo.EventId).AsObservable<VictimModel>().Subscribe(a =>
             {
                 if (a.Object.Ambulance == UserInfo.Ambulance.Number)
                 {
@@ -55,7 +60,7 @@ namespace ZRM_TRIAGE
             Database db = new Database();
             ObservableCollection<HospitalModel> hospitals = new ObservableCollection<HospitalModel>();
 
-            db.GetClient().Child("Hospitals").Child(UserInfo.EventId).AsObservable<HospitalModel>().Subscribe(a =>
+            db.GetClient().Child(_hospitalDbName).Child(UserInfo.EventId).AsObservable<HospitalModel>().Subscribe(a =>
             {
                 if (a.Object.Id == UserInfo.Ambulance.HospitalId)
                 {

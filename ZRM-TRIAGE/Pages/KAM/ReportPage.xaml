@@ -35,8 +35,6 @@
                     <StackLayout HorizontalOptions="Center" Padding="10">
                         <Label>Miejsce zdarzenia</Label>
                         <Entry x:Name="EventPlace"  Placeholder="Miejsce zdarzenia"/>
-                        <Label>Imię i nazwisko KAM</Label>
-                        <Entry x:Name="PersonalChief" Placeholder="Imię i nazwisko"/>
                         <Button  Text="GENERUJ RAPORT" Style="{StaticResource StandardButton}" Clicked="ReportGenerateButtonClicked"/>
                     </StackLayout>
                 </ScrollView>

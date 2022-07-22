@@ -104,7 +104,8 @@
                                 <Label Text="Szpital docelowy :"/>
                                 <Label x:Name="TargetHospital" />
                             </StackLayout>
-                            <Button Text="WYBIERZ" Style="{StaticResource StandardButton}" Clicked="SelectHospitalButtonClicked" />
+                            <Button x:Name="CancelHospital" Text="ANULUJ SZPITAL" Style="{StaticResource StandardButton}" Clicked="CancelHospitalButtonClicked" />
+                            <Button x:Name="SelectHospital" Text="WYBIERZ" Style="{StaticResource StandardButton}" Clicked="SelectHospitalButtonClicked" />
                             <Label/>
                             <Label Text="Transportowani poszkodowani:"/>
                             <Button Text="DODAJ" Style="{StaticResource StandardButton}" Clicked="SelectVictimButtonClicked"/>

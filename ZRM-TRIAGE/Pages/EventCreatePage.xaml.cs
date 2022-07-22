@@ -41,7 +41,7 @@ namespace ZRM_TRIAGE
 
                 evM.AddEventToDatabase();
                 string eventNumber = evM.GetEventNumber();
-                AmbulanceModel ambulance = evM.AddMajorAmbulanceToDatabase(AmbulanceNumber.Text, eventNumber);
+                AmbulanceModel ambulance = evM.AddMajorAmbulanceToDatabase(AmbulanceNumber.Text, eventNumber, ChiefName.Text, ChiefSurname.Text);
 
                 evM.CreateTriageDB();
 

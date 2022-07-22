@@ -9,7 +9,7 @@ namespace ZRM_TRIAGE
     public class VictimRepository : IClientRepository<VictimModel>
     {
         private Database _database;
-        private string _dataName = "Victims";
+        public string _dataName { get => "Victims"; private set { } }
 
         public VictimRepository()
         {
