@@ -24,7 +24,7 @@ namespace ZRM_TRIAGE
 
             var _showAmbulanceVM = new ShowAmbulanceViewModel();
 
-            var victimList = _showAmbulanceVM.GetTransportController().GetVictims().Where<VictimModel>(a => a.HospitalId == _hospitalModel.Id).ToList();
+            var victimList = _showAmbulanceVM.GetTransportController().GetVictims().Where<VictimModel>(a => a.HospitalId == _hospitalModel.DatabaseId).ToList();
             // BindingContext = victimList;          
             VictimListXAML.ItemsSource = victimList;
             BindingContext = hospitalModel.VictimList;
@@ -75,9 +75,9 @@ namespace ZRM_TRIAGE
             hospital.Name = HospitalName.Text;
             hospital.City = HospitalCity.Text;
             hospital.Street = HospitalStreet.Text;
-            hospital.Id = _hospitalModel.Id;
+            hospital.DatabaseId = _hospitalModel.DatabaseId;
 
-            showHospitalViewModel.UpdateHospital(_hospitalModel, hospital);
+            showHospitalViewModel.UpdateHospital(hospital);
 
             await App.Current.MainPage.Navigation.PopAsync();
         }

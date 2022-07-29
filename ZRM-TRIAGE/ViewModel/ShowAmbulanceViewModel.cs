@@ -29,7 +29,7 @@ namespace ZRM_TRIAGE
         {
             bool isExists = false;
 
-            AmbulanceModel check = _ambulanceRepository.Search(ambulanceNumber);
+            AmbulanceModel check = _ambulanceRepository.GetAmbulance(ambulanceNumber);
 
             if (check != null)
                 isExists = true;
@@ -37,9 +37,9 @@ namespace ZRM_TRIAGE
             return isExists;
         }
 
-        public void Update(AmbulanceModel oldItem, AmbulanceModel newItem)
+        public void Update(AmbulanceModel ambulance)
         {
-            _ambulanceRepository.Update(oldItem, newItem);
+            _ambulanceRepository.Update(ambulance);
         }
 
         public bool SearchFunction(AmbulanceModel.Function function)

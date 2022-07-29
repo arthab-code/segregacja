@@ -113,7 +113,7 @@ namespace ZRM_TRIAGE
                 victim.Injuries.PercentFrostbite = Int16.Parse(PercentFrostbite.Text);
             }
 
-            victim.Id = _victimModel.Id;
+            victim.DatabaseId = _victimModel.DatabaseId;
             victim.Name = VictimName.Text;
             victim.Surname = VictimSurname.Text;
             victim.City = VictimCity.Text;
@@ -140,7 +140,7 @@ namespace ZRM_TRIAGE
             victim.Injuries.Burn = BurnInjury.IsChecked;
 
 
-            _showVictimViewModel.UpdateVictim(_victimModel, victim);
+            _showVictimViewModel.UpdateVictim(victim);
 
             await App.Current.MainPage.Navigation.PopAsync();
         }

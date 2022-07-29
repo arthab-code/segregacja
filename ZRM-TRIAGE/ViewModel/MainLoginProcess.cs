@@ -8,13 +8,13 @@ namespace ZRM_TRIAGE
 {
     public class MainLoginProcess
     {
-        private Database _database;
+        private Database<LoginCodeModel> _database;
         private string _loginCode;
         private string _eventId;
 
         public MainLoginProcess(string loginCode)
         {
-            _database = new Database();
+            _database = new Database<LoginCodeModel>();
             _loginCode = loginCode;
 
         }

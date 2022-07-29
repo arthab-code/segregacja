@@ -14,7 +14,7 @@ namespace ZRM_TRIAGE
     {
 
         private EventRepository _eventRepos;
-        Database _db = new Database();
+        Database<EventModel> _db = new Database<EventModel>();
        
         public EventCreateViewModel()
         {

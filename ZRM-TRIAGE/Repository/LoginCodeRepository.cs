@@ -5,43 +5,26 @@ using System.Text;
 using Firebase.Database.Query;
 namespace ZRM_TRIAGE
 {
-    public class LoginCodeRepository : IClientRepository<LoginCodeModel>
+    public class LoginCodeRepository
     {
-        private Database _database;
+        private Database<LoginCodeModel> _database;
         private string _dataName = "LoginCodes";
 
         public LoginCodeRepository()
         {
-            _database = new Database();
+            _database = new Database<LoginCodeModel>();
         }
         public void Add(LoginCodeModel item)
         {
-            _database.GetClient().Child(_dataName).PostAsync(item);
-        }
-
-        public List<LoginCodeModel> GetAll()
-        {
-            throw new NotImplementedException();
+            //  _database.GetClient().Child(_dataName).PostAsync(item);
+            _database.Create(_dataName, item);
         }
 
         public void Remove(string eventId)
         {
-            _database.GetClient().Child(_dataName).Child(eventId).DeleteAsync();
+           // _database.GetClient().Child(_dataName).Child(eventId).DeleteAsync();
+            _database.Delete(_dataName, eventId);
         }
 
-        public LoginCodeModel Search(string item)
-        {
-            throw new NotImplementedException();
-        }
-
-        public string SearchKey(string item)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Update(LoginCodeModel oldItem, LoginCodeModel newItem)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

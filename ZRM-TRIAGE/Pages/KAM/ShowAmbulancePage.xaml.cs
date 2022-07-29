@@ -73,7 +73,7 @@ namespace ZRM_TRIAGE
 
                 if (optionChoice == "tak")
                 {
-                    ambulanceRepos.Remove(_ambulance.Id);
+                    ambulanceRepos.Remove(_ambulance.DatabaseId);
 
                     await App.Current.MainPage.Navigation.PopAsync();
                 }
@@ -109,7 +109,7 @@ namespace ZRM_TRIAGE
 
                 }
 
-                _showAmbulanceVM.Update(_ambulance, newAmbulance);
+                _showAmbulanceVM.Update(newAmbulance);
                 await App.Current.MainPage.Navigation.PopAsync();
             }
         }
@@ -151,7 +151,7 @@ namespace ZRM_TRIAGE
 
             VictimRepository victimRepository = new VictimRepository();
 
-            victimRepository.Update(victimModel, victimModel);
+            victimRepository.Update(victimModel);
 
             DisplayAlert("Usunięto", victimModel.Name + " " + victimModel.Surname, "OK");
 
@@ -162,7 +162,7 @@ namespace ZRM_TRIAGE
         private void RefreshVictimList()
         {
             VictimListXAML.BeginRefresh();
-            var victimList = _showAmbulanceVM.GetTransportController().GetVictims().Where<VictimModel>(a => a.AmbulanceId == _ambulance.Id).ToList();
+            var victimList = _showAmbulanceVM.GetTransportController().GetVictims().Where<VictimModel>(a => a.AmbulanceId == _ambulance.DatabaseId).ToList();
             BindingContext = victimList;          
             VictimListXAML.ItemsSource = victimList;
             VictimListXAML.EndRefresh();

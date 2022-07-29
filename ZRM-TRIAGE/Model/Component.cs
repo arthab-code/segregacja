@@ -4,10 +4,9 @@ using System.Text;
 
 namespace ZRM_TRIAGE
 {
-    public class Component
+    abstract public class Component
     {
-
-        public string Id { get; set; }
+        public string DatabaseId { get; set; }
 
     }
 }

@@ -20,12 +20,12 @@ namespace ZRM_TRIAGE
 
         public void DeleteVictim(VictimModel victimModel)
         {
-            _victimRepository.Remove(victimModel.Id);
+            _victimRepository.Remove(victimModel.DatabaseId);
         }
 
-        public void UpdateVictim(VictimModel oldVictim, VictimModel newVictim)
+        public void UpdateVictim(VictimModel victim)
         {
-            _victimRepository.Update(oldVictim, newVictim);
+            _victimRepository.Update(victim);
         }
 
         public TransportController GetTransportController()

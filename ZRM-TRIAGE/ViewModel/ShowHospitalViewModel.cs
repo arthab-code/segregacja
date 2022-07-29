@@ -16,12 +16,12 @@ namespace ZRM_TRIAGE
 
         public void DeleteHospital(HospitalModel hospital)
         {
-            _hospitalRepository.Remove(hospital.Id);
+            _hospitalRepository.Remove(hospital.DatabaseId);
         }
 
-        public void UpdateHospital(HospitalModel oldItem, HospitalModel newItem)
+        public void UpdateHospital(HospitalModel hospital)
         {
-            _hospitalRepository.Update(oldItem, newItem);
+            _hospitalRepository.Update(hospital);
         }
 
         public bool CheckHospitalExists(string name)

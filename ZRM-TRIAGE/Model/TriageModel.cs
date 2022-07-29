@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ZRM_TRIAGE
 {
-    public class TriageModel
+    public class TriageModel : Component
     {
         public int Red { get; set; }
         public int Yellow { get; set; }

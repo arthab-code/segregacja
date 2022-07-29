@@ -6,31 +6,35 @@ using System.Text;
 
 namespace ZRM_TRIAGE
 {
-    public class VictimRepository : IClientRepository<VictimModel>
+    public class VictimRepository 
     {
-        private Database _database;
+        private Database<VictimModel> _database;
         public string _dataName { get => "Victims"; private set { } }
 
         public VictimRepository()
         {
-            _database = new Database(); 
+            _database = new Database<VictimModel>(); 
         }
         public void Add(VictimModel item)
         {
-            var firebaseClient = _database.GetClient().Child(_dataName).Child(UserInfo.EventId).PostAsync(item).Result;
-            item.Id = firebaseClient.Key;
-            _database.GetClient().Child(_dataName).Child(UserInfo.EventId).Child(item.Id).PutAsync(item);
+            //var firebaseClient = _database.GetClient().Child(_dataName).Child(UserInfo.EventId).PostAsync(item).Result;
+            //item.DatabaseId = firebaseClient.Key;
+            //_database.GetClient().Child(_dataName).Child(UserInfo.EventId).Child(item.DatabaseId).PutAsync(item);
+
+            _database.Create(_dataName, UserInfo.EventId, item);
         }
 
         public List<VictimModel> GetAll()
         {
-            var list = _database.GetClient().Child(_dataName).Child(UserInfo.EventId).OnceAsync<VictimModel>().Result;
+            // var list = _database.GetClient().Child(_dataName).Child(UserInfo.EventId).OnceAsync<VictimModel>().Result;
+
+            var list = _database.ReadAll(_dataName, UserInfo.EventId);
 
             List<VictimModel> victimList = new List<VictimModel>();
 
             foreach (var item in list)
             {
-                victimList.Add(item.Object);
+                victimList.Add(item);
             }
 
             return victimList;
@@ -39,7 +43,8 @@ namespace ZRM_TRIAGE
 
         public void Remove(string victimId)
         {
-            _database.GetClient().Child(_dataName).Child(UserInfo.EventId).Child(victimId).DeleteAsync();
+            //_database.GetClient().Child(_dataName).Child(UserInfo.EventId).Child(victimId).DeleteAsync();
+            _database.Delete(_dataName,UserInfo.EventId,victimId);
         }
 
         public VictimModel Search(string victimInfoParts)
@@ -65,33 +70,10 @@ namespace ZRM_TRIAGE
             return findVictim;
         }
 
-        public string SearchKey(string victimInfoParts)
+        public void Update(VictimModel victim)
         {
-            var tmp = victimInfoParts.Split('.');
-            string name, surname;
-            name = tmp[0];
-            surname = tmp[1];
-                
-            var search = _database.GetClient().Child(_dataName).Child(UserInfo.EventId).OnceAsync<VictimModel>().Result;
-
-            string findKey = null;
-
-            foreach (var item in search)
-            {
-
-                if (item.Object.Name == name && item.Object.Surname == surname)
-                {
-                    findKey = item.Key;
-                    break;
-                }
-            }
-
-            return findKey;
-        }
-
-        public void Update(VictimModel oldItem, VictimModel newItem)
-        {
-            _database.GetClient().Child(_dataName).Child(UserInfo.EventId).Child(oldItem.Id).PutAsync(newItem);
+            // _database.GetClient().Child(_dataName).Child(UserInfo.EventId).Child(oldItem.DatabaseId).PutAsync(newItem);
+            _database.Update(_dataName, UserInfo.EventId, victim.DatabaseId, victim);
         }
     }
 }

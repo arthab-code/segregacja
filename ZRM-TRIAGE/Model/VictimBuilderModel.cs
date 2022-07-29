@@ -58,6 +58,11 @@ namespace ZRM_TRIAGE
                 return this;
             }
 
+            if (triageColor == 0)
+                _victimModel.TextColor = Xamarin.Forms.Color.Red;
+            else
+                _victimModel.TextColor = Xamarin.Forms.Color.Black;
+
             _victimModel.Color = (VictimModel.TriageColor)triageColor;
 
             return this;

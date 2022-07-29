@@ -13,12 +13,12 @@ namespace ZRM_TRIAGE
     public class AmbulanceBuilderModel
     {
         private AmbulanceModel _ambulanceModel;
-        private Database _database;
+        private Database<AmbulanceModel> _database;
 
         public AmbulanceBuilderModel()
         {
             _ambulanceModel = new AmbulanceModel();
-            _database = new Database();
+            _database = new Database<AmbulanceModel>();
         }
 
         public AmbulanceBuilderModel AmbulanceSetNumber(string number)

@@ -39,14 +39,14 @@ namespace ZRM_TRIAGE
 
         public void SaveVictimData(VictimModel victim)
         {
-            _victimRepository.Update(victim, victim);
+            _victimRepository.Update(victim);
         }
 
         public void SaveData(VictimModel victim, AmbulanceModel ambulance, HospitalModel hospital)
         {
-            _victimRepository.Update(victim, victim);
-            _ambulanceRepository.Update(ambulance, ambulance);
-            _hospitalRepository.Update(hospital, hospital);
+            _victimRepository.Update(victim);
+            _ambulanceRepository.Update(ambulance);
+            _hospitalRepository.Update(hospital);
         }
 
         public void CorrectData(VictimModel victim)
@@ -54,7 +54,7 @@ namespace ZRM_TRIAGE
             if (victim.AmbulanceId == null || victim.HospitalId == null)
                 return;
 
-            AmbulanceModel ambulanceCheck = _ambulanceRepository.Search(victim.AmbulanceId);
+            AmbulanceModel ambulanceCheck = _ambulanceRepository.GetAmbulance(victim.AmbulanceId);
             HospitalModel hospitalCheck = _hospitalRepository.Search(victim.HospitalId);
 
             /** DELETE VICTIM FROM VICTIM LIST IN AMBULANCE MODEL **/
@@ -77,8 +77,8 @@ namespace ZRM_TRIAGE
                 }
             }
 
-            _ambulanceRepository.Update(ambulanceCheck, ambulanceCheck);
-            _hospitalRepository.Update(hospitalCheck, hospitalCheck);
+            _ambulanceRepository.Update(ambulanceCheck);
+            _hospitalRepository.Update(hospitalCheck);
 
         }
     }

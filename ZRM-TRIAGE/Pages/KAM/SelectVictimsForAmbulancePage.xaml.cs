@@ -27,7 +27,7 @@ namespace ZRM_TRIAGE
             TransportController transportController = new TransportController();
 
             VictimListXAML.ItemsSource = transportController.GetVictims().Where<VictimModel>(a => a.AmbulanceId == null);
-
+            
         }
 
         private void SelectButtonClicked(object sender, EventArgs e)
@@ -37,7 +37,7 @@ namespace ZRM_TRIAGE
 
             VictimModel victimSelected = VictimListXAML.SelectedItem as VictimModel;
 
-            victimSelected.AmbulanceId = _ambulanceModel.Id;
+            victimSelected.AmbulanceId = _ambulanceModel.DatabaseId;
             victimSelected.Ambulance = _ambulanceModel.Number;
             victimSelected.HospitalId = _ambulanceModel.HospitalId;
             var selectedHospital = _ambulanceModel.SelectedHospital;

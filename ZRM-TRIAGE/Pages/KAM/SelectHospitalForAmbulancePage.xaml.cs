@@ -36,7 +36,7 @@ namespace ZRM_TRIAGE
             HospitalModel hospitalSelected = HospitalListXAML.SelectedItem as HospitalModel;
 
             _ambulanceModel.SelectedHospital = hospitalSelected;
-            _ambulanceModel.HospitalId = hospitalSelected.Id;
+            _ambulanceModel.HospitalId = hospitalSelected.DatabaseId;
 
             _selectHospitalForAmbulanceViewModel.SaveHospital(_ambulanceModel);
 

@@ -15,7 +15,7 @@ namespace ZRM_TRIAGE
 
         public void AddVictim(VictimModel victim)
         {
-            _victimRepository.Update(victim, victim);
+            _victimRepository.Update(victim);
         }
     }
 }

@@ -30,12 +30,12 @@ namespace ZRM_TRIAGE
         {
             ambulance.AmbulanceStatus = status;
 
-            _ambulanceRepository.Update(ambulance, ambulance);
+            _ambulanceRepository.Update(ambulance);
         }
 
         public ObservableCollection<VictimModel> GetVictims()
         {
-            Database db = new Database();
+            Database<VictimModel> db = new Database<VictimModel>();
             ObservableCollection<VictimModel> victims = new ObservableCollection<VictimModel>();
 
             db.GetClient().Child(_victimDbName).Child(UserInfo.EventId).AsObservable<VictimModel>().Subscribe(a =>
@@ -57,12 +57,12 @@ namespace ZRM_TRIAGE
 
         public ObservableCollection<HospitalModel> GetHospital()
         {
-            Database db = new Database();
+            Database<HospitalModel> db = new Database<HospitalModel>();
             ObservableCollection<HospitalModel> hospitals = new ObservableCollection<HospitalModel>();
 
             db.GetClient().Child(_hospitalDbName).Child(UserInfo.EventId).AsObservable<HospitalModel>().Subscribe(a =>
             {
-                if (a.Object.Id == UserInfo.Ambulance.HospitalId)
+                if (a.Object.DatabaseId == UserInfo.Ambulance.HospitalId)
                 {
                     if (hospitals.Contains(a.Object))
                         hospitals[hospitals.IndexOf(a.Object)] = a.Object;

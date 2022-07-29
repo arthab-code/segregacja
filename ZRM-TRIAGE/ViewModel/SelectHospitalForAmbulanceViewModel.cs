@@ -15,7 +15,7 @@ namespace ZRM_TRIAGE
 
         public void SaveHospital(AmbulanceModel ambulance)
         {
-            _ambulanceRepository.Update(ambulance, ambulance);
+            _ambulanceRepository.Update(ambulance);
         }
     }
 }

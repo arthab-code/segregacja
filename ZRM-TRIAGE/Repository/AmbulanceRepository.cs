@@ -9,22 +9,24 @@ using Firebase.Database;
 
 namespace ZRM_TRIAGE
 {
-    public class AmbulanceRepository : IClientRepository<AmbulanceModel>
+    public class AmbulanceRepository 
     {
-        private Database _database;
+        private Database<AmbulanceModel> _database;
         private string _dataName = "Crews";
         public AmbulanceRepository()
         {
-            _database = new Database();
+            _database = new Database<AmbulanceModel>();
         }
 
         public void Add(AmbulanceModel item)
         {
-            var firebaseClient = _database.GetClient().Child(_dataName).Child(UserInfo.EventId).PostAsync(item).Result;
+            /* var firebaseClient = _database.GetClient().Child(_dataName).Child(UserInfo.EventId).PostAsync(item).Result;
 
-            item.Id = firebaseClient.Key;
+             item.DatabaseId = firebaseClient.Key; 
 
-            _database.GetClient().Child(_dataName).Child(UserInfo.EventId).Child(item.Id).PutAsync(item);
+             _database.GetClient().Child(_dataName).Child(UserInfo.EventId).Child(item.DatabaseId).PutAsync(item); */
+
+            _database.Create(_dataName, UserInfo.EventId, item);
 
             LoginCodeModel loginCodeModel = new LoginCodeModel();
             loginCodeModel.LoginCode = item.LoginCode;
@@ -37,13 +39,14 @@ namespace ZRM_TRIAGE
 
         public List<AmbulanceModel> GetAll()
         {
-            var list = _database.GetClient().Child(_dataName).Child(UserInfo.EventId).OnceAsync<AmbulanceModel>().Result;
+            //var list = _database.GetClient().Child(_dataName).Child(UserInfo.EventId).OnceAsync<AmbulanceModel>().Result;
+            var list = _database.ReadAll(_dataName, UserInfo.EventId);
 
             List<AmbulanceModel> ambulanceList = new List<AmbulanceModel>();
 
             foreach (var item in list)
             {
-                ambulanceList.Add(item.Object);
+                ambulanceList.Add(item);
             }
 
             return ambulanceList;
@@ -52,44 +55,25 @@ namespace ZRM_TRIAGE
 
         public void Remove(string ambulanceId)
         {
-            _database.GetClient().Child(_dataName).Child(UserInfo.EventId).Child(ambulanceId).DeleteAsync();
+           // _database.GetClient().Child(_dataName).Child(UserInfo.EventId).Child(ambulanceId).DeleteAsync();
+            _database.Delete(_dataName, UserInfo.EventId, ambulanceId);
         }
 
-        public AmbulanceModel Search(string ambulanceId)
+        public AmbulanceModel GetAmbulance(string ambulanceId)
         {
-            var result = _database.GetClient().Child(_dataName).Child(UserInfo.EventId).Child(ambulanceId).OnceSingleAsync<AmbulanceModel>().Result;
-
+            //var result = _database.GetClient().Child(_dataName).Child(UserInfo.EventId).Child(ambulanceId).OnceSingleAsync<AmbulanceModel>().Result;
+            var result = _database.Read(_dataName, UserInfo.EventId, ambulanceId);
             return result;
         }
 
-        public string SearchKey(string ambulanceNumber)
+
+        public void Update(AmbulanceModel ambulance)
         {
-            var search = _database.GetClient().Child(_dataName).Child(UserInfo.EventId).OnceAsync<AmbulanceModel>().Result;
-
-            string findAmbulanceKey = null;
-
-            foreach (var item in search)
-            {
-                findAmbulanceKey = null;
-
-                if (item.Object.Number == ambulanceNumber)
-                {
-                    findAmbulanceKey = item.Key;
-                    break;
-                }
-            }
-
-            return findAmbulanceKey;
-        }
-
-
-        public void Update(AmbulanceModel oldItem, AmbulanceModel newItem)
-        {
-            _database.GetClient().Child(_dataName).Child(UserInfo.EventId).Child(oldItem.Id).PutAsync(newItem);
+            _database.Update(_dataName, UserInfo.EventId,ambulance.DatabaseId,ambulance);
 
         }
 
-        public Database GetDatabase()
+        public Database<AmbulanceModel> GetDatabase()
         {
             return _database;
         }

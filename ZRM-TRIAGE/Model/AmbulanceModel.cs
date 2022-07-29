@@ -36,7 +36,7 @@ namespace ZRM_TRIAGE
             Victims = new List<VictimModel>();
             this.Number = original.Number;
             this.LoginCode = original.LoginCode;
-            this.Id = original.Id;
+            this.DatabaseId = original.DatabaseId;
             this.Victims = original.Victims;
             this.HospitalId = original.HospitalId;
             this.AmbulanceStatus = original.AmbulanceStatus;

@@ -232,7 +232,7 @@ namespace ZRM_TRIAGE
                 {
                     SetNewValues(ref pointY, ref pagePosition, ref gfx, ref pages, ref document);
                 }
-                List<VictimModel> victims = _victims.Where<VictimModel>(a => a.HospitalId == item.Id).ToList();
+                List<VictimModel> victims = _victims.Where<VictimModel>(a => a.HospitalId == item.DatabaseId).ToList();
 
                   foreach(var victim in victims)
                   {

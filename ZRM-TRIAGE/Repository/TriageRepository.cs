@@ -10,25 +10,27 @@ namespace ZRM_TRIAGE
 {
     public class TriageRepository
     {
-        private Database _database;
+        private Database<TriageModel> _database;
         private string _dataName = "Triage";
         private string _resultId;
 
         public TriageRepository()
         {
-            _database = new Database();
+            _database = new Database<TriageModel>();
         }
 
         public void InitializeDB()
         {
-            _database.GetClient().Child(_dataName).Child(UserInfo.EventId).PostAsync(TriageModel.Instance);
+            //  _database.GetClient().Child(_dataName).Child(UserInfo.EventId).PostAsync(TriageModel.Instance);
+            _database.Create(_dataName, UserInfo.EventId, TriageModel.Instance);
         }
 
         public void GetTriageModel()
         {
-            var result = _database.GetClient().Child(_dataName).Child(UserInfo.EventId).OnceAsync<TriageModel>().Result.FirstOrDefault();
-            _resultId = result.Key;
-            TriageModel.Instance = result.Object;
+            //var result = _database.GetClient().Child(_dataName).Child(UserInfo.EventId).OnceAsync<TriageModel>().Result.FirstOrDefault();
+            var result = _database.Read(_dataName, UserInfo.EventId);
+            _resultId = result.DatabaseId;
+            TriageModel.Instance = result;
         }
 
         public void LoadTriageData(ref Label red, ref Label yellow, ref Label green, ref Label black )
@@ -41,8 +43,9 @@ namespace ZRM_TRIAGE
         }
 
         public void SaveTriageModel()
-        { 
-            _database.GetClient().Child(_dataName).Child(UserInfo.EventId).Child(_resultId).PutAsync(TriageModel.Instance);
+        {
+            //_database.GetClient().Child(_dataName).Child(UserInfo.EventId).Child(_resultId).PutAsync(TriageModel.Instance);
+            _database.Update(_dataName, UserInfo.EventId, _resultId, TriageModel.Instance);
         }
 
         public void NumberRed(int value)

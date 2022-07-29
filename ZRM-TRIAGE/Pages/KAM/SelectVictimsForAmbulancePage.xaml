@@ -38,9 +38,8 @@
                                 <DataTemplate>
                                     <ViewCell>
                                         <StackLayout Orientation="Horizontal">
-                                        <Label HorizontalOptions="Center" VerticalOptions="Center" Text="{Binding Name}" />
-                                   
-                                        <Label HorizontalOptions="Center" VerticalOptions="Center" Text="{Binding Surname}" />
+                                            <Label TextColor="{Binding TextColor}" HorizontalOptions="Center" VerticalOptions="Center" Text="{Binding Name}" />
+                                            <Label TextColor="{Binding TextColor}" HorizontalOptions="Center" VerticalOptions="Center" Text="{Binding Surname}" />
                                         </StackLayout>
                                     </ViewCell>
                                 </DataTemplate>
