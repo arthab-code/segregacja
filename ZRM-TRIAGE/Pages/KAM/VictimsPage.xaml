@@ -37,7 +37,7 @@
 
                 <Grid Padding="30" Grid.Row="0"  Grid.Column="1" Grid.RowSpan="5" Grid.ColumnSpan="6" Background="form_panel.png">
                     <ScrollView >
-                        <ListView x:Name="RedVictimsList" BackgroundColor="#F8FDF8" ItemTapped="RedVictimsListShowVictim">
+                        <ListView x:Name="RedVictimsList" Style="{StaticResource ListViewStyle}" ItemTapped="RedVictimsListShowVictim">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <ViewCell>
@@ -82,7 +82,7 @@
 
                 <Grid Padding="30" Grid.Row="0"  Grid.Column="1" Grid.RowSpan="5" Grid.ColumnSpan="6" Background="form_panel.png">
                     <ScrollView>
-                        <ListView HorizontalOptions="Center" x:Name="YellowVictimsList" BackgroundColor="#F8FDF8" ItemTapped="YellowVictimsListShowVictim">
+                        <ListView HorizontalOptions="Center" x:Name="YellowVictimsList" Style="{StaticResource ListViewStyle}" ItemTapped="YellowVictimsListShowVictim">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <ViewCell>
@@ -126,7 +126,7 @@
 
                 <Grid Padding="30" Grid.Row="0"  Grid.Column="1" Grid.RowSpan="5" Grid.ColumnSpan="6" Background="form_panel.png">
                     <ScrollView>
-                        <ListView HorizontalOptions="Center" x:Name="GreenVictimsList" BackgroundColor="#F8FDF8" ItemTapped="GreenVictimsListShowVictim">
+                        <ListView HorizontalOptions="Center" x:Name="GreenVictimsList" Style="{StaticResource ListViewStyle}" ItemTapped="GreenVictimsListShowVictim">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <ViewCell >
@@ -170,7 +170,7 @@
 
                 <Grid Padding="30" Grid.Row="0"  Grid.Column="1" Grid.RowSpan="5" Grid.ColumnSpan="6" Background="form_panel.png">
                     <ScrollView>
-                        <ListView HorizontalOptions="Center" x:Name="BlackVictimsList" BackgroundColor="#F8FDF8" ItemTapped="BlackVictimsListShowVictim">
+                        <ListView HorizontalOptions="Center" x:Name="BlackVictimsList" Style="{StaticResource ListViewStyle}" ItemTapped="BlackVictimsListShowVictim">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <ViewCell>

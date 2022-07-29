@@ -64,12 +64,38 @@ namespace ZRM_TRIAGE
             {
                 PercentFrostbite.Text = _victimModel.Injuries.PercentFrostbite.ToString();
             }
+
+            VictimStatusChange();
+
         }
 
+        private void VictimStatusChange()
+        {
+            AmbulanceRepository ambulanceRepository = new AmbulanceRepository();
+
+            AmbulanceModel ambulance = ambulanceRepository.GetAmbulance(_victimModel.AmbulanceId);
+
+            if (ambulance == null) return;
+
+            if (ambulance.AmbulanceStatus == AmbulanceModel.Status.AtLocation)
+                VictimStatus.Text = "NA MIEJSCU";
+            if (ambulance.AmbulanceStatus == AmbulanceModel.Status.Transport)
+                VictimStatus.Text = "TRANSPORT DO SZPITALA";
+            if (ambulance.AmbulanceStatus == AmbulanceModel.Status.Hospital)
+                VictimStatus.Text = "W SZPITALU";
+        }
 
         private async void UpdateVictimButtonClicked(object sender, EventArgs e)
         {
-            VictimModel victim = new VictimModel();
+            VictimModel victim = new VictimBuilderModel()
+                .SetVictimName(VictimName.Text)
+                .SetVictimSurname(VictimSurname.Text)
+                .SetVictimCity(VictimCity.Text)
+                .SetVictimStreet(VictimStreet.Text)
+                .SetVictimTriageColor(VictimTriageColor.SelectedIndex)
+                .SetVictimBirthDate(VictimBirth.Date)
+                .SetIsTransported(_victimModel.IsTransported)
+                .Build();
 
             ShowHospitalViewModel showHospitalViewModel = new ShowHospitalViewModel();
 
@@ -114,13 +140,13 @@ namespace ZRM_TRIAGE
             }
 
             victim.DatabaseId = _victimModel.DatabaseId;
-            victim.Name = VictimName.Text;
+           /* victim.Name = VictimName.Text;
             victim.Surname = VictimSurname.Text;
             victim.City = VictimCity.Text;
             victim.Street = VictimStreet.Text;
             victim.Color = (VictimModel.TriageColor)VictimTriageColor.SelectedIndex;
             victim.BirthDate = VictimBirth.Date;
-            victim.IsTransported = _victimModel.IsTransported;
+            victim.IsTransported = _victimModel.IsTransported; */
             victim.Hospital = _victimModel.Hospital;
             victim.HospitalId = _victimModel.HospitalId;
             victim.Ambulance = _victimModel.Ambulance;
@@ -138,7 +164,6 @@ namespace ZRM_TRIAGE
             victim.Injuries.LeftArm = LeftArmInjury.IsChecked;
             victim.Injuries.RightArm = RightArmInjury.IsChecked;
             victim.Injuries.Burn = BurnInjury.IsChecked;
-
 
             _showVictimViewModel.UpdateVictim(victim);
 

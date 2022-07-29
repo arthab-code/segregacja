@@ -33,7 +33,7 @@
                 <ScrollView Padding="10">
                     <StackLayout HorizontalOptions="Center" Padding="10">
                         <!-- <Button Text="WYBIERZ" Style="{StaticResource StandardButton}" Clicked="SelectButtonClicked"/> -->
-                        <ListView x:Name="HospitalListXAML" BackgroundColor="#F8FDF8" ItemTapped="SelectButtonClicked">
+                        <ListView x:Name="HospitalListXAML" Style="{StaticResource ListViewStyle}" ItemTapped="SelectButtonClicked">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <ViewCell>

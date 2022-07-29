@@ -35,7 +35,7 @@
 
             <Grid Grid.Row="1"  Grid.Column="1" Grid.RowSpan="4" Grid.ColumnSpan="6" Background="form_panel.png">
                 <ScrollView Padding="10">
-                    <ListView x:Name="HospitalListXAML" BackgroundColor="#F8FDF8" ItemTapped="HospitalInfoButtonClicked">
+                    <ListView x:Name="HospitalListXAML" Style="{StaticResource ListViewStyle}" ItemTapped="HospitalInfoButtonClicked">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>

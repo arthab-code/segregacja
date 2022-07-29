@@ -57,6 +57,11 @@
                 <Setter Property="VerticalOptions" Value="Center"/>
                 <Setter Property="BackgroundColor" Value="#F0F7F0"/>
             </Style>
+            <Style TargetType="ListView" x:Key="ListViewStyle">
+                <Setter Property="BackgroundColor"  Value="#F8FDF8"/>
+                <Setter Property="RefreshControlColor" Value="#F0F7F0"/>
+                <Setter Property="VerticalScrollBarVisibility" Value="Always"/>
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

@@ -23,7 +23,7 @@ namespace ZRM_TRIAGE
         public string Surname { get; set; }
         public string EventId { get; set; }
         public TriageColor Color { get; set; }
-        public Xamarin.Forms.Color TextColor { get; set; }
+        public string TextColor { get; set; }
         public string City { get; set; }
         public string Street { get; set; }
         public DateTime BirthDate { get; set; }

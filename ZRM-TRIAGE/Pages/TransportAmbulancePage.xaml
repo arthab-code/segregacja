@@ -58,13 +58,13 @@
                 <StackLayout HorizontalOptions="Center" VerticalOptions="Center" Padding="10">
                     <Label HorizontalOptions="Center" Padding="10" FontSize="Default" x:Name="Subtitle"/>
                     <Label Text="Poszkodowani"/>
-                    <ListView  x:Name="VictimsList" BackgroundColor="#F8FDF8" ItemTapped="VictimsListShowVictim">
+                    <ListView  x:Name="VictimsList" Style="{StaticResource ListViewStyle}" ItemTapped="VictimsListShowVictim">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
                                     <StackLayout Padding="10" Orientation="Horizontal">
-                                        <Label  HorizontalOptions="Center" VerticalOptions="Center" Text="{Binding Name}"/>
-                                        <Label  HorizontalOptions="Center" VerticalOptions="Center" Text="{Binding Surname}"/>
+                                        <Label TextColor="{Binding TextColor}" HorizontalOptions="Center" VerticalOptions="Center" Text="{Binding Name}"/>
+                                        <Label TextColor="{Binding TextColor}" HorizontalOptions="Center" VerticalOptions="Center" Text="{Binding Surname}"/>
                                     </StackLayout>
                                 </ViewCell>
                             </DataTemplate>

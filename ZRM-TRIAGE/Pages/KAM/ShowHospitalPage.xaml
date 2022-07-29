@@ -48,13 +48,13 @@
                         <Label Text="ULICA*"/>
                         <Entry x:Name="HospitalStreet" BackgroundColor="#F8FDF8"/>
                         <Label Text="PACJENCI:"/>
-                        <ListView x:Name="VictimListXAML" BackgroundColor="#F8FDF8" ItemTapped="VictimsListXAMLItemTapped">
+                        <ListView x:Name="VictimListXAML" Style="{StaticResource ListViewStyle}" ItemTapped="VictimsListXAMLItemTapped">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <ViewCell>
                                         <StackLayout  Orientation="Horizontal">
-                                            <Label HorizontalOptions="Center" VerticalOptions="Center" Text="{Binding Name}" />
-                                            <Label HorizontalOptions="Center" VerticalOptions="Center" Text="{Binding Surname}" />
+                                            <Label TextColor="{Binding TextColor}" HorizontalOptions="Center" VerticalOptions="Center" Text="{Binding Name}" />
+                                            <Label TextColor="{Binding TextColor}" HorizontalOptions="Center" VerticalOptions="Center" Text="{Binding Surname}" />
                                         </StackLayout>
                                     </ViewCell>
                                 </DataTemplate>

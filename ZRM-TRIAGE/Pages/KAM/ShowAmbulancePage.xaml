@@ -110,13 +110,13 @@
                             <Label Text="Transportowani poszkodowani:"/>
                             <Button Text="DODAJ" Style="{StaticResource StandardButton}" Clicked="SelectVictimButtonClicked"/>
                             <Button Text="USUŃ" Style="{StaticResource StandardButton}" Clicked="DeleteVictimButtonClicked" />
-                            <ListView x:Name="VictimListXAML" BackgroundColor="#F8FDF8">
+                            <ListView x:Name="VictimListXAML" Style="{StaticResource ListViewStyle}">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <ViewCell>
                                             <StackLayout  Orientation="Horizontal">
-                                                <Label HorizontalOptions="Center" VerticalOptions="Center" Text="{Binding Name}" />
-                                                <Label HorizontalOptions="Center" VerticalOptions="Center" Text="{Binding Surname}" />
+                                                <Label TextColor="{Binding TextColor}" HorizontalOptions="Center" VerticalOptions="Center" Text="{Binding Name}" />
+                                                <Label TextColor="{Binding TextColor}" HorizontalOptions="Center" VerticalOptions="Center" Text="{Binding Surname}" />
                                             </StackLayout>
                                         </ViewCell>
                                     </DataTemplate>
