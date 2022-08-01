@@ -20,6 +20,9 @@ namespace ZRM_TRIAGE
         {          
             InitializeComponent();
             _ambulance = ambulance;
+
+            if (UserInfo.Ambulance.AmbulanceFunction != AmbulanceModel.Function.Major)
+                DeleteAmbulanceButton.IsVisible = false;
         }
 
         private void TargetHospitalUpdate()

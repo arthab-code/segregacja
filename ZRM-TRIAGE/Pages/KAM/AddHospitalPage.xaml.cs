@@ -18,27 +18,32 @@ namespace ZRM_TRIAGE
         }
 
         private async void PassAddHospitalButtonClicked(object sender, EventArgs e)
-        {           
-
-            HospitalBuilderModel hospitalBuilder = new HospitalBuilderModel();
-
-            HospitalModel hospital = new HospitalModel();
-
-                 hospital =  hospitalBuilder.HospitalNameSet(HospitalName.Text)
-                .HospitalCitySet(City.Text)
-                .HospitalStreetSet(Street.Text)
-                .Build();
-
-            if (!hospitalBuilder.IsCreate)
+        {
+            try
             {
-                await DisplayAlert("Błąd dodawania szpitala!",hospitalBuilder.CreateText,"OK");
-                return;
+                HospitalBuilderModel hospitalBuilder = new HospitalBuilderModel();
+
+                HospitalModel hospital = new HospitalModel();
+
+                hospital = hospitalBuilder.HospitalNameSet(HospitalName.Text)
+               .HospitalCitySet(City.Text)
+               .HospitalStreetSet(Street.Text)
+               .Build();
+
+                if (!hospitalBuilder.IsCreate)
+                {
+                    await DisplayAlert("Błąd dodawania szpitala!", hospitalBuilder.CreateText, "OK");
+                    return;
+                }
+
+                HospitalAddViewModel hospitalAddViewModel = new HospitalAddViewModel();
+                hospitalAddViewModel.AddHospital(hospital);
+
+                await App.Current.MainPage.Navigation.PopAsync();
+            }catch
+            {
+                await Navigation.PushAsync(new DatabaseErrorPage("SZPITAL"));
             }
-
-            HospitalAddViewModel hospitalAddViewModel = new HospitalAddViewModel();
-            hospitalAddViewModel.AddHospital(hospital);
-
-            await App.Current.MainPage.Navigation.PopAsync();
 
         }
     }

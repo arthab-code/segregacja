@@ -15,9 +15,20 @@ namespace ZRM_TRIAGE
         private TriagePageViewModel _triagePageViewModel;
         public TriagePage()
         {
+
             InitializeComponent();
-            _triagePageViewModel = new TriagePageViewModel();
-            _triagePageViewModel.RefreshTriageData(ref RedInfo, ref YellowInfo, ref GreenInfo, ref BlackInfo);
+
+            try
+            {
+                _triagePageViewModel = new TriagePageViewModel();
+                _triagePageViewModel.RefreshTriageData(ref RedInfo, ref YellowInfo, ref GreenInfo, ref BlackInfo);
+            }
+            catch
+            {
+                Navigation.PushAsync(new DatabaseErrorPage("Triage"));
+                return;
+            }
+
         }
 
         private void RedDecClicked(object sender, EventArgs e)

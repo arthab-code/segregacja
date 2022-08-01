@@ -22,6 +22,7 @@ namespace ZRM_TRIAGE
         {
             // _database.GetClient().Child(_dataName).Child(item.EventNumber).PostAsync(item);
             _databaseEventModel.Create(_dataName, item.EventNumber, item);
+
         }
 
         public EventModel Search(string eventId)
@@ -29,6 +30,7 @@ namespace ZRM_TRIAGE
             //var search = (_database.GetClient().Child(_dataName).Child(eventId).OnceAsync<EventModel>().Result).FirstOrDefault();
 
             EventModel search = _databaseEventModel.Read(_dataName, eventId);
+            if (search == null) return null;
 
             EventModel findEvent = null;
 

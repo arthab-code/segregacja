@@ -13,82 +13,181 @@ namespace ZRM_TRIAGE
         private string _connectionString = "https://zrm-triage-test-bc88f-default-rtdb.europe-west1.firebasedatabase.app/";
         private FirebaseClient _fbClient;
 
+
+        public bool IsConnected { get; private set; }
+
         public Database()
         {
-            _fbClient = new FirebaseClient(_connectionString);
+            
+            IsConnected = true;
+            
+
+            try
+            {
+                _fbClient = new FirebaseClient(_connectionString);
+
+            } catch (Exception e)
+            {
+                DatabaseError.Show("1");
+            }
         }
 
         public void Create(string dbName, string eventId, T record)
         {
-            var obj = GetClient().Child(dbName).Child(eventId).PostAsync(record).Result;
+            try
+            {
+                var obj = GetClient().Child(dbName).Child(eventId).PostAsync(record).Result;
 
-            var recordKey = obj.Key;
+                var recordKey = obj.Key;
 
-            var componentObject = record as Component;
-            componentObject.DatabaseId = recordKey;
+                var componentObject = record as Component;
+                componentObject.DatabaseId = recordKey;
 
-            GetClient().Child(dbName).Child(eventId).Child(recordKey).PutAsync(componentObject);
+                GetClient().Child(dbName).Child(eventId).Child(recordKey).PutAsync(componentObject);
+
+            }catch(Exception e)
+            {
+                DatabaseError.Show("2");
+            }
         }
 
         public void Create(string dbName,  T record)
         {
-            var obj = GetClient().Child(dbName).PostAsync(record).Result;
+            try
+            {
+                var obj = GetClient().Child(dbName).PostAsync(record).Result;
 
-            var recordKey = obj.Key;
+                var recordKey = obj.Key;
 
-            var componentObject = record as Component;
-            componentObject.DatabaseId = recordKey;
+                var componentObject = record as Component;
+                componentObject.DatabaseId = recordKey;
 
-            GetClient().Child(dbName).Child(recordKey).PutAsync(componentObject);
+                GetClient().Child(dbName).Child(recordKey).PutAsync(componentObject);
+
+            }catch(Exception e)
+            {
+                DatabaseError.Show("3");
+            }
         }
 
         public void Delete(string dbName, string eventId, string recordKey)
         {
-            GetClient().Child(dbName).Child(eventId).Child(recordKey).DeleteAsync();
+            try
+            {
+                GetClient().Child(dbName).Child(eventId).Child(recordKey).DeleteAsync();
+            }catch (Exception e)
+            {
+                DatabaseError.Show("4");
+            }
         }
 
         public void Delete(string dbName, string eventId)
         {
-            GetClient().Child(dbName).Child(eventId).DeleteAsync();
+            try
+            {
+                GetClient().Child(dbName).Child(eventId).DeleteAsync();
+            }
+            catch (Exception e)
+            {
+                DatabaseError.Show("5");
+            }
         }
 
         public T Read(string dbName, string eventId, string recordKey)
         {
-            var tmp = GetClient().Child(dbName).Child(eventId).Child(recordKey).OnceSingleAsync<T>().Result;
+            try
+            {
+                var tmp = GetClient().Child(dbName).Child(eventId).Child(recordKey).OnceSingleAsync<T>().Result;
 
-            return tmp;
+                return tmp;
+
+            } catch (Exception e)
+            {
+                DatabaseError.Show("6");
+                return null;
+            }
         }
 
         public T Read(string dbName, string eventId)
         {
-            var tmp = GetClient().Child(dbName).Child(eventId).OnceAsync<T>().Result.FirstOrDefault();
+            try
+            {
+                var tmp = GetClient().Child(dbName).Child(eventId).OnceAsync<T>().Result.FirstOrDefault();
 
-            return tmp.Object;
+                return tmp.Object;
+
+            }catch (Exception e)
+            {
+                DatabaseError.Show("7");
+                return null;
+            }
         }
 
         public T Read(string dbName)
         {
-            var tmp =  GetClient().Child(dbName).OnceAsync<T>().Result.FirstOrDefault();
+            try
+            {
+                var tmp = GetClient().Child(dbName).OnceAsync<T>().Result.FirstOrDefault();
 
-            return tmp?.Object;
+                return tmp?.Object;
+            } catch (Exception e)
+            {
+                DatabaseError.Show("8");
+                return null;
+            }
         }
 
 
         public List<T> ReadAll(string dbName, string eventId)
         {
-            List<T> values = new List<T>();
+            try
+            {
+                List<T> values = new List<T>();
 
-            var tmp = GetClient().Child(dbName).Child(eventId).OnceAsync<T>().Result.ToList();
+                var tmp = GetClient().Child(dbName).Child(eventId).OnceAsync<T>().Result.ToList();
 
-            foreach (var item in tmp)
-                values.Add(item.Object);
+                foreach (var item in tmp)
+                    values.Add(item.Object);
 
-            return values;
+                return values;
+
+            } catch (Exception e)
+            {
+                DatabaseError.Show("9");
+                return new List<T>();
+            }
+        }
+
+        public List<T> ReadAll(string dbName)
+        {
+            try
+            {
+                List<T> values = new List<T>();
+
+                var tmp = GetClient().Child(dbName).OnceAsync<T>().Result.ToList();
+
+                foreach (var item in tmp)
+                    values.Add(item.Object);
+
+                return values;
+
+            }
+            catch (Exception e)
+            {
+                DatabaseError.Show("10");
+                return new List<T>();
+            }
         }
 
         public void Update(string dbName, string eventId, string recordKey, T record)
         {
-            GetClient().Child(dbName).Child(eventId).Child(recordKey).PutAsync(record);
+            try
+            {
+                GetClient().Child(dbName).Child(eventId).Child(recordKey).PutAsync(record);
+            }catch(Exception e)
+            {
+                DatabaseError.Show("11");
+            }
         }
 
         public FirebaseClient GetClient() => _fbClient;

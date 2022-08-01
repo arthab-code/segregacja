@@ -28,9 +28,11 @@ namespace ZRM_TRIAGE
         public void GetTriageModel()
         {
             //var result = _database.GetClient().Child(_dataName).Child(UserInfo.EventId).OnceAsync<TriageModel>().Result.FirstOrDefault();
-            var result = _database.Read(_dataName, UserInfo.EventId);
-            _resultId = result.DatabaseId;
-            TriageModel.Instance = result;
+                var result = _database.Read(_dataName, UserInfo.EventId);
+                if (result == null) return;
+                _resultId = result.DatabaseId;
+                TriageModel.Instance = result;
+
         }
 
         public void LoadTriageData(ref Label red, ref Label yellow, ref Label green, ref Label black )

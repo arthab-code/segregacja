@@ -37,7 +37,13 @@ namespace ZRM_TRIAGE
 
             if(addAmbulanceViewModel.CheckAmbulanceFunctionExists(ambulanceFunction))
             {
-                await DisplayAlert("Bład", "Ta funkcja zostałą już przydzielona innemu zespołowi", "OK");
+                await DisplayAlert("Bład", "Ta funkcja została już przydzielona innemu zespołowi", "OK");
+                return;
+            }
+
+            if (!addAmbulanceViewModel.CheckChiefPersonalData(ChiefName.Text, ChiefSurname.Text))
+            {
+                await DisplayAlert("Bład", "Podaj imię i nazwisko kierownika zespołu", "OK");
                 return;
             }
 

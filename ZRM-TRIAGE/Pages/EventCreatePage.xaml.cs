@@ -32,6 +32,13 @@ namespace ZRM_TRIAGE
                 return;
             }
 
+            if (!evM.CheckChiefPersonalData(ChiefName.Text, ChiefSurname.Text))
+            {
+                    await DisplayAlert("Błąd", "Uzupełnij imię i nazwisko kierownika zespołu", "OK");
+
+                    return;
+            }
+
         /*    if (evM.CheckEventExists(EventName.Text))
             {
                 await DisplayAlert("Błąd", "Użyj innej nazwy zdarzenie - ta nazwa juz jest wykorzystywana", "OK");
@@ -54,7 +61,7 @@ namespace ZRM_TRIAGE
 
             } catch (Exception ex)
             {
-                await DisplayAlert("Connection Database Error","Nie można połączyć się z bazą danych, skontaktuj się z administratorem\n"+ex.Message, "OK");
+                await Navigation.PushAsync(new DatabaseErrorPage(ex.Message));
                 return;
             }
 

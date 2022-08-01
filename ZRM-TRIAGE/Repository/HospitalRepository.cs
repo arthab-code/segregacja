@@ -25,6 +25,7 @@ namespace ZRM_TRIAGE
             _database.Create(_dataName, UserInfo.EventId, item);
 
 
+
         }
 
         public List<HospitalModel> GetAll()

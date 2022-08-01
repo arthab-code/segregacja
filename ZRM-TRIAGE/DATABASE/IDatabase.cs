@@ -21,6 +21,8 @@ namespace ZRM_TRIAGE
 
         List<T> ReadAll(string dbName, string eventId);
 
+        List<T> ReadAll(string dbName);
+
         void Delete(string dbName, string eventId, string recordKey);
 
         void Delete(string dbName, string eventId);

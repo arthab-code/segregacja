@@ -42,9 +42,9 @@ public partial class KAMPage : ContentPage
             await Navigation.PushAsync(new AmbulanceListPage());
         }
 
-        private async void TriageButtonClicked(object sender, EventArgs e)
+        private void TriageButtonClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new TriagePage());
+             Navigation.PushAsync(new TriagePage());
         }
 
         private async void VictimsButtonClicked(object sender, EventArgs e)

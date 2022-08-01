@@ -19,7 +19,7 @@ namespace ZRM_TRIAGE
         }
         protected override void OnAppearing()
         {
-            AutoLogin();
+            AutoLogin();                
         }
 
         protected override bool OnBackButtonPressed()
@@ -34,35 +34,44 @@ namespace ZRM_TRIAGE
 
         private async void LoginProcess(string loginTxt, string _event)
         {
-            MainLoginProcess mLp = new MainLoginProcess(loginTxt);
 
-            var ambulance = mLp.RetrieveAmbulance(_event);
+                MainLoginProcess mLp = new MainLoginProcess(loginTxt);
 
-            FileSystem fs = new FileSystem();
+                var ambulance = mLp.RetrieveAmbulance(_event);
 
-            string eventId = _event;
-            string loginCode = loginTxt;
+                if (ambulance == null)
+                {
+                UserInfo.SetEventId("0");
+                UserInfo.SetAmbulanceNumber(null);
+                UserInfo.SetAmbulance(null);
+                return;
+               }
 
-            UserInfo.SetEventId(eventId);
-            UserInfo.SetAmbulanceNumber(loginCode);
-            UserInfo.SetAmbulance(ambulance);
+                FileSystem fs = new FileSystem();
 
-            switch (ambulance.AmbulanceFunction)
-            {
-                case AmbulanceModel.Function.Major:
-                    await Navigation.PushAsync(new KAMPage());
-                    break;
+                string eventId = _event;
+                string loginCode = loginTxt;
 
-                case AmbulanceModel.Function.Red:
-                case AmbulanceModel.Function.Yellow:
-                case AmbulanceModel.Function.Green:
-                    await Navigation.PushAsync(new ChiefAreaPage(ambulance));
-                    break;
+                UserInfo.SetEventId(eventId);
+                UserInfo.SetAmbulanceNumber(loginCode);
+                UserInfo.SetAmbulance(ambulance);
 
-                case AmbulanceModel.Function.Transport:
-                    await Navigation.PushAsync(new TransportAmbulancePage());
-                    break;
-            }
+                switch (ambulance.AmbulanceFunction)
+                {
+                    case AmbulanceModel.Function.Major:
+                        await Navigation.PushAsync(new KAMPage());
+                        break;
+
+                    case AmbulanceModel.Function.Red:
+                    case AmbulanceModel.Function.Yellow:
+                    case AmbulanceModel.Function.Green:
+                        await Navigation.PushAsync(new ChiefAreaPage(ambulance));
+                        break;
+
+                    case AmbulanceModel.Function.Transport:
+                        await Navigation.PushAsync(new TransportAmbulancePage());
+                        break;
+                }
 
         }
 

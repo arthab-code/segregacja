@@ -8,26 +8,26 @@ namespace ZRM_TRIAGE
 {
     public class MainLoginProcess
     {
-        private Database<LoginCodeModel> _database;
         private string _loginCode;
         private string _eventId;
 
         public MainLoginProcess(string loginCode)
         {
-            _database = new Database<LoginCodeModel>();
             _loginCode = loginCode;
 
         }
 
         public bool IsLocalizedLoginCode()
         {
-            var search = _database.GetClient().Child("LoginCodes").OnceAsync<LoginCodeModel>().Result;
+            Database<LoginCodeModel> databaseLoginCodeModel = new Database<LoginCodeModel>();
+            //var search = _database.GetClient().Child("LoginCodes").OnceAsync<LoginCodeModel>().Result;
+            var search = databaseLoginCodeModel.ReadAll("LoginCodes");
 
             foreach(var item in search)
             {
-                if (item.Object.LoginCode == _loginCode)
+                if (item.LoginCode == _loginCode)
                 {
-                    _eventId = item.Object.EventId;
+                    _eventId = item.EventId;
                     return true;
                 }
             }
@@ -37,15 +37,19 @@ namespace ZRM_TRIAGE
 
             public AmbulanceModel.Function RetrieveAmbulanceFunction(string eventId)
             {
-                var search = _database.GetClient().Child("Crews").Child(eventId).OnceAsync<AmbulanceModel>().Result;
+
+            Database<AmbulanceModel> databaseAmbulanceModel = new Database<AmbulanceModel>();
+
+            //  var search = _database.GetClient().Child("Crews").Child(eventId).OnceAsync<AmbulanceModel>().Result;
+            var search = databaseAmbulanceModel.ReadAll("Crews", eventId);
 
                 AmbulanceModel.Function function = AmbulanceModel.Function.Transport;
 
                 foreach(var item in search)
                 {
-                    if (item.Object.LoginCode == _loginCode)
+                    if (item.LoginCode == _loginCode)
                     {
-                        function = item.Object.AmbulanceFunction;
+                        function = item.AmbulanceFunction;
                         break;
                     }
                 }
@@ -55,15 +59,16 @@ namespace ZRM_TRIAGE
 
         public AmbulanceModel RetrieveAmbulance(string eventId)
         {
-            var search = _database.GetClient().Child("Crews").Child(eventId).OnceAsync<AmbulanceModel>().Result;
-
+            Database<AmbulanceModel> databaseAmbulanceModel = new Database<AmbulanceModel>();
+            // var search = _database.GetClient().Child("Crews").Child(eventId).OnceAsync<AmbulanceModel>().Result;
+            var search = databaseAmbulanceModel.ReadAll("Crews", eventId);
             AmbulanceModel ambulance = null;
 
             foreach (var item in search)
             {
-                if (item.Object.LoginCode == _loginCode)
+                if (item.LoginCode == _loginCode)
                 {
-                    ambulance = item.Object;
+                    ambulance = item;
                     break;
                 }
             }

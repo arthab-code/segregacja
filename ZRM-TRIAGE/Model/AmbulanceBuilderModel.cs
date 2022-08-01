@@ -78,14 +78,16 @@ namespace ZRM_TRIAGE
         {
             bool isExists = false;
 
-            var thisSame = _database.GetClient()
-                .Child("Crews")
-                .Child(UserInfo.EventId)
-                .OnceAsync<AmbulanceModel>().Result;
+            /*  var thisSame = _database.GetClient()
+                  .Child("Crews")
+                  .Child(UserInfo.EventId)
+                  .OnceAsync<AmbulanceModel>().Result; */
+
+            var thisSame = _database.ReadAll("Crews", UserInfo.EventId);
 
             foreach (var item in thisSame)
             {
-                if (item.Object.LoginCode == loginCode && isExists == false)
+                if (item.LoginCode == loginCode && isExists == false)
                 {
                     isExists = true;
                     break;

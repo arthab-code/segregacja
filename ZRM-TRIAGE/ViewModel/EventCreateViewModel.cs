@@ -46,6 +46,14 @@ namespace ZRM_TRIAGE
             return isExists;
         }
 
+        public bool CheckChiefPersonalData(string name, string surname)
+        {
+            if (name == null || name == " " || surname == null || surname == " ")
+                return false;
+            else
+                return true;
+        }
+
         public void AddEventToDatabase()
         {
             EventModel newEvent = new EventModel();

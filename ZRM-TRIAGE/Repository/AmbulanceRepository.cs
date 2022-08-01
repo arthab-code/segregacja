@@ -57,12 +57,14 @@ namespace ZRM_TRIAGE
         {
            // _database.GetClient().Child(_dataName).Child(UserInfo.EventId).Child(ambulanceId).DeleteAsync();
             _database.Delete(_dataName, UserInfo.EventId, ambulanceId);
+
         }
 
         public AmbulanceModel GetAmbulance(string ambulanceId)
         {
             //var result = _database.GetClient().Child(_dataName).Child(UserInfo.EventId).Child(ambulanceId).OnceSingleAsync<AmbulanceModel>().Result;
             var result = _database.Read(_dataName, UserInfo.EventId, ambulanceId);
+
             return result;
         }
 

@@ -28,6 +28,14 @@ namespace ZRM_TRIAGE
             return _ambulanceViewModel.CheckAmbulanceExists(ambulanceNumber);
         }
 
+        public bool CheckChiefPersonalData(string name, string surname)
+        {
+            if (name == null || name == " " || surname == null || surname == " ")
+                return false;
+            else
+                return true;
+        }
+
         public bool CheckAmbulanceFunctionExists(AmbulanceModel.Function function)
         {
             return _ambulanceViewModel.CheckAmbulanceFunctionExists(function);

@@ -64,7 +64,7 @@
                         </Picker>
                         <StackLayout Orientation="Horizontal">
                             <Button Text="EDYTUJ" Style="{StaticResource StandardButton}" Clicked="UpdateButtonClicked" />
-                            <Button Text="USUŃ" Style="{StaticResource StandardButton}" Clicked="DeleteAmbulanceClicked"/>
+                            <Button x:Name="DeleteAmbulanceButton" Text="USUŃ" Style="{StaticResource StandardButton}" Clicked="DeleteAmbulanceClicked"/>
                         </StackLayout>
                     </StackLayout>
                 </ScrollView>
