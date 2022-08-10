@@ -22,7 +22,10 @@ namespace ZRM_TRIAGE
             _ambulance = ambulance;
 
             if (UserInfo.Ambulance.AmbulanceFunction != AmbulanceModel.Function.Major)
+            {
                 DeleteAmbulanceButton.IsVisible = false;
+                EditAmbulanceButton.IsVisible = false;
+            }
         }
 
         private void TargetHospitalUpdate()
@@ -146,11 +149,12 @@ namespace ZRM_TRIAGE
                 return;
 
             VictimModel victimModel = VictimListXAML.SelectedItem as VictimModel;
-
+            victimModel.ToDeleteWhenSubscribe = victimModel.AmbulanceId;
             victimModel.AmbulanceId = null;
             victimModel.Ambulance = null;
             victimModel.HospitalId = null;
             victimModel.Hospital = null;
+           
 
             VictimRepository victimRepository = new VictimRepository();
 
@@ -176,6 +180,16 @@ namespace ZRM_TRIAGE
             _ambulance.HospitalId = null;
             _ambulance.HospitalName = null;
             _ambulance.SelectedHospital = null;
+
+            if (UserInfo.Ambulance.LoginCode == _ambulance.LoginCode)
+            {
+                UserInfo.Ambulance.HospitalId = null;
+                UserInfo.Ambulance.HospitalName = null;
+                UserInfo.Ambulance.SelectedHospital = null;
+            }
+
+            AmbulanceRepository ar = new AmbulanceRepository();
+            ar.Update(_ambulance);
 
             TargetHospitalUpdate();
         }

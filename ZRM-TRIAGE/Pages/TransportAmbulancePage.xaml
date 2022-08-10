@@ -26,7 +26,7 @@
                 <ColumnDefinition Width="2"/>
             </Grid.ColumnDefinitions>
 
-            <Grid x:Name="TriageBar" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="8" Grid.RowSpan="1" HorizontalOptions="Center" VerticalOptions="Center">
+        <!--    <Grid x:Name="TriageBar" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="8" Grid.RowSpan="1" HorizontalOptions="Center" VerticalOptions="Center">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition/>
@@ -49,11 +49,11 @@
                     <Image Grid.Row="1" Grid.Column="1" Source="black_info_panel.png" Aspect="Fill"/>
                     <Label x:Name="BlackAmount" Grid.Row="1" Grid.Column="1" Text="0" Style="{StaticResource TriageInfo}"/>
                 </Grid>
-            </Grid>
+            </Grid> -->
 
-            <Image Source="form_panel.png" Grid.Row="1" Grid.Column="1" Grid.RowSpan="5" Grid.ColumnSpan="6" Aspect="Fill"></Image>
+            <Image Source="form_panel.png" Grid.Row="0" Grid.Column="1" Grid.RowSpan="6" Grid.ColumnSpan="6" Aspect="Fill"></Image>
 
-            <Grid Grid.Row="1"  Grid.Column="1" Grid.RowSpan="5" Grid.ColumnSpan="6" Background="form_panel.png">
+            <Grid Grid.Row="0"  Grid.Column="1" Grid.RowSpan="6" Grid.ColumnSpan="6" Background="form_panel.png">
 
                 <StackLayout HorizontalOptions="Center" VerticalOptions="Center" Padding="10">
                     <Label HorizontalOptions="Center" Padding="10" FontSize="Default" x:Name="Subtitle"/>

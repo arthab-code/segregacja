@@ -10,6 +10,7 @@ namespace ZRM_TRIAGE
         public static string EventId { get; private set; }      
         public static string AmbulanceNumber { get; private set; } 
         public static AmbulanceModel Ambulance { get; private set; }
+        public static bool IsRefreshableTransport { get; set; } = true;
 
         public static void SetEventId(string eventId)
         {

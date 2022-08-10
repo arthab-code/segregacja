@@ -32,6 +32,7 @@ namespace ZRM_TRIAGE
         public string HospitalId { get; set; }
         public string Ambulance { get; set; }
         public string AmbulanceId { get; set; }
+        public string ToDeleteWhenSubscribe { get; set; }
         public bool IsTransported { get; set; }
 
     }

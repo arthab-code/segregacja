@@ -12,7 +12,7 @@ namespace ZRM_TRIAGE
     public class AmbulanceRepository 
     {
         private Database<AmbulanceModel> _database;
-        private string _dataName = "Crews";
+        public string _dataName = "Crews";
         public AmbulanceRepository()
         {
             _database = new Database<AmbulanceModel>();

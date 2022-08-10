@@ -26,12 +26,14 @@ using Xamarin.Forms;
 
         if (Android.OS.Environment.IsExternalStorageEmulated)
         {
-            root = Android.OS.Environment.ExternalStorageDirectory.ToString();
+            //root = Android.OS.Environment.ExternalStorageDirectory.ToString();
+            root = Android.App.Application.Context.GetExternalFilesDir(Environment.SystemDirectory).AbsolutePath;
+
         }
         else
             root = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 
-        Java.IO.File myDir = new Java.IO.File(root + "/_ZRM-TRIAGE");
+        Java.IO.File myDir = new Java.IO.File(root);
         myDir.Mkdir();
 
         Java.IO.File file = new Java.IO.File(myDir, fileName);
@@ -45,7 +47,7 @@ using Xamarin.Forms;
             outs.Flush();
             outs.Close();
 
-            Xamarin.Forms.Application.Current.MainPage.DisplayAlert("Plik pdf zapisano w:", "Moje pliki/Pamięć wewnętrzna/_ZRM-TRIAGE", "OK");
+            Xamarin.Forms.Application.Current.MainPage.DisplayAlert("Plik pdf zapisano w:", file.ToString(), "OK");
            
             //OPEN PDF FILE FOR DEVICE VIEWER
             Xamarin.Essentials.Launcher.OpenAsync(new Xamarin.Essentials.OpenFileRequest() { File = new Xamarin.Essentials.ReadOnlyFile(file.AbsolutePath) }) ;

@@ -38,6 +38,12 @@ namespace ZRM_TRIAGE
             _ambulanceModel.SelectedHospital = hospitalSelected;
             _ambulanceModel.HospitalId = hospitalSelected.DatabaseId;
 
+            if (_ambulanceModel.LoginCode == UserInfo.Ambulance.LoginCode)
+            {
+                UserInfo.Ambulance.SelectedHospital = hospitalSelected;
+                UserInfo.Ambulance.HospitalId = hospitalSelected.DatabaseId;
+            }
+
             _selectHospitalForAmbulanceViewModel.SaveHospital(_ambulanceModel);
 
             await App.Current.MainPage.Navigation.PopAsync();

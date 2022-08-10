@@ -16,24 +16,25 @@ namespace ZRM_TRIAGE
     {
 
         private TransportAmbulanceViewModel _tAVM;
+
         public TransportAmbulancePage()
         {
             InitializeComponent();
             _tAVM = new TransportAmbulanceViewModel();
             Subtitle.Text = "ZESPÓŁ TRANSPORTOWY "+UserInfo.Ambulance.Number+" DLA ZDARZENIA NR "+UserInfo.EventId;
 
-            if (UserInfo.Ambulance.AmbulanceFunction != AmbulanceModel.Function.Transport)
+        /*    if (UserInfo.Ambulance.AmbulanceFunction != AmbulanceModel.Function.Transport)
             {
                 ExitButton.IsVisible = false;
                 TriageBar.IsVisible = false;
                 NavigationPage.SetHasNavigationBar(this, true);
-            }
+            } */
         }
 
         protected override void OnAppearing()
         {
-            TriageRepository triageRepos = new TriageRepository();
-            triageRepos.LoadTriageData(ref RedAmount, ref YellowAmount, ref GreenAmount, ref BlackAmount);
+          //  TriageRepository triageRepos = new TriageRepository();
+           // triageRepos.LoadTriageData(ref RedAmount, ref YellowAmount, ref GreenAmount, ref BlackAmount);
 
             if (UserInfo.Ambulance.AmbulanceStatus == AmbulanceModel.Status.AtLocation)
                 ChangeColor(AtLocation, Transport, Hospital);
@@ -44,8 +45,13 @@ namespace ZRM_TRIAGE
             if (UserInfo.Ambulance.AmbulanceStatus == AmbulanceModel.Status.Hospital)
                 ChangeColor(Hospital, Transport, AtLocation);
 
-             VictimsList.ItemsSource = _tAVM.GetVictims();
-             HospitalList.ItemsSource = _tAVM.GetHospital();
+            if (UserInfo.IsRefreshableTransport)
+            {
+                VictimsList.ItemsSource = _tAVM.GetVictims();
+                HospitalList.ItemsSource = _tAVM.GetHospital();
+
+                UserInfo.IsRefreshableTransport = false;
+            }
 
 
         }

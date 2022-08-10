@@ -13,17 +13,23 @@ namespace ZRM_TRIAGE
         private HospitalRepository _hospitalRepository;
         private AmbulanceRepository _ambulanceRepository;
         private VictimRepository _victimRepository;
+        private ObservableCollection<VictimModel> _victims;
+        private ObservableCollection<HospitalModel> _hospitals;
+
         private string _victimDbName;
         private string _hospitalDbName;
+        private string _ambulanceDbName;
 
         public TransportAmbulanceViewModel()
         {
             _hospitalRepository = new HospitalRepository();
             _ambulanceRepository = new AmbulanceRepository();
             _victimRepository = new VictimRepository();
-
+            _victims = new ObservableCollection<VictimModel>();
+            _hospitals = new ObservableCollection<HospitalModel>();
             _victimDbName = _victimRepository._dataName;
             _hospitalDbName = _hospitalRepository._dataName;
+            _ambulanceDbName = _ambulanceRepository._dataName;
         }
 
         public void ChangeAmbulanceStatus(AmbulanceModel ambulance, AmbulanceModel.Status status)
@@ -36,47 +42,50 @@ namespace ZRM_TRIAGE
         public ObservableCollection<VictimModel> GetVictims()
         {
             Database<VictimModel> db = new Database<VictimModel>();
-            ObservableCollection<VictimModel> victims = new ObservableCollection<VictimModel>();
+            Database<AmbulanceModel> dbAM = new Database<AmbulanceModel>();
 
-            db.GetClient().Child(_victimDbName).Child(UserInfo.EventId).AsObservable<VictimModel>().Subscribe(a =>
+            db.GetClient().Child(_victimDbName).Child(UserInfo.EventId).AsObservable<VictimModel>().Subscribe( a =>
             {
-                if (a.Object.Ambulance == UserInfo.Ambulance.Number)
-                {
-                    if (victims.Contains(a.Object))
-                        victims[victims.IndexOf(a.Object)] = a.Object;
-                    else
-                        victims.Add(a.Object);
-                } else
-                {
-                    victims.Remove(a.Object);
-                }
-            });
+                _victims.Clear();
 
-            return victims;
+                var tmpList = db.ReadAll(_victimDbName, UserInfo.EventId);
+
+                foreach(var item in tmpList)
+                {
+                    if (item.AmbulanceId == UserInfo.Ambulance.DatabaseId)
+                        _victims.Add(item);
+
+                }
+
+            }); 
+
+            return _victims;
         }
 
+        
         public ObservableCollection<HospitalModel> GetHospital()
         {
-            Database<HospitalModel> db = new Database<HospitalModel>();
-            ObservableCollection<HospitalModel> hospitals = new ObservableCollection<HospitalModel>();
+            Database<AmbulanceModel> db = new Database<AmbulanceModel>();
+            Database<HospitalModel> dbHM = new Database<HospitalModel>();            
 
-            db.GetClient().Child(_hospitalDbName).Child(UserInfo.EventId).AsObservable<HospitalModel>().Subscribe(a =>
+            db.GetClient().Child(_ambulanceDbName).Child(UserInfo.EventId).AsObservable<AmbulanceModel>().Subscribe(a =>
             {
-                if (a.Object.DatabaseId == UserInfo.Ambulance.HospitalId)
+                _hospitals.Clear();
+
+                var ambulance = db.Read(_ambulanceDbName, UserInfo.EventId, UserInfo.Ambulance.DatabaseId);
+                var hospitals = dbHM.ReadAll(_hospitalDbName, UserInfo.EventId);
+
+                foreach (var item in hospitals)
                 {
-                    if (hospitals.Contains(a.Object))
-                        hospitals[hospitals.IndexOf(a.Object)] = a.Object;
-                    else
-                        hospitals.Add(a.Object);
+                    if (item.DatabaseId == ambulance.HospitalId)
+                        _hospitals.Add(item);
                 }
-                else
-                {
-                    hospitals.Remove(a.Object);
-                }
+
             });
 
-            return hospitals;
+            return _hospitals;
         }
+
 
     }
 }

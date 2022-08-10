@@ -63,7 +63,7 @@
                             </Picker.Items>
                         </Picker>
                         <StackLayout Orientation="Horizontal">
-                            <Button Text="EDYTUJ" Style="{StaticResource StandardButton}" Clicked="UpdateButtonClicked" />
+                            <Button x:Name="EditAmbulanceButton" Text="EDYTUJ" Style="{StaticResource StandardButton}" Clicked="UpdateButtonClicked" />
                             <Button x:Name="DeleteAmbulanceButton" Text="USUŃ" Style="{StaticResource StandardButton}" Clicked="DeleteAmbulanceClicked"/>
                         </StackLayout>
                     </StackLayout>
